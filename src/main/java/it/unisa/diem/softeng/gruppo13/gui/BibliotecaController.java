@@ -29,40 +29,6 @@ public class BibliotecaController implements Initializable {
     private InterfacciaBiblioteca archivio;
     private InterfacciaFile file;
     
-    @FXML
-    private TextField txtCercaLibro;
-    @FXML
-    private TableView<?> tabellaLibri;
-    @FXML
-    private TableColumn<?, ?> colTitolo;
-    @FXML
-    private TableColumn<?, ?> colAutori;
-    @FXML
-    private TableColumn<?, ?> colAnno;
-    @FXML
-    private TableColumn<?, ?> colIsbn;
-    @FXML
-    private TableColumn<?, ?> colCopie;
-    @FXML
-    private TextField txtCercaUtente;
-    @FXML
-    private TableView<?> tabellaUtenti;
-    @FXML
-    private TableColumn<?, ?> colCognome;
-    @FXML
-    private TableColumn<?, ?> colNome;
-    @FXML
-    private TableColumn<?, ?> colMatricola;
-    @FXML
-    private TableColumn<?, ?> colEmail;
-    @FXML
-    private TableView<?> tabellaPrestiti;
-    @FXML
-    private TableColumn<?, ?> colPrestitoUtente;
-    @FXML
-    private TableColumn<?, ?> colPrestitoLibro;
-    @FXML
-    private TableColumn<?, ?> colPrestitoData;
 
     /**
      * Initializes the controller class.
