@@ -92,12 +92,7 @@ public class GestioneBiblioteca implements InterfacciaBiblioteca{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    private void validaDatiLibro(String t, String a, String anno, String isbn, String copie){
 
-    }
 
-    private void validaDatiUtente(String n, String c, String m, String e){
-        
-    }
 
 }
