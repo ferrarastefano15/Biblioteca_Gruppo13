@@ -9,6 +9,7 @@ import it.unisa.diem.softeng.gruppo13.elementi.Libro;
 import it.unisa.diem.softeng.gruppo13.elementi.Prestito;
 import it.unisa.diem.softeng.gruppo13.elementi.Utente;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,20 @@ import java.util.List;
  * @author Daniel
  */
 public class GestioneBiblioteca implements InterfacciaBiblioteca{
+    
+    private List<Libro> libri;
+    private List<Utente> utenti;
+    private List<Prestito> prestiti;
+    private InterfacciaFile fileManager;
+
+    public GestioneBiblioteca(InterfacciaFile fileManager) {
+        this.libri = new ArrayList<>();
+        this.utenti = new ArrayList<>();
+        this.prestiti = new ArrayList<>();
+        this.fileManager = fileManager;
+    }
+    
+    
 
     @Override
     public List<Libro> getLibri() {
@@ -72,5 +87,9 @@ public class GestioneBiblioteca implements InterfacciaBiblioteca{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+    @Override
+    public void salvaTutto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

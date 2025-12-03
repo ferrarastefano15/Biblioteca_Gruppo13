@@ -31,6 +31,7 @@ public interface InterfacciaBiblioteca {
     void rimuoviLibro(Libro l);
     void rimuoviUtente(Utente u);
     void restituisciLibro(Prestito p);
-   
     
+    void salvaTutto();
+  
 }

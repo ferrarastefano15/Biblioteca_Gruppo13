@@ -5,6 +5,11 @@
  */
 package it.unisa.diem.softeng.gruppo13.logica;
 
+import it.unisa.diem.softeng.gruppo13.elementi.Libro;
+import it.unisa.diem.softeng.gruppo13.elementi.Prestito;
+import it.unisa.diem.softeng.gruppo13.elementi.Utente;
+import java.util.List;
+
 /**
  *
  * @author Daniel
@@ -15,7 +20,7 @@ public class SalvaFile implements InterfacciaFile {
     
     
     @Override
-    public void salvaFile(InterfacciaBiblioteca archivio) {
+    public void salvaFile(List<Libro> libri, List<Utente> utenti, List<Prestito> prestiti) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

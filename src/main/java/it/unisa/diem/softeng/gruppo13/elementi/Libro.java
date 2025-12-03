@@ -50,12 +50,37 @@ public class Libro {
     }
     
     
+    public String setTitolo(){
+        return this.titolo=titolo;
+    }
+    
+    public List<String> setAutori() {
+        return this.autori=autori;
+    }
+    
+    public int setAnno() {
+        return this.anno=anno;
+    }
+    
+    public String setIsbn() {
+        return this.isbn=isbn;
+    }
+    
+    public int setCopieDisponibili() {
+        return this.copieDisponibili=copieDisponibili;
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        return false;
+    }
+    
     public void decrementaCopie() { this.copieDisponibili--; }
     public void incrementaCopie() { this.copieDisponibili++; }
     
     @Override
     public String toString(){
-        return null;
+        return "";
     }
     
 }

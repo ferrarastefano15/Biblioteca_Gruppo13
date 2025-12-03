@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface InterfacciaFile {
     
-    public void salvaFile(InterfacciaBiblioteca archivio);
+    public void salvaFile(List<Libro> libri, List<Utente> utenti, List<Prestito> prestiti);
     
     
 }

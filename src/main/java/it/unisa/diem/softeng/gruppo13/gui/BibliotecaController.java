@@ -26,9 +26,7 @@ import javafx.scene.input.KeyEvent;
 public class BibliotecaController implements Initializable {
 
     
-    private InterfacciaBiblioteca archivio;
-    private InterfacciaFile file;
-    
+    private InterfacciaBiblioteca archivio;    
 
     /**
      * Initializes the controller class.
@@ -55,7 +53,7 @@ public class BibliotecaController implements Initializable {
     }
 
     @FXML
-    private void handleEliminaLibro(ActionEvent event) {
+    private void btnEliminaLibro(ActionEvent event) {
     }
 
     @FXML
