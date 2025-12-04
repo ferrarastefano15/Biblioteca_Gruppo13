@@ -53,7 +53,7 @@ public class BibliotecaController implements Initializable {
     }
 
     @FXML
-    private void btnEliminaLibro(ActionEvent event) {
+    private void btnRimuoviLibro(ActionEvent event) {
     }
 
     @FXML
