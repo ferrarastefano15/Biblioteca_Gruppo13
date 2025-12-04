@@ -4,10 +4,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>gruppo13</groupId>
-  <artifactId>Biblioteca</artifactId>
+  <artifactId>ProgettoBiblioteca</artifactId>
   <version>1.0</version>
 
-  <name>Biblioteca</name>
+  <name>ProgettoBiblioteca</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
