@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.unisa.diem.softeng.gruppo13.logica;
+package it.unisa.diem.softeng.gruppo13.gestionebiblioteca;
 
-import it.unisa.diem.softeng.gruppo13.elementi.Libro;
-import it.unisa.diem.softeng.gruppo13.elementi.Prestito;
-import it.unisa.diem.softeng.gruppo13.elementi.Utente;
+import it.unisa.diem.softeng.gruppo13.gestionefile.InterfacciaFile;
+import it.unisa.diem.softeng.gruppo13.dati.Libro;
+import it.unisa.diem.softeng.gruppo13.dati.Prestito;
+import it.unisa.diem.softeng.gruppo13.dati.Utente;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.unisa.diem.softeng.gruppo13.elementi;
+package it.unisa.diem.softeng.gruppo13.dati;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class Utente {
     private String matricola;
     private String email;
 
-    public Utente(String nome, String cognome, String matricola, String email, List<Prestito> prestitiAttivi) {
+    public Utente(String nome, String cognome, String matricola, String email) {
         this.nome = nome;
         this.cognome = cognome;
         this.matricola = matricola;

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.unisa.diem.softeng.gruppo13.gui;
+package it.unisa.diem.softeng.gruppo13.interfacciagrafica;
 
-import it.unisa.diem.softeng.gruppo13.logica.InterfacciaBiblioteca;
-import it.unisa.diem.softeng.gruppo13.logica.InterfacciaFile;
+import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.InterfacciaBiblioteca;
+import it.unisa.diem.softeng.gruppo13.gestionefile.InterfacciaFile;
 
 import java.net.URL;
 import java.util.ResourceBundle;

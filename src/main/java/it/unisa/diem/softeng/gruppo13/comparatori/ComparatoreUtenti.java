@@ -5,7 +5,7 @@
  */
 package it.unisa.diem.softeng.gruppo13.comparatori;
 
-import it.unisa.diem.softeng.gruppo13.elementi.Utente;
+import it.unisa.diem.softeng.gruppo13.dati.Utente;
 import java.util.Comparator;
 
 /**
