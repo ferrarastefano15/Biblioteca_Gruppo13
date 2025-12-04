@@ -16,14 +16,14 @@ import java.util.List;
  *
  * @author Daniel
  */
-public class GestioneBiblioteca implements InterfacciaBiblioteca{
+public class Biblioteca implements InterfacciaBiblioteca{
     
     private List<Libro> libri;
     private List<Utente> utenti;
     private List<Prestito> prestiti;
     private InterfacciaFile fileManager;
 
-    public GestioneBiblioteca(InterfacciaFile fileManager) {
+    public Biblioteca(InterfacciaFile fileManager) {
         this.libri = new ArrayList<>();
         this.utenti = new ArrayList<>();
         this.prestiti = new ArrayList<>();

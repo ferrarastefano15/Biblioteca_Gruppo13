@@ -5,17 +5,17 @@
  */
 package it.unisa.diem.softeng.gruppo13.comparatori;
 
-import it.unisa.diem.softeng.gruppo13.elementi.Libro;
+import it.unisa.diem.softeng.gruppo13.elementi.Prestito;
 import java.util.Comparator;
 
 /**
  *
  * @author Daniel
  */
-public class ComparaLibri implements Comparator<Libro> {
+public class ComparatorePrestiti implements Comparator<Prestito>{
 
     @Override
-    public int compare(Libro o1, Libro o2) {
+    public int compare(Prestito o1, Prestito o2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
