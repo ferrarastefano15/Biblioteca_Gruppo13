@@ -5,19 +5,20 @@
  */
 package it.unisa.diem.softeng.gruppo13.logica;
 
-import it.unisa.diem.softeng.gruppo13.elementi.Libro;
-import it.unisa.diem.softeng.gruppo13.elementi.Prestito;
-import it.unisa.diem.softeng.gruppo13.elementi.Utente;
+import it.unisa.diem.softeng.gruppo13.dati.Libro;
+import it.unisa.diem.softeng.gruppo13.dati.Prestito;
+import it.unisa.diem.softeng.gruppo13.dati.Utente;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @class GestioneBiblioteca
+ * @class Biblioteca
  * @brief Gestisce le operazioni relative alla biblioteca.
  * 
  * La classe `GestioneBiblioteca` è il cuore del sistema di gestione di una biblioteca. 
- * Permette di gestire libri, utenti e prestiti, offrendo metodi per aggiungere, cercare e rimuovere elementi.
+ * Permette di gestire libri, utenti e prestiti, offrendo metodi per aggiungere, cercare,
+ * modificare e rimuovere elementi.
  * La classe utilizza anche un file manager per salvare e caricare i dati.
  * @author Daniel, Andrea, Stefano, Daniele
  * @date Dicembre 03, 2025
@@ -40,9 +41,6 @@ public class GestioneBiblioteca implements InterfacciaBiblioteca{
    /**
      * @brief Costruisce una nuova istanza di GestioneBiblioteca.
      * 
-     * Questo costruttore inizializza le liste dei libri, degli utenti e dei prestiti. Inoltre,
-     * assegna il file manager per la gestione dei dati persistenti.
-     *
      * @param fileManager Il gestore delle operazioni sui file.
      */
    public GestioneBiblioteca(InterfacciaFile fileManager) {

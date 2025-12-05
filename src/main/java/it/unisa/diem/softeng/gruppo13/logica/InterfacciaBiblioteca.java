@@ -5,9 +5,9 @@
  */
 package it.unisa.diem.softeng.gruppo13.logica;
 
-import it.unisa.diem.softeng.gruppo13.elementi.Libro;
-import it.unisa.diem.softeng.gruppo13.elementi.Prestito;
-import it.unisa.diem.softeng.gruppo13.elementi.Utente;
+import it.unisa.diem.softeng.gruppo13.dati.Libro;
+import it.unisa.diem.softeng.gruppo13.dati.Prestito;
+import it.unisa.diem.softeng.gruppo13.dati.Utente;
 import java.time.LocalDate;
 import java.util.List;
 
