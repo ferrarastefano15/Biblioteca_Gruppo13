@@ -6,11 +6,10 @@ import javafx.stage.Stage;
 /**
      *@class Main
      *@brief Classe di avvio per l'applicazione JavaFX.
-     *
-     * La classe `Main` estende `Application` ed è il punto di partenza per l'esecuzione dell'applicazione JavaFX.
-     * Contiene il metodo `main` per avviare l'applicazione e il metodo `start` che verrà utilizzato per configurare
-     * e mostrare la finestra principale (Stage) dell'applicazione. Al momento, il metodo `start` non è implementato. 
-     *
+     * 
+     * La classe 'Main' avvia l'applicazione JavaFx fornendo i metodi
+     * necessari all'avvio della scena
+     * 
      *@author Daniel, Andrea, Stefano, Daniele
      *@date Dicembre 03, 2025
      * 
@@ -22,10 +21,7 @@ import javafx.stage.Stage;
       /**
      * @brief Metodo principale dell'applicazione.
      * 
-     * Il metodo `main` è il punto di partenza per l'esecuzione dell'applicazione. In questo caso, stampa semplicemente
-     * "Hello World!" sulla console.
-     * 
-     * @param args Argomenti da linea di comando (non utilizzati in questa implementazione).
+     * @param args Argomenti da linea di comando.
      */
         public static void main(String[] args) {
             System.out.println("Hello World!");
@@ -35,12 +31,9 @@ import javafx.stage.Stage;
     /**
      * @brief Metodo che avvia l'interfaccia grafica dell'applicazione.
      * 
-     * Il metodo `start` è il punto di ingresso per la configurazione e la visualizzazione dell'interfaccia grafica.
-     * Questo metodo verrà chiamato dal framework JavaFX per avviare l'applicazione, ma al momento l'implementazione
-     * è mancante e solleva un'eccezione `UnsupportedOperationException`.
+     * Avvia l'applicazione JavaFX mostrando la finestra principale
      * 
-     * @param primaryStage Finestra principale dell'applicazione (Stage).
-     * @throws UnsupportedOperationException Se il metodo non è implementato.
+     * @param[in] primaryStage Finestra principale dell'applicazione (Stage).
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
