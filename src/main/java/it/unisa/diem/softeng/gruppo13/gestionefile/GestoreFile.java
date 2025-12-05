@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class GestoreFile implements InterfacciaFile {
   
-    
+    private static final String FILE_NAME = "archivio_biblioteca.dat";
     
     /**
      * @brief Salva i dati dei libri, degli utenti e dei prestiti in un file .dat

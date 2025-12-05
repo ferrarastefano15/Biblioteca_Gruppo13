@@ -21,7 +21,7 @@ import javafx.stage.Stage;
       /**
      * @brief Metodo principale dell'applicazione.
      * 
-     * @param args Argomenti da linea di comando.
+     * @param[in] args Argomenti da linea di comando.
      */
         public static void main(String[] args) {
             System.out.println("Hello World!");
