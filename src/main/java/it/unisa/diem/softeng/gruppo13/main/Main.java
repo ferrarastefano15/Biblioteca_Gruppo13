@@ -10,15 +10,12 @@ import javafx.stage.Stage;
      * La classe 'Main' avvia l'applicazione JavaFx fornendo i metodi
      * necessari all'avvio della scena
      * 
-     *@author Daniel, Andrea, Stefano, Daniele
-     *@date Dicembre 03, 2025
-     * 
-     * 
+     *@author Daniel, Andrea, Stefano, Daniele 
      */
  
     public class Main extends Application {
         
-      /**
+     /**
      * @brief Metodo principale dell'applicazione.
      * 
      * @param[in] args Argomenti da linea di comando.
