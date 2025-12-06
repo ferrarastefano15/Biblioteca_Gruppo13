@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['gestorefilecsv_0',['GestoreFileCSV',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1gestionefile_1_1_gestore_file_c_s_v.html',1,'it::unisa::diem::softeng::gruppo13::gestionefile']]],
+  ['gestorelibri_1',['GestoreLibri',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1gestionebiblioteca_1_1_gestore_libri.html',1,'it::unisa::diem::softeng::gruppo13::gestionebiblioteca']]],
+  ['gestoreprestiti_2',['GestorePrestiti',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1gestionebiblioteca_1_1_gestore_prestiti.html',1,'it::unisa::diem::softeng::gruppo13::gestionebiblioteca']]],
+  ['gestoreutenti_3',['GestoreUtenti',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1gestionebiblioteca_1_1_gestore_utenti.html',1,'it::unisa::diem::softeng::gruppo13::gestionebiblioteca']]],
+  ['getanno_4',['getAnno',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1dati_1_1_libro.html#ae96c0032421b26e3ab0433e1d55e53f8',1,'it::unisa::diem::softeng::gruppo13::dati::Libro']]],
+  ['getautori_5',['getAutori',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1dati_1_1_libro.html#a151def76d6e03301ee5effc698292983',1,'it::unisa::diem::softeng::gruppo13::dati::Libro']]],
+  ['getcognome_6',['getCognome',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1dati_1_1_utente.html#ac549bb6f291a4af629325b33ff8a5457',1,'it::unisa::diem::softeng::gruppo13::dati::Utente']]],
+  ['getcopiedisponibili_7',['getCopieDisponibili',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1dati_1_1_libro.html#a7ad6a04c388a999d2f512f480c2f7cfb',1,'it::unisa::diem::softeng::gruppo13::dati::Libro']]],
+  ['getdatarestituzione_8',['getDataRestituzione',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1dati_1_1_prestito.html#aaa5071a8e2f16a48b40385c16e9e90ba',1,'it::unisa::diem::softeng::gruppo13::dati::Prestito']]],
+  ['getemail_9',['getEmail',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1dati_1_1_utente.html#aa8fcf063f424d9baf14749c6bfa46fe0',1,'it::unisa::diem::softeng::gruppo13::dati::Utente']]],
+  ['getisbn_10',['getIsbn',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1dati_1_1_libro.html#a12bee21e01679520e3819023d7e3879c',1,'it::unisa::diem::softeng::gruppo13::dati::Libro']]],
+  ['getlibri_11',['getLibri',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1gestionebiblioteca_1_1_gestore_libri.html#ab4ab92a09fea38f2c49689d7225851e0',1,'it::unisa::diem::softeng::gruppo13::gestionebiblioteca::GestoreLibri']]],
+  ['getlibro_12',['getLibro',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1dati_1_1_prestito.html#a2f04e9cdd86e41538f1043c58379dbc6',1,'it::unisa::diem::softeng::gruppo13::dati::Prestito']]],
+  ['getmatricola_13',['getMatricola',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1dati_1_1_utente.html#a1b434f212c7422284d83e9fcf5c13af5',1,'it::unisa::diem::softeng::gruppo13::dati::Utente']]],
+  ['getnome_14',['getNome',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1dati_1_1_utente.html#aea2385664d161a21405d61ed34e8b859',1,'it::unisa::diem::softeng::gruppo13::dati::Utente']]],
+  ['getordinati_15',['getOrdinati',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1gestionebiblioteca_1_1_gestore_prestiti.html#a7240c6680277fae22f27dfadcf7fa57a',1,'it::unisa::diem::softeng::gruppo13::gestionebiblioteca::GestorePrestiti']]],
+  ['getprestiti_16',['getPrestiti',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1gestionebiblioteca_1_1_gestore_prestiti.html#a2316d831b5342a81abc0aa16cdd93ca5',1,'it::unisa::diem::softeng::gruppo13::gestionebiblioteca::GestorePrestiti']]],
+  ['gettitolo_17',['getTitolo',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1dati_1_1_libro.html#a8ea550a86c252db67d09d7a5ad2c3350',1,'it::unisa::diem::softeng::gruppo13::dati::Libro']]],
+  ['getuenti_18',['getUenti',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1gestionebiblioteca_1_1_gestore_utenti.html#a3e1ce7e6bddac4337f7da86045a5a41e',1,'it::unisa::diem::softeng::gruppo13::gestionebiblioteca::GestoreUtenti']]],
+  ['getutente_19',['getUtente',['../classit_1_1unisa_1_1diem_1_1softeng_1_1gruppo13_1_1dati_1_1_prestito.html#afb0d4808cb21ded22ee4203ebdf6f423',1,'it::unisa::diem::softeng::gruppo13::dati::Prestito']]]
+];
