@@ -13,8 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Stefano
+ * @class GestorePrestiti
+ * @brief Implementa i metodi di 'Prestito'.
+ * 
+ * La classe 'GestorePrestiti' serve a gestire i prestiti della bilbioteca, passandogli
+ * la lista dei prestiti e implementando i metodi per aggiungere, rimuovere e ordinare
+ * i prestiti della biblioteca. Controlla che i prerequisiti per la creazione
+ * del prestito siano soddisfatti.
+ * @author Daniel, Andrea, Stefano, Daniele
  */
 public class GestorePrestiti {
 
@@ -96,7 +102,7 @@ public class GestorePrestiti {
      * Utilizza uno stream per filtrare e ordinare la lista originale senza modificarla,
      * garantendo che l'interfaccia riceva i dati nell'ordine corretto.
      *
-     * @return Una List<Prestito>} contenente tutti i prestiti registrati,
+     * @return Lista di prestiti contenente tutti i prestiti registrati,
      * ordinati per data prevista di restituzione.
      */    
     public List<Prestito> getOrdinati() {

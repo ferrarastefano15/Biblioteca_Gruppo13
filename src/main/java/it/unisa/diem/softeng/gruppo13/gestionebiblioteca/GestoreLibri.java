@@ -11,8 +11,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- *
- * @author Stefano
+ * @class GestoreLibri
+ * @brief Implementa i metodi di 'Libro'.
+ * 
+ * La classe 'GestoreLibri' serve a gestire i libri della bilbioteca, passandogli
+ * la lista dei libri e implementando i metodi per aggiungere, rimuovere e cercare
+ * i libri della biblioteca.
+ * @author Daniel, Andrea, Stefano, Daniele
  */
 public class GestoreLibri {
     

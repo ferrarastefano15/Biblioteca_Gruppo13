@@ -11,8 +11,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- *
- * @author Stefano
+ * @class GestoreUtenti
+ * @brief Implementa i metodi di 'Utente'.
+ * 
+ * La classe 'GestoreUtenti' serve a gestire gli utenti della bilbioteca, passandogli
+ * la lista degli utenti e implementando i metodi per aggiungere, rimuovere e cercare
+ * gli utenti della biblioteca.
+ * @author Daniel, Andrea, Stefano, Daniele
  */
 public class GestoreUtenti {
 
