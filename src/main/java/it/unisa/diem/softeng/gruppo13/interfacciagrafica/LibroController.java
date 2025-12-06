@@ -60,9 +60,6 @@ public class LibroController {
     @FXML
     private void btnAnnulla() { 
     }
-    
-    private void btnPulisci() {
-    }
 
     @FXML
     private void btnAggiungi() {
