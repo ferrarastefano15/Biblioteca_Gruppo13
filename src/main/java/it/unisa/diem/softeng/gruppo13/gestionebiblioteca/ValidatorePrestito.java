@@ -15,14 +15,10 @@ import java.util.List;
  * @author Daniel
  */
 public class ValidatorePrestito {
-
-
-public class PrestitoValidator {
     
     private static final int MAX_PRESTITI = 3;
 
     public void valida(Utente utente, Libro libro, List<Prestito> prestitiAttuali) throws Exception {
     }
-}
-    
+
 }
