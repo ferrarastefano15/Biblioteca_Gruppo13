@@ -14,7 +14,6 @@ import java.util.List;
  * gestire questi dati.
  * 
  * @author Daniel, Andrea, Stefano, Daniele
- * @date Dicembre 03, 2025
  */
 public class Libro {
     
@@ -107,7 +106,7 @@ public class Libro {
         
      /**
      * @brief Imposta gli autori del libro.
-     * @param[in] La lista degli autori del libro.
+     * @param[in] autori La lista degli autori del libro.
      */
          public void setAutori(List<String> autori) {
             this.autori=autori;
@@ -115,7 +114,7 @@ public class Libro {
     
      /**
      * @brief Imposta l'anno di pubblicazione del libro.
-     * @param[in] anno anno L'anno di pubblicazione del libro.
+     * @param[in] anno L'anno di pubblicazione del libro.
      */
 
          public void setAnno(int anno) {
@@ -125,7 +124,7 @@ public class Libro {
     
      /**
      * @brief Imposta il codice ISBN del libro.
-     * @param[in] Il codice ISBN del libro.
+     * @param[in] isbn Il codice ISBN del libro.
      */
         public void setIsbn(String isbn) {
                 this.isbn=isbn;
@@ -135,7 +134,7 @@ public class Libro {
 
      /**
      * @brief Imposta il numero di copie disponibili del libro.
-     * @param[in] Il numero di copie disponibili del libro.
+     * @param[in] copieDisponibili Il numero di copie disponibili del libro.
      */
         public void setCopieDisponibili(int copieDisponibili) {
                this.copieDisponibili=copieDisponibili;
@@ -158,6 +157,8 @@ public class Libro {
      * 
      * Questo metodo riduce il numero di copie disponibili di un libro di una unità,
      * indicando che una copia è stata presa in prestito.
+     * 
+     * @invariant Il numero di copie disponibili non può essere minore di zero.
      */
             public void decrementaCopie() { this.copieDisponibili--; }
     

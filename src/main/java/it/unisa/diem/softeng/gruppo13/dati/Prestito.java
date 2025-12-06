@@ -13,7 +13,6 @@ import java.time.LocalDate;
  * 
  * La classe `Prestito` memorizza e gestisce le informazioni dei prestiti.
  * @author Daniel, Andrea, Stefano, Daniele
- * @date Dicembre 03, 2025
  */
 public class Prestito {
     
@@ -30,9 +29,9 @@ public class Prestito {
     /**
      * @brief Costruttore di un nuovo prestito.
      * 
-     * @param libro Il libro che viene preso in prestito.
-     * @param utente L'utente che prende in prestito il libro.
-     * @param dataRestituzione La data di restituzione prevista per il libro.
+     * @param[in] libro Il libro che viene preso in prestito.
+     * @param[in] utente L'utente che prende in prestito il libro.
+     * @param[in] dataRestituzione La data di restituzione prevista per il libro.
      */
         public Prestito(Libro libro, Utente utente, LocalDate dataRestituzione) {
             this.libro = libro;

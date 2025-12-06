@@ -15,7 +15,6 @@ import java.util.List;
  * gestire questi dati.
  * 
  * @author Daniel, Andrea, Stefano, Daniele
- * @date Dicembre 03, 2025
  */
 public class Utente {
     
@@ -104,7 +103,7 @@ public class Utente {
     
     /**
      * @brief Imposta la matricola dell'utente.
-     * @param[in] matricola Nuovo matricola dell'utente.
+     * @param[in] matricola Nuova matricola dell'utente.
      */
         public void setMatricola(String matricola) {
                 this.matricola = matricola;
