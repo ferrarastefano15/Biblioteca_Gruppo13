@@ -14,19 +14,19 @@ import java.util.List;
  * @interface InterfacciaFile
  * @brief Definisce le operazioni per la gestione dei file in un sistema di biblioteca.
  * 
- * L'interfaccia `InterfacciaFile` definisce il contratto per le operazioni di 
- * salvataggio dei dati relativi ai libri, agli utenti e ai prestiti in un file, 
- * in modo che possano essere successivamente letti.
+ * L'interfaccia definisce il contratto per le operazioni di persistenza e recupero dei dati 
+ * per l'archivio della biblioteca, in particolare le operazione di scrittura dei 
+ * dati (libri, utenti, prestiti) nelle rispettive fonti esterne, e le operazione 
+ * di lettura dei dati dalle fonti esterne e di ricostruzione delle collezioni in memoria.
  *
  * @author Daniel, Andrea, Stefano, Daniele
- * @date Dicembre 03, 2025
  */
 
 
 public interface InterfacciaFile {
     
 
-    /**
+     /**
      * @brief Salva i dati di libri, utenti e prestiti in un file esterno.
      * 
      * @param[in] libri Lista dei libri da salvare.
@@ -34,6 +34,16 @@ public interface InterfacciaFile {
      * @param[in] prestiti Lista dei prestiti da salvare.
      */
       public void salvaFile(List<Libro> libri, List<Utente> utenti, List<Prestito> prestiti);
+      
+      
+     /**
+     * @brief Carica i dati di libri, utenti e prestiti da un file esterno.
+     * 
+     * @param[in] libri Lista dei libri da importare.
+     * @param[in] utenti Lista degli utenti da importare.
+     * @param[in] prestiti Lista dei prestiti da importare.
+     */
+      public void caricaDati(List<Libro> libri, List<Utente> utenti, List<Prestito> prestiti);
     
     
 }

@@ -14,17 +14,16 @@ import java.util.List;
  * @class GestoreFile
  * @brief Gestione del salvataggio dei dati.
  * 
- * La classe `SalvaFile` è responsabile per l'implementazione del salvataggio 
- * dei dati relativi a libri, utenti e prestiti in file esterni. 
+ * La classe `GestoreFileCSV` è responsabile per l'implementazione del salvataggio 
+ * e caricamento dei dati relativi a libri, utenti e prestiti in file esterni con
+ * formato csv. 
  * @author Daniel, Andrea, Stefano, Daniele
- * @date Dicembre 03, 2025
  */
-public class GestoreFile implements InterfacciaFile {
+public class GestoreFileCSV implements InterfacciaFile {
   
-    private static final String FILE_NAME = "archivio_biblioteca.dat";
     
     /**
-     * @brief Salva i dati dei libri, degli utenti e dei prestiti in un file .dat
+     * @brief Salva i dati dei libri, degli utenti e dei prestiti in tre file .csv
      * 
      * @param[in] libri Lista dei libri da salvare.
      * @param[in] utenti Lista degli utenti da salvare.
@@ -33,6 +32,19 @@ public class GestoreFile implements InterfacciaFile {
         @Override
         public void salvaFile(List<Libro> libri, List<Utente> utenti, List<Prestito> prestiti) {
         }
+
+    /**
+     * @brief Carica i dati dei libri, degli utenti e dei prestiti da tre file .csv
+     * 
+     * @param[in] libri Lista dei libri da importare.
+     * @param[in] utenti Lista degli utenti da importare.
+     * @param[in] prestiti Lista dei prestiti da importare.
+     */
+        @Override
+        public void caricaDati(List<Libro> libri, List<Utente> utenti, List<Prestito> prestiti) {
+        }
+        
+        
     
     
     
