@@ -16,7 +16,6 @@ import java.util.Comparator;
  * confrontare due oggetti `Utente` fra di loro, al fine di ordinarli per 
  * cognome e nome. Se risultano uguali, li ordina per matricola.
  * @author Daniel, Andrea, Stefano, Daniele
- * @date Dicembre 03, 2025
  */
 public class ComparatoreUtenti implements Comparator<Utente> {
 

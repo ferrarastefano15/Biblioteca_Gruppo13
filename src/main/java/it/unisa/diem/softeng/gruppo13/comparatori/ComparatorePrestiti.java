@@ -16,7 +16,6 @@ import java.util.Comparator;
  * confrontare due oggetti `Prestito` fra di loro, al fine di ordinarli per
  * data di prevista restituzione.
  * @author Daniel, Andrea, Stefano, Daniele
- * @date Dicembre 03, 2025
  */
 public class ComparatorePrestiti implements Comparator<Prestito> {
 

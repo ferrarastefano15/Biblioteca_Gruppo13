@@ -16,7 +16,6 @@ import java.util.Comparator;
  * confrontare due oggetti `Libro` fra di loro, al fine di ordonarli per titolo
  * o, se uguale, per codice ISBN
  * @author Daniel, Daniel, Andrea, Stefano, Daniele
- * @date Dicembre 03, 2025
  */
 public class ComparatoreLibri implements Comparator<Libro> { 
 
