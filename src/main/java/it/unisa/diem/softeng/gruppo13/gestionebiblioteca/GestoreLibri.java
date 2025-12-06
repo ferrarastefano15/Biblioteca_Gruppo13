@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  *
  * @author Stefano
  */
-public class GestoreLibro {
+public class GestoreLibri {
     
     /** @brief Lista dei libri presenti nella biblioteca */
     private List<Libro> libri = new ArrayList<>();

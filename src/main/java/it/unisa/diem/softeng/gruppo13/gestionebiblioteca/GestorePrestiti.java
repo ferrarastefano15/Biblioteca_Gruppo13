@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Stefano
  */
-public class GestorePrestito {
+public class GestorePrestiti {
 
     /** @brief Lista dei prestiti effettuati nella biblioteca */    
     private List<Prestito> prestiti = new ArrayList<>();
@@ -65,15 +65,28 @@ public class GestorePrestito {
     }
     
      /**
-     * @brief Verifica se una specifica entità è coinvolta in prestiti attivi.
+     * @brief Verifica se un libro è coinvolto in prestiti attivi.
      *
-     * Questo metodo serve per controllare se un utente o un libro
+     * Questo metodo serve per controllare se un libro è coinvolto 
+     * in un prestito, prima di poterlo eliminare.
+     *
+     * @param[in] l Il libro da controllare
+     * @return 'true' se il libro è presente in almeno un prestito; 'false' altrimenti.
+     */    
+    public boolean haPrestitiAttivi(Libro l) {
+        return false;
+    }
+    
+     /**
+     * @brief Verifica se un utente è coinvolto in prestiti attivi.
+     *
+     * Questo metodo serve per controllare se un utente
      * è coinvolto in un prestito, prima di poterlo eliminare.
      *
-     * @param[in] entita L'oggetto da controllare
-     * @return 'true' se l'entità è presente in almeno un prestito; 'false' altrimenti.
-     */    
-    public boolean haPrestitiAttivi(Object entita) {
+     * @param[in] u L'utente da controllare
+     * @return 'true' se l'utente è presente in almeno un prestito; 'false' altrimenti.
+     */
+    public boolean haPrestitiAttivi(Utente u) {
         return false;
     }
 
