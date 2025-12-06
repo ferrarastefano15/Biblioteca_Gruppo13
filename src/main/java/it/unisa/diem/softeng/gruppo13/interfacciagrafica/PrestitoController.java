@@ -14,6 +14,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import java.time.LocalDate;
 
+/**
+ * @class PrestitoController
+ * @brief Gestisce l'interfaccia utente per la visualizzazione e gestione dei prestiti.
+ * 
+ * Questa classe si occupa della logica dell'interfaccia utente per gestire i prestiti dei libri. 
+ * Permette di visualizzare, aggiungere e restituire i prestiti interagendo con i 
+ * gestori di libri, utenti e prestiti.
+ * 
+ * @author Daniel, Daniel, Andrea, Stefano, Daniele
+ */
 public class PrestitoController {
     
     @FXML private TableView<Prestito> tabellaPrestiti;
@@ -28,6 +38,16 @@ public class PrestitoController {
     private GestoreLibri gestoreLibri;
     private GestoreUtenti gestoreUtenti;
 
+     /**
+     * @brief Gestisce l'interfaccia utente per la visualizzazione e gestione dei prestiti.
+     * 
+     * Questo metodo viene chiamato per configurare la tabella dei prestiti, 
+     * i selettori di utenti, libri e data, e aggiornare i dati.
+     * 
+     * @param[in] gp Il gestore dei prestiti.
+     * @param[in] gl Il gestore dei libri.
+     * @param[in] gu Il gestore degli utenti.
+     */
     public void init(GestorePrestiti gp, GestoreLibri gl, GestoreUtenti gu) {
     }
 

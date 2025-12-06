@@ -9,6 +9,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * @class UtenteController
+ * @brief Gestisce l'interfaccia utente per la visualizzazione e gestione degli utenti.
+ * 
+ * Questa classe si occupa della logica dell'interfaccia utente per la gestione 
+ * degli utenti della biblioteca. Permette di visualizzare, aggiungere, modificare 
+ * e rimuovere gli utenti.
+ * 
+ * @author Daniel, Daniel, Andrea, Stefano, Daniele
+ */
 public class UtenteController {
 
 
@@ -22,6 +32,16 @@ public class UtenteController {
     private GestorePrestiti gestorePrestiti;
 
 
+     /**
+     * @brief Inizializza il controller per gestire l'interfaccia per la visualizzazione
+     * e la gestione degli utenti.
+     * 
+     * Questo metodo viene chiamato per configurare la tabella degli utenti, 
+     * le azioni di selezione e l'aggiornamento della vista.
+     * 
+     * @param[in] gu Il gestore degli utenti.
+     * @param[in] gp Il gestore dei prestiti.
+     */
     public void init(GestoreUtenti gu, GestorePrestiti gp) {
     }
 
