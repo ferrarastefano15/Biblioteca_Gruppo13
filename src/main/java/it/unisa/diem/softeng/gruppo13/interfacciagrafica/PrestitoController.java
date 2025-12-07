@@ -20,8 +20,7 @@ import java.time.LocalDate;
  * 
  * Questa classe si occupa della logica dell'interfaccia utente per gestire i prestiti dei libri. 
  * Permette di visualizzare, aggiungere e restituire i prestiti interagendo con i 
- * gestori di libri, utenti e prestiti.
- * 
+ * gestori di libri, utenti e prestiti. 
  * @author Daniel, Daniel, Andrea, Stefano, Daniele
  */
 public class PrestitoController {

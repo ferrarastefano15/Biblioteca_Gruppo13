@@ -16,7 +16,6 @@ import java.util.List;
  * 
  * Questa classe controlla se un utente ha i prerequisiti per la validazione di un
  * nuovo prestito, inizializzando la costante MAX_PRESTITI.
- * 
  * @author Daniel, Andrea, Stefano, Daniele
  */
 public class ValidatorePrestito {

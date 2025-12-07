@@ -16,7 +16,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * Questa classe si occupa della logica dell'interfaccia utente per la gestione 
  * degli utenti della biblioteca. Permette di visualizzare, aggiungere, modificare 
  * e rimuovere gli utenti.
- * 
  * @author Daniel, Daniel, Andrea, Stefano, Daniele
  */
 public class UtenteController {

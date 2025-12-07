@@ -18,7 +18,6 @@ import java.util.List;
  * per l'archivio della biblioteca, in particolare le operazione di scrittura dei 
  * dati (libri, utenti, prestiti) nelle rispettive fonti esterne, e le operazione 
  * di lettura dei dati dalle fonti esterne e di ricostruzione delle collezioni in memoria.
- *
  * @author Daniel, Andrea, Stefano, Daniele
  */
 

@@ -12,8 +12,7 @@ import java.util.List;
  * @brief Rappresenta un utente della biblioteca.
  * 
  * La classe `Utente` memorizza le informazioni di un utente e permette di 
- * gestire questi dati.
- * 
+ * gestire questi dati. 
  * @author Daniel, Andrea, Stefano, Daniele
  */
 public class Utente {

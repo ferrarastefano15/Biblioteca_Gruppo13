@@ -10,9 +10,9 @@ import java.util.List;
 /**
  * @class  Libro
  * @brief  Rappresenta un libro della biblioteca
+ * 
  * La classe `Libro` memorizza le informazioni di un libro e permette di 
  * gestire questi dati.
- * 
  * @author Daniel, Andrea, Stefano, Daniele
  */
 public class Libro {

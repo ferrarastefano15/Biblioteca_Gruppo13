@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
  * @brief Classe che gestisce la visualizzazione dei messaggi di sistema all'utente.
  * 
  * Questa classe fornisce la logica per mostrare notifiche e avvisi.
+ * @author Daniel, Andrea, Stefano, Daniele
  */
 public class GestoreMessaggi {
     

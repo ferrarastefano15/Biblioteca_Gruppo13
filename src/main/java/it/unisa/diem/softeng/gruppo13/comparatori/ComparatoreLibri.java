@@ -15,7 +15,7 @@ import java.util.Comparator;
  * La classe `ComparatoreLibri` implementa l'interfaccia `Comparator` per 
  * confrontare due oggetti `Libro` fra di loro, al fine di ordonarli per titolo
  * o, se uguale, per codice ISBN
- * @author Daniel, Daniel, Andrea, Stefano, Daniele
+ * @author Daniel, Andrea, Stefano, Daniele
  */
 public class ComparatoreLibri implements Comparator<Libro> { 
 

@@ -20,7 +20,6 @@ import java.util.List;
  * Questa classe gestisce la logica dell'interfaccia utente per la gestione dei libri, 
  * inclusa la visualizzazione dei libri in una tabella, l'aggiunta, la modifica, 
  * la rimozione e la ricerca dei libri. 
- * 
  * @author Daniel, Daniel, Andrea, Stefano, Daniele
  */
 public class LibroController {

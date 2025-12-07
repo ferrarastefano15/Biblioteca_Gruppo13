@@ -18,7 +18,6 @@ import java.io.IOException;
  * Questa classe è responsabile per l'inizializzazione e la gestione dell'interfaccia
  * utente principale. Coordina i controller di libri, utenti e prestiti, 
  * collegandosi alle relative schermate, e gestisce le operazioni di salvataggio ed uscita.
- * 
  * @author Daniel, Daniel, Andrea, Stefano, Daniele
  */
 public class MainController implements Initializable {
