@@ -70,5 +70,6 @@ public class GestoreUtenti {
         return null;
     }
 
-    
+    private void validaUtente(Utente utente) {
+    }
 }

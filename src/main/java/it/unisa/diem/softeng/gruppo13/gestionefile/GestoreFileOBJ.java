@@ -15,15 +15,15 @@ import java.util.List;
  * @brief Gestione del salvataggio dei dati.
  * 
  * La classe `GestoreFileCSV` è responsabile per l'implementazione del salvataggio 
- * e caricamento dei dati relativi a libri, utenti e prestiti in file esterni con
- * formato csv. 
+ * e caricamento dei dati relativi a libri, utenti e prestiti in file esterno con
+ * formato obj. 
  * @author Daniel, Andrea, Stefano, Daniele
  */
-public class GestoreFileCSV implements InterfacciaFile {
+public class GestoreFileOBJ implements InterfacciaFile {
   
     
     /**
-     * @brief Salva i dati dei libri, degli utenti e dei prestiti in tre file .csv
+     * @brief Salva i dati dei libri, degli utenti e dei prestiti un file .obj
      * 
      * @param[in] libri Lista dei libri da salvare.
      * @param[in] utenti Lista degli utenti da salvare.
@@ -34,7 +34,7 @@ public class GestoreFileCSV implements InterfacciaFile {
         }
 
     /**
-     * @brief Carica i dati dei libri, degli utenti e dei prestiti da tre file .csv
+     * @brief Carica i dati dei libri, degli utenti e dei prestiti da un file .obj
      * 
      * @param[in] libri Lista dei libri da importare.
      * @param[in] utenti Lista degli utenti da importare.

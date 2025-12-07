@@ -73,7 +73,7 @@ public class LibroController {
     private void btnRimuovi() {
     }
 
-    private int parseIntero(String value, String fieldName) {
+    private int validaIntero(String value, String fieldName) {
         return 0;
     }
     

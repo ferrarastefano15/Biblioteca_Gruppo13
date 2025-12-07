@@ -79,4 +79,7 @@ public class GestoreLibri {
         return null;
     }
     
+    private void validaLibro(Libro libro) {
+    }
+    
 }
