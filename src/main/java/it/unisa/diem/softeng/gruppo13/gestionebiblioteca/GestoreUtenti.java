@@ -44,16 +44,28 @@ public class GestoreUtenti {
      * @param[in] utente Utente da aggiungere
      */    
     public void aggiungiUtente(Utente utente) {
+    }   
+    
+    /**
+     * @brief  Modifica le informazioni di un utente della biblioteca.
+     * 
+     * Questo metodo individua l'utente originale nel sistema e ne sostituisce 
+     * le informazioni con i nuovi dati forniti. 
+     * 
+     * @param[in] utente1 Utente della bilbioteca da modificare.
+     * @param[in] utente2 Utente modificato.
+     */
+    public void modificaUtente(Utente utente1, Utente utente2){
     }
-
-     /**
+    
+    /**
      * @brief Rimuove un utente dalla biblioteca.
      * 
      * Questo metodo consente di rimuovere un utente dalla biblioteca, 
      * eliminandolo dalla lista degli utenti registrati.
      * 
      * @param[in] utente Utente da rimuovere dalla biblioteca.
-     */    
+     */ 
     public void rimuoviUtente(Utente utente) {
     }
 
@@ -70,6 +82,15 @@ public class GestoreUtenti {
         return null;
     }
 
+    /**
+     * @brief Verifica la validità e la coerenza dei dati di un utente.
+     * 
+     * Questo metodo esegue un controllo sull'utente fornito per assicurarsi
+     * che tutti i campi siano presenti e conformi ai requisiti del sistema prima 
+     * dell'elaborazione.
+     * 
+     * @param[in] utente Utente da sottoporre a validazione.
+     */
     private void validaUtente(Utente utente) {
     }
 }

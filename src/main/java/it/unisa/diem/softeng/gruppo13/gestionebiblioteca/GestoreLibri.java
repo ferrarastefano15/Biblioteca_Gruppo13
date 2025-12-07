@@ -54,6 +54,18 @@ public class GestoreLibri {
     }
 
     /**
+     * @brief Modifica le informazioni di un libro della biblioteca.
+     * 
+     * Questo metodo individua il libro originale nel sistema e ne sostituisce 
+     * le informazioni con i nuovi dati forniti. 
+     * 
+     * @param[in] libro1 Libro della bilbioteca da modificare.
+     * @param[in] libro2 Libro modificato.
+     */
+    public void modificaLibro(Libro libro1, Libro libro2){
+    }
+    
+    /**
      * @brief Rimuove un libro dalla biblioteca.
      * 
      * Questo metodo consente di rimuovere un libro dalla biblioteca, 
@@ -79,6 +91,15 @@ public class GestoreLibri {
         return null;
     }
     
+    /**
+     * @brief Verifica la validità e la coerenza dei dati di un libro.
+     * 
+     * Questo metodo esegue un controllo sul libro fornito per assicurarsi
+     * che tutti i campi siano presenti e conformi ai requisiti del sistema prima 
+     * dell'elaborazione.
+     * 
+     * @param[in] libro Libro da sottoporre a validazione.
+     */
     private void validaLibro(Libro libro) {
     }
     
