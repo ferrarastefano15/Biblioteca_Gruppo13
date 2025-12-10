@@ -30,6 +30,22 @@ public class ComparatoreUtenti implements Comparator<Utente> {
      */
     @Override
     public int compare(Utente o1, Utente o2) {
-        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose Tools | Templates.
+        
+        
+        if (o1 == null || o2 == null) {
+           return (o1 == null) ? -1 : 1;
+        }
+
+        int res = o1.getCognome().compareToIgnoreCase(o2.getCognome());
+
+        if (res == 0) {
+            res = o1.getNome().compareToIgnoreCase(o2.getNome());
+
+            if (res == 0) {
+                return o1.getMatricola().compareToIgnoreCase(o2.getMatricola());
+            }
+        }
+    
+        return res;
     }
 }

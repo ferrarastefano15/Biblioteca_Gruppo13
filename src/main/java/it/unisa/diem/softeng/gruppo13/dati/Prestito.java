@@ -34,6 +34,11 @@ public class Prestito {
      * @param[in] dataRestituzione La data di restituzione prevista per il libro.
      */
         public Prestito(Libro libro, Utente utente, LocalDate dataRestituzione) {
+            
+            assert utente != null : "L'utente del prestito non può essere null";
+            assert libro != null : "Il libro del prestito non può essere null";
+            assert dataRestituzione != null : "La data di scadenza è obbligatoria";
+            
             this.libro = libro;
             this.utente = utente;
             this.dataRestituzione = dataRestituzione;

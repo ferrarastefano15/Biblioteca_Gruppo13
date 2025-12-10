@@ -76,6 +76,4 @@ public class LibroController {
         return 0;
     }
     
-    private void mostraErrore(String msg) {  
-    }
 }

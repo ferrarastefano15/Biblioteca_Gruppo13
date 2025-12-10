@@ -30,8 +30,18 @@ public class ComparatoreLibri implements Comparator<Libro> {
      */
 @Override
     public int compare(Libro o1, Libro o2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        
+        if (o1 == null || o2 == null) {
+           return (o1 == null) ? -1 : 1;
+        }
+
+        int res = o1.getTitolo().compareToIgnoreCase(o2.getTitolo());
+
+        if (res == 0)
+            res = o1.getIsbn().compareToIgnoreCase(o2.getIsbn());
     
+        return res;
+    }
+  
     
 }

@@ -61,6 +61,4 @@ public class PrestitoController {
     private void btnRimuovi() {
     }
     
-    private void mostraErrore(String msg) {  
-    }
 }

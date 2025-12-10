@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="455.0" prefWidth="892.0" style="-fx-padding: 10;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.softeng.gruppo13.gui.PrestitoController">
+    
+    <center>
+        <TableView fx:id="tabellaPrestiti">
+            <columns>
+                <TableColumn fx:id="colPrestitoUtente" prefWidth="200" text="Utente" />
+                <TableColumn fx:id="colPrestitoLibro" prefWidth="237.0" text="Libro" />
+                <TableColumn fx:id="colPrestitoData" prefWidth="154.0" text="Scadenza" />
+            </columns>
+        </TableView>
+    </center>
+
+    <right>
+        <VBox prefWidth="280" spacing="15" style="-fx-padding: 0 0 0 10; -fx-border-color: #bdc3c7; -fx-border-width: 0 0 0 1;">
+            <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Nuovo Prestito" />
+            
+            <Label text="Utente:" />
+            <ComboBox fx:id="cbUtente" maxWidth="Infinity" promptText="Scegli utente..." />
+
+            <Label text="Libro:" />
+            <ComboBox fx:id="cbLibro" maxWidth="Infinity" promptText="Scegli libro..." />
+
+            <Label text="Scadenza:" />
+            <DatePicker fx:id="dpData" maxWidth="Infinity" />
+
+            <Button maxWidth="Infinity" onAction="#btnAggiungi" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold;" text="Registra Prestito" />
+            <Button maxWidth="Infinity" onAction="#btnRimuovi" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Rimuovi Prestito" />
+            
+            <Region VBox.vgrow="ALWAYS" />
+        </VBox>
+    </right>
+</BorderPane>

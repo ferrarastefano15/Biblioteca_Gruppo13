@@ -1,7 +1,12 @@
 package it.unisa.diem.softeng.gruppo13.main;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import javafx.scene.Parent;
 
 /**
      *@class Main
@@ -15,17 +20,12 @@ import javafx.stage.Stage;
  
     public class Main extends Application {
         
+        
+    private static final String FXML_PATH = "/it/unisa/diem/softeng/gruppo13/gui/MainView.fxml";
+    private static final String APP_TITLE = "Gestione Biblioteca - Gruppo 13";
+    
+    
      /**
-     * @brief Metodo principale dell'applicazione.
-     * 
-     * @param[in] args Argomenti da linea di comando.
-     */
-        public static void main(String[] args) {
-            System.out.println("Hello World!");
-        }
-
-
-    /**
      * @brief Metodo che avvia l'interfaccia grafica dell'applicazione.
      * 
      * Avvia l'applicazione JavaFX mostrando la finestra principale
@@ -34,6 +34,19 @@ import javafx.stage.Stage;
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
+    
+        
+     /**
+     * @brief Metodo principale dell'applicazione.
+     * 
+     * @param[in] args Argomenti da linea di comando.
+     */
+    public static void main(String[] args) {
+            launch(args);
+    }
+
+
+   
 }

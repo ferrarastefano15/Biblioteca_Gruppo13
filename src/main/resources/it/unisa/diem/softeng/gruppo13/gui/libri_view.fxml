@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane minWidth="-Infinity" style="-fx-padding: 10;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.softeng.gruppo13.gui.LibroController">
+    
+    <top>
+        <HBox spacing="10" style="-fx-padding: 0 0 10 0; -fx-alignment: CENTER_LEFT;">
+            <Label style="-fx-font-weight: bold;" text="Cerca:" />
+            <TextField fx:id="txtCerca" onKeyReleased="#btnCerca" prefWidth="300" promptText="Titolo o ISBN..." />
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tabellaLibri">
+            <columns>
+                <TableColumn fx:id="colTitolo" prefWidth="200" text="Titolo" />
+                <TableColumn fx:id="colAutori" prefWidth="150" text="Autori" />
+                <TableColumn fx:id="colAnno" text="Anno" />
+                <TableColumn fx:id="colIsbn" text="ISBN" />
+                <TableColumn fx:id="colCopie" text="Copie" />
+            </columns>
+        </TableView>
+    </center>
+
+    <right>
+        <VBox prefWidth="280" spacing="10" style="-fx-padding: 0 0 0 10; -fx-border-color: #bdc3c7; -fx-border-width: 0 0 0 1;">
+            <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Dettagli Libro" />
+            
+            <TextField fx:id="tfTitolo" promptText="Titolo" />
+            <TextField fx:id="tfAutori" promptText="Autori" />
+            <TextField fx:id="tfAnno" promptText="Anno" />
+            <TextField fx:id="tfIsbn" promptText="ISBN" />
+            <TextField fx:id="tfCopie" promptText="Copie" />
+            
+            <HBox spacing="5">
+                <Button maxWidth="Infinity" onAction="#btnAnnulla" text="Annulla" HBox.hgrow="ALWAYS" />
+                <Button maxWidth="Infinity" onAction="#btnAggiungi" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;" text="Aggiungi" HBox.hgrow="ALWAYS" />
+            </HBox>
+            
+            <Button maxWidth="Infinity" onAction="#btnModifica" style="-fx-background-color: #e67e22; -fx-text-fill: white;" text="Salva Modifiche" />
+            <Button maxWidth="Infinity" onAction="#btnRimuovi" style="-fx-background-color: #c0392b; -fx-text-fill: white;" text="Elimina Selezionato" />
+        </VBox>
+
+</right>
+
+
+</BorderPane>

@@ -5,6 +5,7 @@
  */
 package it.unisa.diem.softeng.gruppo13.dati;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  * gestire questi dati.
  * @author Daniel, Andrea, Stefano, Daniele
  */
-public class Libro {
+public class Libro implements Serializable{
     
     /** @brief Titolo del libro */
     private String titolo;
@@ -43,6 +44,12 @@ public class Libro {
      * @param[in] copieDisponibili Numero totale di pagine del libro.
      */
       public Libro(String titolo, List<String> autori, int anno, String isbn, int copieDisponibili) {
+          
+        assert titolo != null && !titolo.isEmpty() : "Il titolo del libro non può essere vuoto";
+        assert autori != null && !autori.isEmpty() : "Il libro deve avere almeno un autore";
+        assert isbn != null && !isbn.isEmpty() : "L'ISBN è obbligatorio";
+        assert copieDisponibili >= 0 : "Le copie disponibili non possono essere negative";
+        
         this.titolo = titolo;
         this.autori = autori;
         this.anno = anno;
@@ -63,8 +70,11 @@ public class Libro {
      * @brief Restituisce gli autori del libro.
      * @return I nomi degli autori.
      */
-        public List<String> getAutori() {
-            return autori;
+        public String getAutori() {
+            
+            if (autori == null || autori.isEmpty()) return "";
+            
+            return String.join(", ", autori);
         }
     
 
@@ -147,9 +157,17 @@ public class Libro {
      * @return 'true' se gli utenti sono uguali, `false` altrimenti
      */   
         @Override
-            public boolean equals(Object o){
-                return false;
-            }
+        public boolean equals(Object o){
+                
+            if(this == o) return true;
+                
+            if((o == null) || this.getClass()!=o.getClass()) return false;
+                
+            Libro l = (Libro) o;
+                
+            return this.getIsbn().equalsIgnoreCase(l.getIsbn());
+            
+        }
     
 
      /**
@@ -179,7 +197,7 @@ public class Libro {
      */
             @Override
             public String toString(){
-                return "";
+                return titolo + ", " + autori + " - " + anno + " (" + isbn + ")";
             }
     
 }

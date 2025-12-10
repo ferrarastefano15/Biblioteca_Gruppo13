@@ -70,6 +70,4 @@ public class UtenteController {
     private void btnRimuovi() {
     }
 
-    private void mostraErrore(String msg) {  
-    }
 }

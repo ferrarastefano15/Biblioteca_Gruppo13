@@ -40,6 +40,11 @@ public class Utente {
      * @param[in] email Indirizzo email dell'utente.
      */
      public Utente(String nome, String cognome, String matricola, String email) {
+         
+        assert nome != null && !nome.isEmpty() : "Il nome non può essere vuoto";
+        assert cognome != null && !cognome.isEmpty() : "Il cognome non può essere vuoto";
+        assert matricola != null && !matricola.isEmpty() : "La matricola è obbligatoria";
+        
         this.nome = nome;
         this.cognome = cognome;
         this.matricola = matricola;
@@ -126,18 +131,25 @@ public class Utente {
      */
         @Override
             public boolean equals(Object o){
-                return false;
+            
+            if(this == o) return true;
+                
+            if((o == null) || this.getClass()!=o.getClass()) return false;
+                
+            Utente u = (Utente) o;
+                
+            return this.getMatricola().equalsIgnoreCase(u.getMatricola());
             }
     
     
     /**
      * @brief Restituisce una rappresentazione testuale dell'utente.
      * 
-     * @return Una stringa contenente nome, cognome, matricola, email.
+     * @return Una stringa contenente nome, cognome, matricola.
      */
         @Override
             public String toString(){
-                return "";
+                return cognome + " " + nome + " ("+matricola+")";
             }
     
 }
