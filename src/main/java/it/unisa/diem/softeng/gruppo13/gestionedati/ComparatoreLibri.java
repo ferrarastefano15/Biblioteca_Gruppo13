@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.unisa.diem.softeng.gruppo13.comparatori;
+package it.unisa.diem.softeng.gruppo13.gestionedati;
 
-import it.unisa.diem.softeng.gruppo13.dati.Libro;
+import it.unisa.diem.softeng.gruppo13.gestionedati.Libro;
 import java.util.Comparator;
 
 /**

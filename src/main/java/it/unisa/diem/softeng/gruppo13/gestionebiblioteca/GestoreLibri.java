@@ -5,7 +5,7 @@
  */
 package it.unisa.diem.softeng.gruppo13.gestionebiblioteca;
 
-import it.unisa.diem.softeng.gruppo13.dati.Libro;
+import it.unisa.diem.softeng.gruppo13.gestionedati.Libro;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -103,4 +103,4 @@ public class GestoreLibri {
     private void validaLibro(Libro libro) {
     }
     
-}
+}    

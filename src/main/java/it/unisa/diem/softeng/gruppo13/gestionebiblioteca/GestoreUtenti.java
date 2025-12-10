@@ -5,7 +5,7 @@
  */
 package it.unisa.diem.softeng.gruppo13.gestionebiblioteca;
 
-import it.unisa.diem.softeng.gruppo13.dati.Utente;
+import it.unisa.diem.softeng.gruppo13.gestionedati.Utente;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

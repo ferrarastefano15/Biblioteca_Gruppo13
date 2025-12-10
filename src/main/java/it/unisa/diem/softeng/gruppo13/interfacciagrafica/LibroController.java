@@ -1,6 +1,6 @@
 package it.unisa.diem.softeng.gruppo13.interfacciagrafica;
 
-import it.unisa.diem.softeng.gruppo13.dati.Libro;
+import it.unisa.diem.softeng.gruppo13.gestionedati.Libro;
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestoreLibri;
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestorePrestiti;
 import javafx.beans.property.SimpleStringProperty;

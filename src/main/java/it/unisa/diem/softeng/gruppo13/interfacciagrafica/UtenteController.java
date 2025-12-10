@@ -1,6 +1,6 @@
 package it.unisa.diem.softeng.gruppo13.interfacciagrafica;
 
-import it.unisa.diem.softeng.gruppo13.dati.Utente;
+import it.unisa.diem.softeng.gruppo13.gestionedati.Utente;
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestoreUtenti;
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestorePrestiti;
 import javafx.beans.value.ChangeListener;

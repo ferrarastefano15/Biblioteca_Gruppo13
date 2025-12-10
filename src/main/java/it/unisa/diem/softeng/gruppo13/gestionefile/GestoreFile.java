@@ -5,9 +5,9 @@
  */
 package it.unisa.diem.softeng.gruppo13.gestionefile;
 
-import it.unisa.diem.softeng.gruppo13.dati.Libro;
-import it.unisa.diem.softeng.gruppo13.dati.Prestito;
-import it.unisa.diem.softeng.gruppo13.dati.Utente;
+import it.unisa.diem.softeng.gruppo13.gestionedati.Libro;
+import it.unisa.diem.softeng.gruppo13.gestionedati.Prestito;
+import it.unisa.diem.softeng.gruppo13.gestionedati.Utente;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
