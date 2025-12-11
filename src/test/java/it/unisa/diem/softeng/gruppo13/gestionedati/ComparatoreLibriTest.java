@@ -29,6 +29,7 @@ public class ComparatoreLibriTest {
     // Titoli diversi
     @Test
     public void testCompare1(){
+        System.out.println("compare");
         List<String> autori = new ArrayList<>();
         autori.add("J.K. Rowling");
         l1 = new Libro ("Harry Potter e la pietra filosofale", autori, 1997, "1234567890123", 2);
@@ -40,7 +41,7 @@ public class ComparatoreLibriTest {
     // Titoli uguali
     @Test
     public void testCompare2() {
-        
+        System.out.println("compare");
         List<String> autori = new ArrayList<>();
         autori.add("J.K. Rowling");
         l1 = new Libro ("Harry Potter e la pietra filosofale", autori, 1997, "1234567890123", 2);

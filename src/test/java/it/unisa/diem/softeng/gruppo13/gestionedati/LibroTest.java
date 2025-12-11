@@ -84,9 +84,7 @@ public class LibroTest {
     @Test
     public void testSetAutori() {
         System.out.println("setAutori");
-        List<String> aut = new ArrayList<>();
-        aut.add("J.K. Rowling");
-        aut.add("abc");
+        String aut = "J.K. Rowling, abc";
         libro.setAutori(aut);
         String expResult = "J.K. Rowling, abc";
         assertEquals(expResult, libro.getAutori());

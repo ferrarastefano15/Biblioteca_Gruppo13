@@ -9,7 +9,7 @@ import it.unisa.diem.softeng.gruppo13.gestionedati.Libro;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
+import it.unisa.diem.softeng.gruppo13.gestionedati.ComparatoreLibri;
 /**
  * @class GestoreLibri
  * @brief Implementa i metodi di 'Libro'.
@@ -51,6 +51,17 @@ public class GestoreLibri {
      * @param[in] libro Libro da aggiungere 
      */
     public void aggiungiLibro(Libro libro) {
+        
+        validaLibro(libro);
+        
+        for (Libro l : libri) {
+            if (l.getIsbn().equalsIgnoreCase(libro.getIsbn())) {
+                throw new IllegalArgumentException("ISBN già esistente.");
+            }
+        }
+        
+        libri.add(libro);
+        
     }
 
     /**
@@ -63,6 +74,20 @@ public class GestoreLibri {
      * @param[in] libro2 Libro modificato.
      */
     public void modificaLibro(Libro libro1, Libro libro2){
+        
+    if (libro1 == null || libro2 == null) {
+        throw new IllegalArgumentException("Dati non validi.");
+    }
+    
+    if (!libro1.getIsbn().equals(libro2.getIsbn())){
+        throw new IllegalArgumentException("ISBN già presente in archivio!");
+    }
+
+  
+    libro1.setTitolo(libro2.getTitolo());
+    libro1.setAutori(libro2.getAutori());
+    libro1.setAnno(libro2.getAnno());
+    libro1.setIsbn(libro2.getIsbn());
     }
     
     /**
@@ -74,6 +99,9 @@ public class GestoreLibri {
      * @param[in] libro Libro da rimuovere
      */    
     public void rimuoviLibro(Libro libro) {
+        
+        libri.remove(libro);
+        
     }
 
     /**
@@ -88,7 +116,26 @@ public class GestoreLibri {
      * @return Lista di libri che corrispondono alla query.
      */    
     public List<Libro> cercaLibro(String query) {
-        return null;
+        
+    String q = (query == null) ? "" : query.toLowerCase();
+
+    List<Libro> risultati = new ArrayList<>();
+
+    for (Libro l : libri) {
+        
+        boolean matchTitolo = l.getTitolo() != null && l.getTitolo().toLowerCase().contains(q);
+        
+        boolean matchAutore = l.getAutori() != null && l.getAutori().toLowerCase().contains(q);
+        
+        boolean matchIsbn   = l.getIsbn() != null && l.getIsbn().toLowerCase().contains(q);
+
+        if (matchTitolo || matchAutore || matchIsbn) {
+            risultati.add(l);
+        }
+    }
+    risultati.sort(new ComparatoreLibri());
+
+    return risultati;
     }
     
     /**
@@ -101,6 +148,18 @@ public class GestoreLibri {
      * @param[in] libro Libro da sottoporre a validazione.
      */
     private void validaLibro(Libro libro) {
+        
+    if (libro.getTitolo() == null || libro.getTitolo().isEmpty()) {
+        throw new IllegalArgumentException("Il titolo è obbligatorio.");
+    }
+
+    if (libro.getIsbn() == null || libro.getIsbn().isEmpty()) {
+        throw new IllegalArgumentException("L'ISBN è obbligatorio.");
+    }
+
+    if (libro.getAnno() > java.time.Year.now().getValue()) {
+        throw new IllegalArgumentException("Anno futuro non valido.");
+    }
     }
     
-}    
+}

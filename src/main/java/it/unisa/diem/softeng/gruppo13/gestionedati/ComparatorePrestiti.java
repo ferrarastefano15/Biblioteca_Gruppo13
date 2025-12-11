@@ -14,7 +14,7 @@ import java.util.Comparator;
  * 
  * La classe `ComparatorePrestiti` implementa l'interfaccia `Comparator` per 
  * confrontare due oggetti `Prestito` fra di loro, al fine di ordinarli per
- * data di prevista restituzione. Se la data è uguale, si ordina per uente.
+ * data di prevista restituzione. Se la data è uguale, si ordina per utente.
  * Se l'utente è uguale, l'ordine si basa sui libri.
  * @author Daniel, Andrea, Stefano, Daniele
  */
@@ -39,10 +39,10 @@ public class ComparatorePrestiti implements Comparator<Prestito> {
         int res = o1.getDataRestituzione().compareTo(o2.getDataRestituzione());
 
         if (res == 0) {
-            res = o1.getUtente().getCognome().compareToIgnoreCase(o2.getUtente().getCognome());
+            res = o1.getUtente().getMatricola().compareToIgnoreCase(o2.getUtente().getMatricola());
 
             if (res == 0) {
-                return o1.getLibro().getTitolo().compareToIgnoreCase(o2.getLibro().getTitolo());
+                return o1.getLibro().getIsbn().compareToIgnoreCase(o2.getLibro().getIsbn());
             }
         }
         return res;

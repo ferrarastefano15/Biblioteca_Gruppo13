@@ -6,6 +6,7 @@
 package it.unisa.diem.softeng.gruppo13.gestionedati;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -118,8 +119,16 @@ public class Libro implements Serializable{
      * @brief Imposta gli autori del libro.
      * @param[in] autori La lista degli autori del libro.
      */
-         public void setAutori(List<String> autori) {
-            this.autori=autori;
+         public void setAutori(String autori) {
+            this.autori = new ArrayList<>();
+            
+            if (autori == null || autori.isEmpty()) return;
+            
+            String[] arrayAutori = autori.split(",");
+            
+            for(String autore : arrayAutori){
+                this.autori.add(autore.trim());
+            }
         }
     
      /**

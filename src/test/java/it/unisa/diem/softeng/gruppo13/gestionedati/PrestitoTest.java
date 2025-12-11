@@ -33,7 +33,7 @@ public class PrestitoTest {
         
     utente = new Utente("Ernesto", "Grigi", "543210988", "ernesto.grigi@gmail.com");
         
-    dataRestituzione = LocalDate.of(2025, 11, 16); 
+    dataRestituzione = LocalDate.of(2026, 11, 16); 
     
     prestito = new Prestito(libro, utente, dataRestituzione);
         
@@ -70,7 +70,7 @@ public class PrestitoTest {
     public void testGetDataRestituzione() {
         System.out.println("getDataRestituzione");
         
-        LocalDate expData = LocalDate.of(2025, 11, 16);
+        LocalDate expData = LocalDate.of(2026, 11, 16);
         LocalDate data = prestito.getDataRestituzione();
         
         assertEquals(expData, data);
