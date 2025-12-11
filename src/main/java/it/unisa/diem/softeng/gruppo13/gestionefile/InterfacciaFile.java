@@ -41,6 +41,8 @@ public interface InterfacciaFile {
      * @param[in] libri Lista dei libri da importare.
      * @param[in] utenti Lista degli utenti da importare.
      * @param[in] prestiti Lista dei prestiti da importare.
+     * @pre Il file deve esistere 
+     * @post Le liste passate contengono i dati aggiornati letti dal file
      */
       public void caricaDati(List<Libro> libri, List<Utente> utenti, List<Prestito> prestiti);
     

@@ -5,6 +5,7 @@
  */
 package it.unisa.diem.softeng.gruppo13.gestionedati;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  * gestire questi dati. 
  * @author Daniel, Andrea, Stefano, Daniele
  */
-public class Utente {
+public class Utente implements Serializable{
     
     /** @brief Nome dell'utente */
      private String nome;

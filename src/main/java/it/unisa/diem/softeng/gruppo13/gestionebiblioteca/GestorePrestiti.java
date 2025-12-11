@@ -23,18 +23,12 @@ import java.util.List;
  * @author Daniel, Andrea, Stefano, Daniele
  */
 public class GestorePrestiti {
+    
+    /** @brief Costante che indica il numero massimo di prestiti attivi per ogni utente*/
+    private static final int MAX_PRESTITI = 3;    
 
     /** @brief Lista dei prestiti effettuati nella biblioteca */    
     private List<Prestito> prestiti = new ArrayList<>();
-    
-     /**
-     * @brief Verifica i prerequisiti di un prestito
-     *
-     * Questa istanza incapsula la logica di validazione dei prestiti
-     *
-     * @see ValidatorePrestito
-     */    
-    private ValidatorePrestito valida = new ValidatorePrestito();
 
     /**
      * @brief Restituisce la lista di tutti i prestiti attivi.
@@ -108,5 +102,20 @@ public class GestorePrestiti {
     public List<Prestito> getOrdinati() {
         return null;
     }
+    
+    /**
+     * @brief Verifica la validità di un prestito.
+     * 
+     * Questo metodo controlla se i prerequisiti per la validazione di un nuovo prestito
+     * sono soddisfatti, verifica se l'utente ha meno di 3 presiti attivi e se il
+     * libro ha almeno una copia disponibile.
+     * 
+     * @param[in] utente Utente che richiede il prestito.
+     * @param[in] libro Libro che viene preso in prestito.
+     * @param[in] prestitiAttuali Lista di prestiti attivi dell'utente.
+     */
+    private void validaPrestito(Utente utente, Libro libro, List<Prestito> prestitiAttuali) throws Exception {
+    }
+    
     
 }

@@ -5,6 +5,7 @@
  */
 package it.unisa.diem.softeng.gruppo13.gestionedati;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -14,7 +15,7 @@ import java.time.LocalDate;
  * La classe `Prestito` memorizza e gestisce le informazioni dei prestiti.
  * @author Daniel, Andrea, Stefano, Daniele
  */
-public class Prestito {
+public class Prestito implements Serializable{
     
     /** @brief Il libro preso in prestito */
     private Libro libro;
