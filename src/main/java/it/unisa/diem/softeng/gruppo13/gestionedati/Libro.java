@@ -178,7 +178,13 @@ public class Libro implements Serializable{
      * 
      * @invariant Il numero di copie disponibili non può essere minore di zero.
      */
-            public void decrementaCopie() { this.copieDisponibili--; }
+            public void decrementaCopie() { 
+                
+                if(this.getCopieDisponibili() <= 0){
+                    return;
+                }
+                this.copieDisponibili--;
+            }
     
 
      /**
