@@ -111,16 +111,16 @@ public class GestoreUtentiTest {
 
         assertEquals(3, gestore.getUtenti().size());
 
-        List<Utente> resCognome = gestore.cercaUtenti("Rossi");
+        List<Utente> resCognome = gestore.cercaUtente("Rossi");
         assertEquals(1, resCognome.size());
 
         assertEquals("1", resCognome.get(0).getMatricola()); 
 
-        List<Utente> resMatricola = gestore.cercaUtenti("2");
+        List<Utente> resMatricola = gestore.cercaUtente("2");
         assertEquals(1, resMatricola.size());
         assertEquals("2", resMatricola.get(0).getMatricola());
 
-        List<Utente> resVuoto = gestore.cercaUtenti("NonEsisto");
+        List<Utente> resVuoto = gestore.cercaUtente("NonEsisto");
         assertTrue(resVuoto.isEmpty());
     }
     

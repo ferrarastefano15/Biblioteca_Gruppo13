@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * gli utenti della biblioteca.
  * @author Daniel, Andrea, Stefano, Daniele
  */
-public class GestoreUtenti {
+public class GestoreUtenti implements InterfacciaGestoreUtenti{
 
     /** @brief Lista degli utenti registrati nella biblioteca */    
     private List<Utente> utenti = new ArrayList<>();
@@ -30,6 +30,7 @@ public class GestoreUtenti {
      * 
      * @return Lista di utenti registrati nella biblioteca.
      */    
+    @Override
     public List<Utente> getUtenti() { return utenti; }
     
     
@@ -43,7 +44,8 @@ public class GestoreUtenti {
      * I dati vengono validati prima di procedere con l'aggiunta.
      * 
      * @param[in] utente Utente da aggiungere
-     */    
+     */  
+    @Override
     public void aggiungiUtente(Utente utente) {
         
         if(utente==null) return ;
@@ -68,6 +70,7 @@ public class GestoreUtenti {
      * @param[in] utente1 Utente della bilbioteca da modificare.
      * @param[in] utente2 Utente modificato.
      */
+    @Override
     public void modificaUtente(Utente utente1, Utente utente2){
         
         if (utente1 == null || utente2 == null) {
@@ -100,6 +103,7 @@ public class GestoreUtenti {
      * 
      * @param[in] utente Utente da rimuovere dalla biblioteca.
      */ 
+    @Override
     public void rimuoviUtente(Utente utente) {
         
         utenti.remove(utente);
@@ -114,8 +118,9 @@ public class GestoreUtenti {
      * 
      * @param[in] query Stringa di ricerca che rappresenta cognome o matricola di un utente.
      * @return Lista di utenti che corrispondono alla query.
-     */    
-    public List<Utente> cercaUtenti(String query) {
+     */   
+    @Override
+    public List<Utente> cercaUtente(String query) {
      
         String q = (query == null) ? "" : query.toLowerCase();
 
@@ -134,10 +139,19 @@ public class GestoreUtenti {
             }
         }
         
-        risultati.sort(new ComparatoreUtenti());
 
         return risultati;        
         
+    }
+    
+    @Override
+    public List<Utente> getUtentiOrdinati(){
+        
+        List<Utente> ordinati = new ArrayList<>(utenti);
+
+        ordinati.sort(new ComparatoreUtenti()); 
+    
+        return ordinati;
     }
 
     /**
@@ -153,16 +167,16 @@ public class GestoreUtenti {
         
         if (utente == null) throw new IllegalArgumentException("Utente nullo.");
         
-        if (utente.getNome() == null || utente.getNome().isEmpty()) 
+        if (utente.getNome() == null || utente.getNome().trim().isEmpty()) 
             throw new IllegalArgumentException("Nome obbligatorio.");
 
-        if (utente.getCognome() == null || utente.getCognome().isEmpty()) 
+        if (utente.getCognome() == null || utente.getCognome().trim().isEmpty()) 
             throw new IllegalArgumentException("Cognome obbligatorio.");
 
-        if (utente.getMatricola() == null || utente.getMatricola().isEmpty()) 
+        if (utente.getMatricola() == null || utente.getMatricola().trim().isEmpty()) 
             throw new IllegalArgumentException("Matricola obbligatoria.");  
         
-        if (utente.getEmail() == null || utente.getEmail().isEmpty()) 
+        if (utente.getEmail() == null || utente.getEmail().trim().isEmpty()) 
             throw new IllegalArgumentException("Email obbligatoria.");  
         
     }

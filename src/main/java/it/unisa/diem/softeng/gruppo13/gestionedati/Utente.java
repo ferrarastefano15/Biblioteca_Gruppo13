@@ -42,10 +42,6 @@ public class Utente implements Serializable{
      */
      public Utente(String nome, String cognome, String matricola, String email) {
          
-        assert nome != null && !nome.isEmpty() : "Il nome non può essere vuoto";
-        assert cognome != null && !cognome.isEmpty() : "Il cognome non può essere vuoto";
-        assert matricola != null && !matricola.isEmpty() : "La matricola è obbligatoria";
-        
         this.nome = nome;
         this.cognome = cognome;
         this.matricola = matricola;

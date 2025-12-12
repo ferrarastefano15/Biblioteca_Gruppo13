@@ -21,6 +21,30 @@ public class GestoreMessaggi {
      */
     public static void mostraErrore(String msg) {
 
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Errore");
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+        alert.showAndWait();
+        
+    }
+    
+    /**
+     * @brief Visualizza una finestra per mostrare un'informazione
+     * 
+     * Questo metodo interrompe il flusso corrente per mostrare all'utente un messaggio
+     * di successo o un'informazione riguardo operazioni o dettagli.
+     * 
+     * @param[in] msg Stringa contenente il testo descrittivo dell'informazione.
+     */
+    public static void mostraInfo(String msg) {
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informazione");
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+        alert.showAndWait();
+        
     }
 
 }

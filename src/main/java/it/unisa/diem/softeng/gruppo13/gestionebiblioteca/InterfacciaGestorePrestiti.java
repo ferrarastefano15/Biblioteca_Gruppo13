@@ -17,6 +17,8 @@ import java.util.List;
  */
 public interface InterfacciaGestorePrestiti {
     
+    public List<Prestito> getPrestiti();
+    
     public void aggiungiPrestito(Utente utente, Libro libro, LocalDate scadenza)  throws Exception ;
     
     public void restituisciLibro(Prestito prestito);

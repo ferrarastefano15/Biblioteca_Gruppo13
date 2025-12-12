@@ -45,12 +45,7 @@ public class Libro implements Serializable{
      * @param[in] copieDisponibili Numero totale di pagine del libro.
      */
       public Libro(String titolo, List<String> autori, int anno, String isbn, int copieDisponibili) {
-          
-        assert titolo != null && !titolo.isEmpty() : "Il titolo del libro non può essere vuoto";
-        assert autori != null && !autori.isEmpty() : "Il libro deve avere almeno un autore";
-        assert isbn != null && !isbn.isEmpty() : "L'ISBN è obbligatorio";
-        assert copieDisponibili >= 0 : "Le copie disponibili non possono essere negative";
-        
+              
         this.titolo = titolo;
         this.autori = autori;
         this.anno = anno;

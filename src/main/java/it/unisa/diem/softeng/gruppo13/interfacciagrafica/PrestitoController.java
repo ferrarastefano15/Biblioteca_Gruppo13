@@ -6,6 +6,9 @@ import it.unisa.diem.softeng.gruppo13.gestionedati.Utente;
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestoreLibri;
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestoreUtenti;
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestorePrestiti;
+import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.InterfacciaGestoreLibri;
+import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.InterfacciaGestorePrestiti;
+import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.InterfacciaGestoreUtenti;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -33,9 +36,9 @@ public class PrestitoController {
     @FXML private ComboBox<Libro> cbLibro;
     @FXML private DatePicker dpData;
 
-    private GestorePrestiti gestore;
-    private GestoreLibri gestoreLibri;
-    private GestoreUtenti gestoreUtenti;
+    private InterfacciaGestorePrestiti gestore;
+    private InterfacciaGestoreLibri gestoreLibri;
+    private InterfacciaGestoreUtenti gestoreUtenti;
 
      /**
      * @brief Gestisce l'interfaccia utente per la visualizzazione e gestione dei prestiti.
@@ -47,7 +50,7 @@ public class PrestitoController {
      * @param[in] gl Il gestore dei libri.
      * @param[in] gu Il gestore degli utenti.
      */
-    public void init(GestorePrestiti gp, GestoreLibri gl, GestoreUtenti gu) {
+    public void init(InterfacciaGestorePrestiti igp, InterfacciaGestoreLibri igl, InterfacciaGestoreUtenti igu) {
     }
 
     private void aggiornaTabella() {

@@ -14,6 +14,8 @@ import java.util.List;
  */
 public interface InterfacciaGestoreLibri {
     
+    public List<Libro> getLibri();
+    
     public void aggiungiLibro(Libro libro);
     
     public void modificaLibro(Libro libro1, Libro libro2);

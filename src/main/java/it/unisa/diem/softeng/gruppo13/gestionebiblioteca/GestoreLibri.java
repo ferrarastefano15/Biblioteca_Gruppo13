@@ -28,7 +28,8 @@ public class GestoreLibri implements InterfacciaGestoreLibri{
      * @brief Restituisce la lista di tutti i libri della biblioteca.
      *
      * @return Lista di libri presenti nella biblioteca.
-     */    
+     */  
+    @Override
     public List<Libro> getLibri() { return libri; }
     
      /**
@@ -161,7 +162,7 @@ public class GestoreLibri implements InterfacciaGestoreLibri{
      */
     private void validaLibro(Libro libro) {
         
-    if (libro.getTitolo() == null || libro.getTitolo().isEmpty()) {
+    if (libro.getTitolo() == null || libro.getTitolo().trim().isEmpty()) {
         throw new IllegalArgumentException("Il titolo è obbligatorio.");
     }
     

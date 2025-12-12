@@ -36,6 +36,7 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
      * 
      * @return Lista di prestiti attivi nella biblioteca.
      */    
+    @Override
     public List<Prestito> getPrestiti() { return prestiti; }
     
     

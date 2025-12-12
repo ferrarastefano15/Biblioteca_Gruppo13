@@ -1,9 +1,17 @@
 package it.unisa.diem.softeng.gruppo13.interfacciagrafica;
 
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestoreLibri;
-import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestoreUtenti;
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestorePrestiti;
+import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestoreUtenti;
+import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.InterfacciaGestoreLibri;
+import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.InterfacciaGestoreUtenti;
+import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.InterfacciaGestorePrestiti;
+import it.unisa.diem.softeng.gruppo13.gestionedati.Libro;
+import it.unisa.diem.softeng.gruppo13.gestionedati.Prestito;
+import it.unisa.diem.softeng.gruppo13.gestionedati.Utente;
+import it.unisa.diem.softeng.gruppo13.gestionefile.GestoreFile;
 import it.unisa.diem.softeng.gruppo13.gestionefile.InterfacciaFile;
+import it.unisa.diem.softeng.gruppo13.interfacciagrafica.GestoreMessaggi;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,6 +19,7 @@ import javafx.scene.control.Alert;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @class MainController
@@ -27,9 +36,10 @@ public class MainController implements Initializable {
     @FXML private UtenteController vistaUtentiController;
     @FXML private PrestitoController vistaPrestitiController;
 
-    private GestoreLibri gestoreLibri;
-    private GestoreUtenti gestoreUtenti;
-    private GestorePrestiti gestorePrestiti;
+    private InterfacciaGestoreLibri gestoreLibri;
+    private InterfacciaGestoreUtenti gestoreUtenti;
+    private InterfacciaGestorePrestiti gestorePrestiti;
+    private InterfacciaFile gestoreFile;
 
      /**
      * @brief Inizializza il controller principale.
@@ -43,13 +53,48 @@ public class MainController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        gestoreFile = new GestoreFile("Archivio"); 
+        gestoreLibri = new GestoreLibri(); 
+        gestoreUtenti = new GestoreUtenti();
+        gestorePrestiti = new GestorePrestiti();
+        
+         gestoreFile.caricaDati(
+            gestoreLibri.getLibri(), 
+            gestoreUtenti.getUtenti(), 
+            gestorePrestiti.getPrestiti()
+        );
+        
+         
+         if (vistaLibriController != null) 
+            vistaLibriController.init(gestoreLibri, gestorePrestiti);
+            
+        if (vistaUtentiController != null) 
+            vistaUtentiController.init(gestoreUtenti, gestorePrestiti);
+            
+        if (vistaPrestitiController != null) 
+            vistaPrestitiController.init(gestorePrestiti, gestoreLibri, gestoreUtenti);
+       
+        
     }
 
     @FXML
     private void btnSalva() {
+        
+      gestoreFile.salvaFile(
+                gestoreLibri.getLibri(),
+                gestoreUtenti.getUtenti(), 
+                gestorePrestiti.getPrestiti()
+        );
+      
+      GestoreMessaggi.mostraInfo("Salvataggio completato");
+        
     }
 
     @FXML
     private void btnEsci() {
+        
+        Platform.exit();
+        
     }
 }
