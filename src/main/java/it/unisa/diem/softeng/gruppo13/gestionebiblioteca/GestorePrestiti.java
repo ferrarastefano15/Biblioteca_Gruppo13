@@ -23,7 +23,7 @@ import java.util.List;
  * del prestito siano soddisfatti.
  * @author Daniel, Andrea, Stefano, Daniele
  */
-public class GestorePrestiti {
+public class GestorePrestiti implements InterfacciaGestorePrestiti{
     
     /** @brief Costante che indica il numero massimo di prestiti attivi per ogni utente*/
     private static final int MAX_PRESTITI = 3;    
@@ -51,6 +51,7 @@ public class GestorePrestiti {
      * @param[in] libro Libro che viene preso in prestito.
      * @param[in] scadenza Data di restituzione del libro.
      */
+    @Override
     public void aggiungiPrestito(Utente utente, Libro libro, LocalDate scadenza) throws Exception {
         
         if (utente == null || libro == null || scadenza == null) {
@@ -73,6 +74,7 @@ public class GestorePrestiti {
      * 
      * @param[in] prestito Prestito da restituire.
      */
+    @Override
     public void restituisciLibro(Prestito prestito) {
         
         if (prestito != null && prestiti.remove(prestito)) {
@@ -89,6 +91,7 @@ public class GestorePrestiti {
      * @param[in] l Il libro da controllare
      * @return 'true' se il libro è presente in almeno un prestito; 'false' altrimenti.
      */    
+    @Override
     public boolean haPrestitiAttivi(Libro l) {
 
         if (l == null) return false;
@@ -107,6 +110,7 @@ public class GestorePrestiti {
      * @param[in] u L'utente da controllare
      * @return 'true' se l'utente è presente in almeno un prestito; 'false' altrimenti.
      */
+    @Override
     public boolean haPrestitiAttivi(Utente u) {
         
         if (u == null) return false;
@@ -125,6 +129,7 @@ public class GestorePrestiti {
      * @return Lista di prestiti contenente tutti i prestiti registrati,
      * ordinati per data prevista di restituzione.
      */    
+    @Override
     public List<Prestito> getOrdinati() {
         
         List<Prestito> listaOrdinabile = new ArrayList<>(this.prestiti);

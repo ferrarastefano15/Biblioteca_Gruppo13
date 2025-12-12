@@ -19,7 +19,7 @@ import it.unisa.diem.softeng.gruppo13.gestionedati.ComparatoreLibri;
  * i libri della biblioteca.
  * @author Daniel, Andrea, Stefano, Daniele
  */
-public class GestoreLibri {
+public class GestoreLibri implements InterfacciaGestoreLibri{
     
     /** @brief Lista dei libri presenti nella biblioteca */
     private List<Libro> libri = new ArrayList<>();
@@ -50,6 +50,7 @@ public class GestoreLibri {
      *
      * @param[in] libro Libro da aggiungere 
      */
+    @Override
     public void aggiungiLibro(Libro libro) {
         
         if(libro==null) return ;
@@ -75,6 +76,7 @@ public class GestoreLibri {
      * @param[in] libro1 Libro della bilbioteca da modificare.
      * @param[in] libro2 Libro modificato.
      */
+    @Override
     public void modificaLibro(Libro libro1, Libro libro2){
         
         if (libro1 == null || libro2 == null) {
@@ -106,6 +108,7 @@ public class GestoreLibri {
      * 
      * @param[in] libro Libro da rimuovere
      */    
+    @Override
     public void rimuoviLibro(Libro libro) {
         
         libri.remove(libro);
@@ -122,7 +125,8 @@ public class GestoreLibri {
      * codice del libro.
      * 
      * @return Lista di libri che corrispondono alla query.
-     */    
+     */  
+    @Override
     public List<Libro> cercaLibro(String query) {
         
     String q = (query == null) ? "" : query.toLowerCase();

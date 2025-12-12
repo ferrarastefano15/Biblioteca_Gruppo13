@@ -11,22 +11,27 @@ import it.unisa.diem.softeng.gruppo13.gestionedati.Utente;
 import java.util.List;
 
 /**
- * @interface InterfacciaFile
- * @brief Definisce le operazioni per la gestione dei file in un sistema di biblioteca.
- * 
- * L'interfaccia definisce il contratto per le operazioni di persistenza e recupero dei dati 
- * per l'archivio della biblioteca, in particolare le operazione di scrittura dei 
- * dati (libri, utenti, prestiti) nelle rispettive fonti esterne, e le operazione 
- * di lettura dei dati dalle fonti esterne e di ricostruzione delle collezioni in memoria.
- * @author Daniel, Andrea, Stefano, Daniele
- */
-
-
+* @brief Salva lo stato corrente delle liste su file distinti.
+* 
+* Scrive i dati di libri, utenti e prestiti in tre file separati all'interno
+* della directory di salvataggio. Questo approccio previene la perdita totale 
+* dei dati in caso di corruzione di un singolo file.
+* 
+* @param[in] libri Lista dei libri da salvare.
+* @param[in] utenti Lista degli utenti da salvare.
+* @param[in] prestiti Lista dei prestiti da salvare.
+*
+* @author Daniel, Andrea, Stefano, Daniele
+*/
 public interface InterfacciaFile {
     
 
      /**
-     * @brief Salva i dati di libri, utenti e prestiti in un file esterno.
+     * @brief Salva lo stato corrente delle liste su file distinti.
+     * 
+     * Scrive i dati di libri, utenti e prestiti in tre file separati all'interno
+     * della directory di salvataggio. Questo approccio previene la perdita totale 
+     * dei dati in caso di corruzione di un singolo file.
      * 
      * @param[in] libri Lista dei libri da salvare.
      * @param[in] utenti Lista degli utenti da salvare.
@@ -36,13 +41,18 @@ public interface InterfacciaFile {
       
       
      /**
-     * @brief Carica i dati di libri, utenti e prestiti da un file esterno.
+     * @brief Carica i dati dai file e ricostruisce la coerenza dei riferimenti.
      * 
-     * @param[in] libri Lista dei libri da importare.
-     * @param[in] utenti Lista degli utenti da importare.
-     * @param[in] prestiti Lista dei prestiti da importare.
-     * @pre Il file deve esistere 
-     * @post Le liste passate contengono i dati aggiornati letti dal file
+     * Legge i dati dai file separati e popola le liste passate come parametro.
+     * Inoltre, effettua un ricollegamento (relinking) degli oggetti Libro e Utente
+     * all'interno dei Prestiti, garantendo che puntino alle istanze corrette in memoria.
+     * 
+     * @param[in] libri Lista da popolare con i libri.
+     * @param[in] utenti Lista da popolare con gli utenti.
+     * @param[in] prestiti Lista da popolare con i prestiti ricollegati.
+     * 
+     * @pre La directory e i file dati devono esistere (altrimenti non fa nulla).
+     * @post Le liste contengono i dati aggiornati e i prestiti sono coerenti.
      */
       public void caricaDati(List<Libro> libri, List<Utente> utenti, List<Prestito> prestiti);
     
