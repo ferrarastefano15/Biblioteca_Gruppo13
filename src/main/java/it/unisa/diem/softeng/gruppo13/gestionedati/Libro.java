@@ -207,7 +207,7 @@ public class Libro implements Serializable{
      */
             @Override
             public String toString(){
-                return titolo + ", " + autori + " - " + anno + " (" + isbn + ")";
+                return titolo + " (" + isbn + ")";
             }
     
 }

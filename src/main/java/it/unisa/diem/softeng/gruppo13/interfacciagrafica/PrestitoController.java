@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import java.time.LocalDate;
+import javafx.beans.property.SimpleObjectProperty;
 
 /**
  * @class PrestitoController
@@ -36,7 +37,7 @@ public class PrestitoController {
     @FXML private ComboBox<Libro> cbLibro;
     @FXML private DatePicker dpData;
 
-    private InterfacciaGestorePrestiti gestore;
+    private InterfacciaGestorePrestiti gestorePrestiti;
     private InterfacciaGestoreLibri gestoreLibri;
     private InterfacciaGestoreUtenti gestoreUtenti;
 
@@ -51,17 +52,123 @@ public class PrestitoController {
      * @param[in] gu Il gestore degli utenti.
      */
     public void init(InterfacciaGestorePrestiti igp, InterfacciaGestoreLibri igl, InterfacciaGestoreUtenti igu) {
+    
+        this.gestorePrestiti=igp;
+        this.gestoreLibri=igl;
+        this.gestoreUtenti=igu;
+        
+        configuraTabella();
+        
+        cbUtente.setOnShowing(e -> riempiForm());
+        cbLibro.setOnShowing(e -> riempiForm());
+        
+        dpData.setValue(LocalDate.now().plusDays(15));
+        
+        aggiornaTabella();
+        
+    }
+    
+    private void configuraTabella() {
+        
+        colPrestitoUtente.setCellValueFactory(d -> 
+            new SimpleStringProperty(d.getValue().getUtente().toString())
+        );
+
+        colPrestitoLibro.setCellValueFactory(d -> 
+            new SimpleStringProperty(d.getValue().getLibro().toString())
+        );
+
+        // Sostituisce sia PropertyValueFactory che CellFactory (se vuoi il massimo della robustezza)
+
+        colPrestitoData.setCellValueFactory(d -> {
+            LocalDate data = d.getValue().getDataRestituzione(); 
+            return new SimpleObjectProperty<>(data); 
+        });
+
+        colPrestitoData.setCellFactory(tc -> new TableCell<Prestito, LocalDate>() {
+        @Override
+        protected void updateItem(LocalDate item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty || item == null) {
+                setText(null);
+            } else {
+                setText(item.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            }
+            }
+        });
+        tabellaPrestiti.setRowFactory(tv -> new TableRow<Prestito>() {
+         
+        @Override
+        protected void updateItem(Prestito p, boolean empty) {
+            super.updateItem(p, empty);
+            if (p != null && !empty && p.inRitardo()) {
+                setStyle("-fx-background-color: #ffcccc;"); 
+            } else {
+                setStyle("");
+            }
+        }
+        });
+        
     }
 
     private void aggiornaTabella() {
+        
+        tabellaPrestiti.getItems().setAll(gestorePrestiti.getOrdinati());
+        
     }
 
+    
+    private void riempiForm() {
+        cbUtente.getItems().setAll(gestoreUtenti.cercaUtente(""));
+        cbLibro.getItems().setAll(gestoreLibri.cercaLibro(""));
+    }
+    
+    private void svuotaForm() {
+    cbUtente.setValue(null); 
+    cbLibro.setValue(null);
+    dpData.setValue(LocalDate.now().plusDays(15)); 
+    }
+    
+    
     @FXML
     private void btnAggiungi() {
+        
+        try {
+            Utente u = cbUtente.getValue();
+            Libro l = cbLibro.getValue();
+            LocalDate d = dpData.getValue();
+
+            if (u == null || l == null || d == null) {
+                throw new IllegalArgumentException("Selezionare utente, libro e data.");
+            }
+
+            svuotaForm();
+            gestorePrestiti.aggiungiPrestito(u, l, d);
+            
+            aggiornaTabella();
+            riempiForm();
+            cbLibro.getItems().setAll(gestoreLibri.cercaLibro(""));
+            GestoreMessaggi.mostraInfo("Prestito registrato con successo.");
+        } catch (Exception e) {
+            GestoreMessaggi.mostraErrore(e.getMessage());
+        }
+        
     }
 
     @FXML
     private void btnRimuovi() {
+        
+        Prestito p = tabellaPrestiti.getSelectionModel().getSelectedItem();
+        if (p == null) { 
+            GestoreMessaggi.mostraErrore("Seleziona un prestito da restituire."); return; 
+        }
+
+        gestorePrestiti.restituisciLibro(p);
+        
+        aggiornaTabella();
+        riempiForm(); 
+        cbLibro.getItems().setAll(gestoreLibri.cercaLibro(""));
+        GestoreMessaggi.mostraInfo("Libro restituito.");
     }
     
 }

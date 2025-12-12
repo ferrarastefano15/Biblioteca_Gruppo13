@@ -64,5 +64,14 @@ public class Prestito implements Serializable{
      * @return La data di restituzione del libro.
      */
          public LocalDate getDataRestituzione() { return dataRestituzione; }
+         
+         
+         
+         public boolean inRitardo() {
+            
+             LocalDate dataOdierna = LocalDate.now();
+        
+            return dataOdierna.isAfter(this.dataRestituzione);
+        }
     
 }
