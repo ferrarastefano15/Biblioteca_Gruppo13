@@ -139,21 +139,12 @@ public class GestoreUtenti implements InterfacciaGestoreUtenti{
             }
         }
         
+        risultati.sort(new ComparatoreUtenti());
 
         return risultati;        
         
     }
     
-    @Override
-    public List<Utente> getUtentiOrdinati(){
-        
-        List<Utente> ordinati = new ArrayList<>(utenti);
-
-        ordinati.sort(new ComparatoreUtenti()); 
-    
-        return ordinati;
-    }
-
     /**
      * @brief Verifica la validità e la coerenza dei dati di un utente.
      * 

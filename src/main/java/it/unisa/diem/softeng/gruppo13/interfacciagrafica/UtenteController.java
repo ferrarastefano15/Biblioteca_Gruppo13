@@ -109,7 +109,7 @@ public class UtenteController {
         
         try {
             Utente u = new Utente(
-                tfNome.getText().trim(), 
+            tfNome.getText().trim(), 
             tfCognome.getText().trim(),  
             tfMatricola.getText().trim(), 
             tfEmail.getText().trim()
