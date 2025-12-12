@@ -14,14 +14,14 @@ import java.util.List;
  */
 public interface InterfacciaGestoreLibri {
     
-    public List<Libro> getLibri();
+    List<Libro> getLibri();
     
-    public void aggiungiLibro(Libro libro);
+    void aggiungiLibro(Libro libro);
     
-    public void modificaLibro(Libro libro1, Libro libro2);
+    void modificaLibro(Libro libro1, Libro libro2);
     
-    public void rimuoviLibro(Libro libro);
+    void rimuoviLibro(Libro libro);
     
-    public List<Libro> cercaLibro(String query);
+    List<Libro> cercaLibro(String query);
     
 }

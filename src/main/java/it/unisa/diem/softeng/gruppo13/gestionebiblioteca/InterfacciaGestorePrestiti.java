@@ -17,16 +17,16 @@ import java.util.List;
  */
 public interface InterfacciaGestorePrestiti {
     
-    public List<Prestito> getPrestiti();
+    List<Prestito> getPrestiti();
     
-    public void aggiungiPrestito(Utente utente, Libro libro, LocalDate scadenza)  throws Exception ;
+    void aggiungiPrestito(Utente utente, Libro libro, LocalDate scadenza)  throws Exception ;
     
-    public void restituisciLibro(Prestito prestito);
+    void restituisciLibro(Prestito prestito);
     
-    public boolean haPrestitiAttivi(Libro l);
+    boolean haPrestitiAttivi(Libro l);
     
-    public boolean haPrestitiAttivi(Utente u);
+    boolean haPrestitiAttivi(Utente u);
     
-    public List<Prestito> getOrdinati();
+    List<Prestito> getOrdinati();
     
 }

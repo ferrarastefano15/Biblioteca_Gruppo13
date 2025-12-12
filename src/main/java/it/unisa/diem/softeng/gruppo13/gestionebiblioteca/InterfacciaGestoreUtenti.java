@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface InterfacciaGestoreUtenti {
     
-    public List<Utente> getUtenti();
+    List<Utente> getUtenti();
              
     void aggiungiUtente(Utente utente);
 
