@@ -146,7 +146,7 @@ public class LibroTest {
     }
     
     @Test
-    public void testDecrementaCopieSottoZero() {
+    public void testDecrementaCopieASottoZero() {
         System.out.println("decrementaCopie");
         libro.setCopieDisponibili(0);
         libro.decrementaCopie();

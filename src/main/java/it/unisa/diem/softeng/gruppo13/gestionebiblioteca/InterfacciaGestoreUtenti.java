@@ -22,8 +22,5 @@ public interface InterfacciaGestoreUtenti {
 
     void modificaUtente(Utente vecchio, Utente nuovo);
 
-    List<Utente> cercaUtente(String query);
-
-    List<Utente> getUtentiOrdinati();
-    
+    List<Utente> cercaUtente(String query);    
 }
