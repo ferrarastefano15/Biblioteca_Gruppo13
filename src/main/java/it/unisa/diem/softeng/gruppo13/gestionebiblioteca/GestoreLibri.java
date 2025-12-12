@@ -52,6 +52,8 @@ public class GestoreLibri {
      */
     public void aggiungiLibro(Libro libro) {
         
+        if(libro==null) return ;
+        
         validaLibro(libro);
         
         for (Libro l : libri) {
@@ -75,19 +77,25 @@ public class GestoreLibri {
      */
     public void modificaLibro(Libro libro1, Libro libro2){
         
-    if (libro1 == null || libro2 == null) {
-        throw new IllegalArgumentException("Dati non validi.");
-    }
+        if (libro1 == null || libro2 == null) {
+            throw new IllegalArgumentException("Dati non validi.");
+        }
     
-    if (!libro1.getIsbn().equals(libro2.getIsbn())){
-        throw new IllegalArgumentException("ISBN già presente in archivio!");
-    }
+        validaLibro(libro2);
+    
+        if (!libro1.getIsbn().equalsIgnoreCase(libro2.getIsbn())) {
+            for (Libro l : libri) {
+                if (l != libro1 && l.getIsbn().equalsIgnoreCase(libro2.getIsbn())) {
+                    throw new IllegalArgumentException("Impossibile modificare: il nuovo ISBN esiste già per un altro libro.");
+                }
+            }
+        }
 
   
-    libro1.setTitolo(libro2.getTitolo());
-    libro1.setAutori(libro2.getAutori());
-    libro1.setAnno(libro2.getAnno());
-    libro1.setIsbn(libro2.getIsbn());
+        libro1.setTitolo(libro2.getTitolo());
+        libro1.setAutori(libro2.getAutori());
+        libro1.setAnno(libro2.getAnno());
+        libro1.setIsbn(libro2.getIsbn());
     }
     
     /**
@@ -152,14 +160,26 @@ public class GestoreLibri {
     if (libro.getTitolo() == null || libro.getTitolo().isEmpty()) {
         throw new IllegalArgumentException("Il titolo è obbligatorio.");
     }
+    
+    if (libro.getAutori() == null || libro.getAutori().isEmpty()) {
+            throw new IllegalArgumentException("Il libro deve avere almeno un autore.");
+        }
 
     if (libro.getIsbn() == null || libro.getIsbn().isEmpty()) {
         throw new IllegalArgumentException("L'ISBN è obbligatorio.");
     }
+    
+    if (!libro.getIsbn().matches("\\d{13}")) {
+            throw new IllegalArgumentException("L'ISBN deve essere composto da 13 cifre numeriche.");
+        }
 
     if (libro.getAnno() > java.time.Year.now().getValue()) {
         throw new IllegalArgumentException("Anno futuro non valido.");
     }
+    
+    if (libro.getCopieDisponibili() < 1 ) {
+            throw new IllegalArgumentException("Devi inserire almeno 1 copia.");
+        }
     }
     
 }

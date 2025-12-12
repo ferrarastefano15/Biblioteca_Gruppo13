@@ -5,6 +5,7 @@
  */
 package it.unisa.diem.softeng.gruppo13.gestionebiblioteca;
 
+import it.unisa.diem.softeng.gruppo13.gestionedati.ComparatorePrestiti;
 import it.unisa.diem.softeng.gruppo13.gestionedati.Libro;
 import it.unisa.diem.softeng.gruppo13.gestionedati.Prestito;
 import it.unisa.diem.softeng.gruppo13.gestionedati.Utente;
@@ -51,6 +52,17 @@ public class GestorePrestiti {
      * @param[in] scadenza Data di restituzione del libro.
      */
     public void aggiungiPrestito(Utente utente, Libro libro, LocalDate scadenza) throws Exception {
+        
+        if (utente == null || libro == null || scadenza == null) {
+            throw new IllegalArgumentException("Dati prestito incompleti.");
+        }
+
+        validaPrestito(utente, libro, prestiti); 
+
+        libro.decrementaCopie();
+
+        Prestito p = new Prestito(libro, utente, scadenza);
+        prestiti.add(p);
     }
 
     /**
@@ -62,6 +74,10 @@ public class GestorePrestiti {
      * @param[in] prestito Prestito da restituire.
      */
     public void restituisciLibro(Prestito prestito) {
+        
+        if (prestito != null && prestiti.remove(prestito)) {
+            prestito.getLibro().incrementaCopie(); 
+        }
     }
     
      /**
@@ -74,6 +90,11 @@ public class GestorePrestiti {
      * @return 'true' se il libro è presente in almeno un prestito; 'false' altrimenti.
      */    
     public boolean haPrestitiAttivi(Libro l) {
+
+        if (l == null) return false;
+        for (Prestito p : prestiti) {
+            if (p.getLibro().equals(l)) return true; 
+        }
         return false;
     }
     
@@ -87,6 +108,11 @@ public class GestorePrestiti {
      * @return 'true' se l'utente è presente in almeno un prestito; 'false' altrimenti.
      */
     public boolean haPrestitiAttivi(Utente u) {
+        
+        if (u == null) return false;
+        for (Prestito p : prestiti) {
+            if (p.getUtente().equals(u)) return true; 
+        }
         return false;
     }
 
@@ -100,7 +126,12 @@ public class GestorePrestiti {
      * ordinati per data prevista di restituzione.
      */    
     public List<Prestito> getOrdinati() {
-        return null;
+        
+        List<Prestito> listaOrdinabile = new ArrayList<>(this.prestiti);
+        
+        listaOrdinabile.sort(new ComparatorePrestiti());
+        
+        return listaOrdinabile;
     }
     
     /**
@@ -115,6 +146,23 @@ public class GestorePrestiti {
      * @param[in] prestitiAttuali Lista di prestiti attivi dell'utente.
      */
     private void validaPrestito(Utente utente, Libro libro, List<Prestito> prestitiAttuali) throws Exception {
+        
+        // Controllo Copie
+        if (libro.getCopieDisponibili() <= 0) { 
+            throw new Exception("Copie non disponibili per il libro: " + libro.getTitolo());
+        }
+
+        // Controllo Max Prestiti per Utente
+        long prestitiUtente = 0;
+        for (Prestito p : prestitiAttuali) {
+            if (p.getUtente().equals(utente)) {
+                prestitiUtente++;
+            }
+        }
+
+        if (prestitiUtente >= MAX_PRESTITI) {
+            throw new Exception("L'utente ha raggiunto il limite massimo di " + MAX_PRESTITI + " prestiti.");
+        }
     }
     
     

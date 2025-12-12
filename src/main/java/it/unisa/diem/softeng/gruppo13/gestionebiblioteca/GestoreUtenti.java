@@ -6,6 +6,7 @@
 package it.unisa.diem.softeng.gruppo13.gestionebiblioteca;
 
 import it.unisa.diem.softeng.gruppo13.gestionedati.Utente;
+import it.unisa.diem.softeng.gruppo13.gestionedati.ComparatoreUtenti;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +30,7 @@ public class GestoreUtenti {
      * 
      * @return Lista di utenti registrati nella biblioteca.
      */    
-    public List<Utente> getUenti() { return utenti; }
+    public List<Utente> getUtenti() { return utenti; }
     
     
     public void setUtenti(List<Utente> nuoviUtenti) { this.utenti = new ArrayList<>(nuoviUtenti); }
@@ -44,6 +45,18 @@ public class GestoreUtenti {
      * @param[in] utente Utente da aggiungere
      */    
     public void aggiungiUtente(Utente utente) {
+        
+        if(utente==null) return ;
+        
+        validaUtente(utente);
+        
+        for (Utente u : utenti) {
+            if (u.getMatricola().equalsIgnoreCase(utente.getMatricola())) {
+                throw new IllegalArgumentException("Matricola già esistente.");
+            }
+        }
+        
+        utenti.add(utente);
     }   
     
     /**
@@ -56,6 +69,27 @@ public class GestoreUtenti {
      * @param[in] utente2 Utente modificato.
      */
     public void modificaUtente(Utente utente1, Utente utente2){
+        
+        if (utente1 == null || utente2 == null) {
+        throw new IllegalArgumentException("Dati non validi.");
+        }
+    
+        validaUtente(utente2);
+    
+        if (!utente1.getMatricola().equalsIgnoreCase(utente2.getMatricola())) {
+            for (Utente u: utenti) {
+                if (u!= utente1 && u.getMatricola().equalsIgnoreCase(utente2.getMatricola())) {
+                    throw new IllegalArgumentException("Impossibile modificare: la matricola esiste già per un altro utente.");
+                }
+            }
+        }
+
+  
+        utente1.setCognome(utente2.getCognome());
+        utente1.setNome(utente2.getNome());
+        utente1.setMatricola(utente2.getMatricola());
+        utente1.setEmail(utente2.getEmail());
+    
     }
     
     /**
@@ -67,6 +101,9 @@ public class GestoreUtenti {
      * @param[in] utente Utente da rimuovere dalla biblioteca.
      */ 
     public void rimuoviUtente(Utente utente) {
+        
+        utenti.remove(utente);
+        
     }
 
     /**
@@ -79,7 +116,28 @@ public class GestoreUtenti {
      * @return Lista di utenti che corrispondono alla query.
      */    
     public List<Utente> cercaUtenti(String query) {
-        return null;
+     
+        String q = (query == null) ? "" : query.toLowerCase();
+
+        List<Utente> risultati = new ArrayList<>();
+
+        for (Utente u : utenti) {
+        
+            boolean matchNome = u.getNome() != null && u.getNome().toLowerCase().contains(q);
+        
+            boolean matchCognome = u.getCognome()!= null && u.getCognome().toLowerCase().contains(q);
+        
+            boolean matchMatricola = u.getMatricola() != null && u.getMatricola().toLowerCase().contains(q);
+
+            if (matchNome || matchCognome || matchMatricola) {
+                risultati.add(u);
+            }
+        }
+        
+        risultati.sort(new ComparatoreUtenti());
+
+        return risultati;        
+        
     }
 
     /**
@@ -92,5 +150,20 @@ public class GestoreUtenti {
      * @param[in] utente Utente da sottoporre a validazione.
      */
     private void validaUtente(Utente utente) {
+        
+        if (utente == null) throw new IllegalArgumentException("Utente nullo.");
+        
+        if (utente.getNome() == null || utente.getNome().isEmpty()) 
+            throw new IllegalArgumentException("Nome obbligatorio.");
+
+        if (utente.getCognome() == null || utente.getCognome().isEmpty()) 
+            throw new IllegalArgumentException("Cognome obbligatorio.");
+
+        if (utente.getMatricola() == null || utente.getMatricola().isEmpty()) 
+            throw new IllegalArgumentException("Matricola obbligatoria.");  
+        
+        if (utente.getEmail() == null || utente.getEmail().isEmpty()) 
+            throw new IllegalArgumentException("Email obbligatoria.");  
+        
     }
 }

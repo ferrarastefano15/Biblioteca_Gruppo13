@@ -37,7 +37,7 @@ public class GestoreLibriTest {
     @Test
     void testAggiungiLibro1() {
 
-        System.out.println("AggiungiLibro1");
+        System.out.println("aggiungiLibro1");
         
         gestore.aggiungiLibro(l1);
 
@@ -49,11 +49,13 @@ public class GestoreLibriTest {
     @Test
     void testAggiungiLibro2() {
         
-        System.out.println("AggiungiLibro2");
+        System.out.println("aggiungiLibro2");
 
         gestore.aggiungiLibro(l1);
         
-        gestore.aggiungiLibro(l1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            gestore.aggiungiLibro(l1);
+        });
         
         assertEquals(1, gestore.getLibri().size());
     }
@@ -62,7 +64,7 @@ public class GestoreLibriTest {
     @Test
     void testAggiungiLibro3() {
         
-        System.out.println("AggiungiLibro3");
+        System.out.println("aggiungiLibro3");
         gestore.aggiungiLibro(null);
         assertTrue(gestore.getLibri().isEmpty());
     }
@@ -71,7 +73,7 @@ public class GestoreLibriTest {
     @Test
     void testRimuoviLibro1() {
         
-        System.out.println("RimuoviLibro1");
+        System.out.println("rimuoviLibro1");
 
         gestore.aggiungiLibro(l1);
         gestore.aggiungiLibro(l2);
@@ -87,7 +89,7 @@ public class GestoreLibriTest {
     @Test
     void testRimuoviLibro2() {
         
-        System.out.println("RiuoviLibro2");
+        System.out.println("riuoviLibro2");
          
         gestore.aggiungiLibro(l1);
         gestore.rimuoviLibro(l2); 
@@ -98,7 +100,7 @@ public class GestoreLibriTest {
     @Test
     void testRicercaLibri() {
 
-        System.out.println("RicercaLibri");
+        System.out.println("ricercaLibri");
         gestore.aggiungiLibro(l1);
         gestore.aggiungiLibro(l2); 
         gestore.aggiungiLibro(l3); 
@@ -123,18 +125,21 @@ public class GestoreLibriTest {
     @Test
     void testModificaLibro() {
 
-        System.out.println("ModificaLibro");
+        System.out.println("modificaLibro");
+        
         gestore.aggiungiLibro(l1); 
         
-        Libro l1Modificato = new Libro("Harry Potter", Arrays.asList("J.K. Rowling"), 2000, "ISBN-1", 5);
+        Libro l1Modificato = new Libro("Harry Potter", Arrays.asList("J.K. Rowling"), 2000, "4444444444444", 5);
 
         gestore.modificaLibro(l1, l1Modificato);
 
         List<Libro> lista = gestore.getLibri();
-        assertFalse(lista.contains(l1));
         
-        Libro trovato = lista.get(0);
-        assertEquals(2000, trovato.getAnno());
+        Libro libroAggiornato = lista.get(0);
+        
+        assertEquals(2000, libroAggiornato.getAnno());
+        
+        assertSame(l1, libroAggiornato, "L'oggetto in memoria deve essere lo stesso, solo con dati diversi");
     }
 
   

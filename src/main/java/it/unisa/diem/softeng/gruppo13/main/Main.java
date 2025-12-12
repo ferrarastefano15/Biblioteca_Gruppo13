@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import javafx.scene.Parent;
 
 /**
@@ -20,12 +19,11 @@ import javafx.scene.Parent;
  
     public class Main extends Application {
         
-        
-    private static final String FXML_PATH = "/it/unisa/diem/softeng/gruppo13/gui/MainView.fxml";
-    private static final String APP_TITLE = "Gestione Biblioteca - Gruppo 13";
     
+    private static final String FXML_PATH = "/it/unisa/diem/softeng/gruppo13/interfacciagrafica/main_view.fxml";
+    private static final String TITLE = "Gestione Biblioteca - Gruppo 13";
     
-     /**
+    /**
      * @brief Metodo che avvia l'interfaccia grafica dell'applicazione.
      * 
      * Avvia l'applicazione JavaFX mostrando la finestra principale
@@ -34,10 +32,17 @@ import javafx.scene.Parent;
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-    }
-    
         
+        
+        Parent root = FXMLLoader.load(getClass().getResource(FXML_PATH));
+        
+        primaryStage.setTitle(TITLE);
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+        
+    }
+
+    
      /**
      * @brief Metodo principale dell'applicazione.
      * 
