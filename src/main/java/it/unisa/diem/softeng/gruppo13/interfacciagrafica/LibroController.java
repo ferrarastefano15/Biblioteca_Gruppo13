@@ -74,7 +74,7 @@ public class LibroController {
         aggiornaTabella();
     }
 
-    private void aggiornaTabella(){
+    void aggiornaTabella(){
         
         String query = txtCerca.getText();
         tabellaLibri.getItems().setAll(gestoreLibri.cercaLibro(query));
@@ -88,6 +88,7 @@ public class LibroController {
             tfAnno.setText(String.valueOf(l.getAnno()));
             tfIsbn.setText(l.getIsbn());
             tfCopie.setText(String.valueOf(l.getCopieDisponibili()));
+            tfCopie.setEditable(false);
         } else {
             btnAnnulla(); 
         }
@@ -106,6 +107,7 @@ public class LibroController {
         tfAnno.clear();
         tfIsbn.clear();
         tfCopie.clear();
+        tfCopie.setEditable(true);
         
         tabellaLibri.getSelectionModel().clearSelection();
         

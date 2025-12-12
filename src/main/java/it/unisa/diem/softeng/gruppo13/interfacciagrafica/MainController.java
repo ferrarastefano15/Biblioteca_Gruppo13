@@ -20,6 +20,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.io.IOException;
 import java.util.List;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 
 /**
  * @class MainController
@@ -31,6 +33,12 @@ import java.util.List;
  * @author Daniel, Daniel, Andrea, Stefano, Daniele
  */
 public class MainController implements Initializable {
+    
+
+    @FXML private TabPane tabPanePrincipale; 
+    @FXML private Tab tabLibri; 
+    @FXML private Tab tabUtenti;
+    @FXML private Tab tabPrestiti; 
 
     @FXML private LibroController vistaLibriController;
     @FXML private UtenteController vistaUtentiController;
@@ -75,9 +83,31 @@ public class MainController implements Initializable {
         if (vistaPrestitiController != null) 
             vistaPrestitiController.init(gestorePrestiti, gestoreLibri, gestoreUtenti);
        
-        
+        setupTabListener();
     }
+    
+    // Nel MainController.java
 
+private void setupTabListener() {
+    // 1. Verifichiamo che la Tab Libri sia stata iniettata
+    if (tabLibri != null) {
+        
+        // 2. Impostiamo un listener che si attiva quando la proprietà 'selected' cambia
+        tabLibri.selectedProperty().addListener((obs, oldSelection, newSelection) -> {
+            
+            // 3. Se newSelection è TRUE, significa che l'utente ha cliccato sulla Tab Libri
+            if (newSelection) {
+                
+                // 4. Verifichiamo che l'istanza del controller sia disponibile
+                if (vistaLibriController != null) {
+                    // CHIAMATA CHIAVE: Forziamo l'aggiornamento della tabella Libri
+                    vistaLibriController.aggiornaTabella();
+                }
+            }
+        });
+    }
+}
+    
     @FXML
     private void btnSalva() {
         

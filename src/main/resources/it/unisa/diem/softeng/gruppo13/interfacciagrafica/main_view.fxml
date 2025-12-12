@@ -25,15 +25,15 @@
     <center>
         <TabPane style="-fx-background-color: transparent;" tabClosingPolicy="UNAVAILABLE">
             
-            <Tab text="Libri">
+            <Tab fx:id="tabLibri" text="Libri">
                 <fx:include fx:id="vistaLibri" source="libri_view.fxml" />
             </Tab>
 
-            <Tab text="Utenti">
+            <Tab fx:id="tabUtenti" text="Utenti">
                 <fx:include fx:id="vistaUtenti" source="utenti_view.fxml" />
             </Tab>
 
-            <Tab text="Prestiti">
+            <Tab fx:id="tabPrestiti" text="Prestiti">
                 <fx:include fx:id="vistaPrestiti" source="prestiti_view.fxml" />
             </Tab>
 
