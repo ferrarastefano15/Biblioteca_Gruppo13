@@ -9,7 +9,6 @@ import it.unisa.diem.softeng.gruppo13.gestionedati.Utente;
 import it.unisa.diem.softeng.gruppo13.gestionedati.ComparatoreUtenti;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @class GestoreUtenti

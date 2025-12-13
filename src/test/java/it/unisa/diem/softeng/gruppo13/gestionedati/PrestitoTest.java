@@ -6,12 +6,10 @@
 package it.unisa.diem.softeng.gruppo13.gestionedati;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
-import it.unisa.diem.softeng.gruppo13.gestionedati.Libro;
 /**
  *
  * @author Stefano

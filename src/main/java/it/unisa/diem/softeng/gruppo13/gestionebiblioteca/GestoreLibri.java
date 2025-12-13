@@ -8,7 +8,6 @@ package it.unisa.diem.softeng.gruppo13.gestionebiblioteca;
 import it.unisa.diem.softeng.gruppo13.gestionedati.Libro;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import it.unisa.diem.softeng.gruppo13.gestionedati.ComparatoreLibri;
 /**
  * @class GestoreLibri

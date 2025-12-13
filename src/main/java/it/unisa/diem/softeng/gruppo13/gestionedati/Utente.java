@@ -6,7 +6,6 @@
 package it.unisa.diem.softeng.gruppo13.gestionedati;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @class Utente

@@ -1,13 +1,8 @@
 package it.unisa.diem.softeng.gruppo13.interfacciagrafica;
 
 import it.unisa.diem.softeng.gruppo13.gestionedati.Utente;
-import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestoreUtenti;
-import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestorePrestiti;
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.InterfacciaGestorePrestiti;
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.InterfacciaGestoreUtenti;
-import java.util.List;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

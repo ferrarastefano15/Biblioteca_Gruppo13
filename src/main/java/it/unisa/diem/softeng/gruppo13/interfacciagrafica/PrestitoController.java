@@ -3,18 +3,12 @@ package it.unisa.diem.softeng.gruppo13.interfacciagrafica;
 import it.unisa.diem.softeng.gruppo13.gestionedati.Libro;
 import it.unisa.diem.softeng.gruppo13.gestionedati.Prestito;
 import it.unisa.diem.softeng.gruppo13.gestionedati.Utente;
-import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestoreLibri;
-import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestoreUtenti;
-import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.GestorePrestiti;
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.InterfacciaGestoreLibri;
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.InterfacciaGestorePrestiti;
 import it.unisa.diem.softeng.gruppo13.gestionebiblioteca.InterfacciaGestoreUtenti;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 import java.time.LocalDate;
 import javafx.beans.property.SimpleObjectProperty;
 
