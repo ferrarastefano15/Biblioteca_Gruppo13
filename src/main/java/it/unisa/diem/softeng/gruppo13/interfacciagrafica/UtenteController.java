@@ -32,53 +32,58 @@ public class UtenteController {
 
     @FXML private TextField tfNome, tfCognome, tfMatricola, tfEmail;
 
+    /** @brief Gestore della logica di business degli utenti */
     private InterfacciaGestoreUtenti gestoreUtenti;
+
+    /** @brief Gestore della logica di business dei prestiti */
     private InterfacciaGestorePrestiti gestorePrestiti;
-    
+
+    /** @brief Lista osservabile per la tabella utenti */
     private ObservableList<Utente> datiUtenti;
 
-
-     /**
-     * @brief Inizializza il controller per gestire l'interfaccia per la visualizzazione
-     * e la gestione degli utenti.
+    /**
+     * @brief Inizializza il controller degli utenti.
      * 
-     * Questo metodo viene chiamato per configurare la tabella degli utenti, 
-     * le azioni di selezione e l'aggiornamento della vista.
+     * Configura la tabella degli utenti, imposta listener per la selezione
+     * di un utente e aggiorna la vista iniziale.
      * 
-     * @param[in] gu Il gestore degli utenti.
-     * @param[in] gp Il gestore dei prestiti.
+     * @param[in] igu Gestore degli utenti.
+     * @param[in] igp Gestore dei prestiti.
      */
     public void init(InterfacciaGestoreUtenti igu, InterfacciaGestorePrestiti igp) {
-        
-        this.gestoreUtenti=igu;
-        this.gestorePrestiti=igp;
-        
+        this.gestoreUtenti = igu;
+        this.gestorePrestiti = igp;
+
         datiUtenti = FXCollections.observableArrayList();
         tabellaUtenti.setItems(datiUtenti);
-    
+
         colCognome.setCellValueFactory(new PropertyValueFactory<>("cognome"));
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colMatricola.setCellValueFactory(new PropertyValueFactory<>("matricola"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        
+
+        // Listener per la selezione di un utente
         tabellaUtenti.getSelectionModel().selectedItemProperty().addListener(
-        (obs, oldVal, newVal) -> riempiForm(newVal)
+            (obs, oldVal, newVal) -> riempiForm(newVal)
         );
-        
+
         aggiornaTabella();
-        
-        
     }
 
+    /**
+     * @brief Aggiorna la tabella filtrando gli utenti secondo la query di ricerca.
+     */
     private void aggiornaTabella() {
-        
         String query = txtCerca.getText();
         datiUtenti.setAll(gestoreUtenti.cercaUtente(query));
-        
     }
-    
+
+    /**
+     * @brief Riempi i campi del form con i dati dell'utente selezionato.
+     * 
+     * @param[in] u Utente selezionato nella tabella.
+     */
     private void riempiForm(Utente u) {
-        
         if (u != null) {
             tfNome.setText(u.getNome());
             tfCognome.setText(u.getCognome());
@@ -88,35 +93,44 @@ public class UtenteController {
             btnAnnulla();
         }
     }
-    
+
+    /**
+     * @brief Aggiorna la tabella in base alla query di ricerca inserita.
+     */
     @FXML 
     private void btnCerca() { 
         aggiornaTabella(); 
     }
 
+    /**
+     * @brief Ripristina i valori di default dei campi del form.
+     */
     @FXML
     private void btnAnnulla() { 
-        
-        tfNome.clear(); tfCognome.clear(); 
+        tfNome.clear(); 
+        tfCognome.clear(); 
         tfMatricola.clear(); 
         tfEmail.clear();
         tabellaUtenti.getSelectionModel().clearSelection();
-        
     }
 
+    /**
+     * @brief Aggiunge un nuovo utente.
+     * 
+     * Valida i dati inseriti, chiama il gestore degli utenti e aggiorna la tabella.
+     */
     @FXML
     private void btnAggiungi() {
-        
         try {
             Utente u = new Utente(
-            tfNome.getText().trim(), 
-            tfCognome.getText().trim(),  
-            tfMatricola.getText().trim(), 
-            tfEmail.getText().trim()
+                tfNome.getText().trim(), 
+                tfCognome.getText().trim(),  
+                tfMatricola.getText().trim(), 
+                tfEmail.getText().trim()
             );
-            
+
             gestoreUtenti.aggiungiUtente(u);
-            
+
             aggiornaTabella();
             btnAnnulla();
         } catch (Exception e) { 
@@ -124,36 +138,34 @@ public class UtenteController {
         }
     }
 
+    /**
+     * @brief Modifica i dati dell'utente selezionato.
+     * 
+     * Controlla se l'utente ha prestiti attivi prima di permettere la modifica,
+     * valida i nuovi dati e aggiorna la tabella.
+     */
     @FXML
     private void btnModifica() {
-        
-        // 1. Recupera l'utente selezionato (Il "Vecchio")
         Utente selected = tabellaUtenti.getSelectionModel().getSelectedItem();
-        
         if (selected == null) { 
             GestoreMessaggi.mostraErrore("Seleziona un utente da modificare."); 
             return; 
         }
-        
+
         try {
-            // 2. Controllo Integrità Referenziale
-            // Non permettiamo di modificare un utente che ha libri in prestito
             if (gestorePrestiti.haPrestitiAttivi(selected)) {
                 throw new Exception("Utente con prestiti attivi: impossibile modificare i dati.");
             }
-            
-            // 3. Creazione del "Nuovo" oggetto con i dati del form
+
             Utente nuovoUtente = new Utente(
                 tfNome.getText(), 
                 tfCognome.getText(), 
                 tfMatricola.getText(),
                 tfEmail.getText()
             );
-            
-            // 4. Chiamata al Service (Business Logic)
+
             gestoreUtenti.modificaUtente(selected, nuovoUtente);
-            
-            // 5. Aggiornamento UI
+
             aggiornaTabella();
             btnAnnulla();
 
@@ -162,27 +174,31 @@ public class UtenteController {
         } catch (Exception e) { 
             GestoreMessaggi.mostraErrore(e.getMessage()); 
         }
-        
     }
 
+    /**
+     * @brief Rimuove l'utente selezionato.
+     * 
+     * Controlla se l'utente ha prestiti attivi prima di permettere la rimozione,
+     * chiama il gestore degli utenti e aggiorna la tabella.
+     */
     @FXML
     private void btnRimuovi() {
-        
         Utente selected = tabellaUtenti.getSelectionModel().getSelectedItem();
         if (selected == null) { return; }
 
         try {
             if (gestorePrestiti.haPrestitiAttivi(selected)) {
-                GestoreMessaggi.mostraErrore("Impossibile eliminare: l'utente ha prestiti attivi."); return;
+                GestoreMessaggi.mostraErrore("Impossibile eliminare: l'utente ha prestiti attivi."); 
+                return;
             }
 
             gestoreUtenti.rimuoviUtente(selected);
             aggiornaTabella();
             btnAnnulla();
-            
+
         } catch (Exception e) { 
            GestoreMessaggi.mostraErrore(e.getMessage()); 
         }
     }
-
 }

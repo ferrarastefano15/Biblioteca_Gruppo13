@@ -20,38 +20,46 @@ import javafx.scene.Parent;
     public class Main extends Application {
         
     
+     /** @brief Percorso del file FXML della vista principale */
     private static final String FXML_PATH = "/it/unisa/diem/softeng/gruppo13/interfacciagrafica/main_view.fxml";
+
+    /** @brief Titolo della finestra principale dell'applicazione */
     private static final String TITLE = "Gestione Biblioteca - Gruppo 13";
-    
+
     /**
      * @brief Metodo che avvia l'interfaccia grafica dell'applicazione.
      * 
-     * Avvia l'applicazione JavaFX mostrando la finestra principale
+     * Carica la vista principale da FXML, imposta il titolo e la scena
+     * dello stage principale e mostra la finestra.
      * 
      * @param[in] primaryStage Finestra principale dell'applicazione (Stage).
+     * @throws Exception Se si verifica un errore durante il caricamento del file FXML.
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        
-        
+        // Carica la vista FXML
         Parent root = FXMLLoader.load(getClass().getResource(FXML_PATH));
-        
+
+        // Imposta titolo finestra principale
         primaryStage.setTitle(TITLE);
+
+        // Imposta la scena con la vista caricata
         primaryStage.setScene(new Scene(root));
+
+        // Mostra la finestra
         primaryStage.show();
-        
     }
 
-    
-     /**
+    /**
      * @brief Metodo principale dell'applicazione.
+     * 
+     * Lancia l'applicazione JavaFX.
      * 
      * @param[in] args Argomenti da linea di comando.
      */
     public static void main(String[] args) {
-            launch(args);
+        launch(args);
     }
-
 
    
 }

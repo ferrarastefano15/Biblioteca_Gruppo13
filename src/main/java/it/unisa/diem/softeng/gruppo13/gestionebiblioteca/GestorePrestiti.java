@@ -17,7 +17,8 @@ import java.util.List;
  * @class GestorePrestiti
  * @brief Implementa i metodi di 'Prestito'.
  * 
- * La classe 'GestorePrestiti' serve a gestire i prestiti della bilbioteca, passandogli
+ * La classe {@code GestorePrestiti} implementa l'interfaccia
+ * {@code InterfacciaGestorePrestiti} passandogli
  * la lista dei prestiti e implementando i metodi per aggiungere, rimuovere e ordinare
  * i prestiti della biblioteca. Controlla che i prerequisiti per la creazione
  * del prestito siano soddisfatti.
@@ -25,10 +26,10 @@ import java.util.List;
  */
 public class GestorePrestiti implements InterfacciaGestorePrestiti{
     
-    /** @brief Costante che indica il numero massimo di prestiti attivi per ogni utente*/
+    /** @brief Numero massimo di prestiti attivi consentiti per ciascun utente */
     private static final int MAX_PRESTITI = 3;    
 
-    /** @brief Lista dei prestiti effettuati nella biblioteca */    
+    /** @brief Lista dei prestiti attivi nella biblioteca */    
     private List<Prestito> prestiti = new ArrayList<>();
 
     /**
@@ -37,20 +38,41 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
      * @return Lista di prestiti attivi nella biblioteca.
      */    
     @Override
-    public List<Prestito> getPrestiti() { return prestiti; }
+    public List<Prestito> getPrestiti() { 
+        return prestiti; 
+    }
     
-    
-    public void setPrestiti(List<Prestito> nuoviPrestiti) { this.prestiti = new ArrayList<>(nuoviPrestiti); }
+    /**
+     * @brief Imposta la lista dei prestiti.
+     * 
+     * Questo metodo viene utilizzato principalmente durante il caricamento
+     * dei dati da una sorgente esterna (es. file).
+     * 
+     * @param[in] nuoviPrestiti Lista dei prestiti da impostare.
+     * 
+     * @post La lista interna dei prestiti viene sovrascritta con una nuova copia
+     *       della lista fornita.
+     */
+    public void setPrestiti(List<Prestito> nuoviPrestiti) { 
+        this.prestiti = new ArrayList<>(nuoviPrestiti); 
+    }
     
     /**
      * @brief Aggiunge un nuovo prestito.
      * 
-     * Questo metodo consente di registrare un nuovo prestito, 
+     * Questo metodo consente di registrare un nuovo prestito,
      * associando un utente a un libro con una data di restituzione.
      * 
      * @param[in] utente Utente che prende in prestito il libro.
      * @param[in] libro Libro che viene preso in prestito.
      * @param[in] scadenza Data di restituzione del libro.
+     * 
+     * @throws IllegalArgumentException Se uno dei parametri è nullo.
+     * @throws Exception Se il libro non ha copie disponibili o se l'utente
+     *                   ha raggiunto il numero massimo di prestiti consentiti.
+     * 
+     * @post Il prestito viene aggiunto alla lista dei prestiti attivi
+     *       e il numero di copie disponibili del libro viene decrementato.
      */
     @Override
     public void aggiungiPrestito(Utente utente, Libro libro, LocalDate scadenza) throws Exception {
@@ -70,10 +92,14 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
     /**
      * @brief Restituisce un libro preso in prestito.
      * 
-     * Questo metodo consente di restituire un libro preso in prestito, 
-     * rimuovendo il prestito dal sistema.
+     * Questo metodo consente di restituire un libro preso in prestito,
+     * rimuovendo il prestito dal sistema e incrementando il numero
+     * di copie disponibili del libro.
      * 
      * @param[in] prestito Prestito da restituire.
+     * 
+     * @post Il prestito viene rimosso dalla lista dei prestiti
+     *       e la copia del libro viene resa nuovamente disponibile.
      */
     @Override
     public void restituisciLibro(Prestito prestito) {
@@ -83,14 +109,15 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
         }
     }
     
-     /**
+    /**
      * @brief Verifica se un libro è coinvolto in prestiti attivi.
      *
-     * Questo metodo serve per controllare se un libro è coinvolto 
-     * in un prestito, prima di poterlo eliminare.
+     * Questo metodo serve per controllare se un libro è coinvolto
+     * in un prestito prima di consentirne l'eliminazione.
      *
-     * @param[in] l Il libro da controllare
-     * @return 'true' se il libro è presente in almeno un prestito; 'false' altrimenti.
+     * @param[in] l Libro da controllare.
+     * @return {@code true} se il libro è presente in almeno un prestito attivo,
+     *         {@code false} altrimenti.
      */    
     @Override
     public boolean haPrestitiAttivi(Libro l) {
@@ -102,14 +129,15 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
         return false;
     }
     
-     /**
+    /**
      * @brief Verifica se un utente è coinvolto in prestiti attivi.
      *
-     * Questo metodo serve per controllare se un utente
-     * è coinvolto in un prestito, prima di poterlo eliminare.
+     * Questo metodo serve per controllare se un utente è coinvolto
+     * in un prestito prima di consentirne l'eliminazione.
      *
-     * @param[in] u L'utente da controllare
-     * @return 'true' se l'utente è presente in almeno un prestito; 'false' altrimenti.
+     * @param[in] u Utente da controllare.
+     * @return {@code true} se l'utente è presente in almeno un prestito attivo,
+     *         {@code false} altrimenti.
      */
     @Override
     public boolean haPrestitiAttivi(Utente u) {
@@ -121,44 +149,41 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
         return false;
     }
 
-     /**
+    /**
      * @brief Restituisce la lista dei prestiti ordinata per data di scadenza.
      *
-     * Utilizza uno stream per filtrare e ordinare la lista originale senza modificarla,
-     * garantendo che l'interfaccia riceva i dati nell'ordine corretto.
+     * La lista originale non viene modificata.
      *
-     * @return Lista di prestiti contenente tutti i prestiti registrati,
-     * ordinati per data prevista di restituzione.
+     * @return Lista dei prestiti ordinata per data prevista di restituzione.
      */    
     @Override
     public List<Prestito> getOrdinati() {
         
         List<Prestito> listaOrdinabile = new ArrayList<>(this.prestiti);
-        
         listaOrdinabile.sort(new ComparatorePrestiti());
-        
         return listaOrdinabile;
     }
     
     /**
      * @brief Verifica la validità di un prestito.
      * 
-     * Questo metodo controlla se i prerequisiti per la validazione di un nuovo prestito
-     * sono soddisfatti, verifica se l'utente ha meno di 3 presiti attivi e se il
-     * libro ha almeno una copia disponibile.
+     * Questo metodo controlla il rispetto dei vincoli di dominio:
+     * disponibilità delle copie del libro e numero massimo di prestiti
+     * consentiti per l'utente.
      * 
      * @param[in] utente Utente che richiede il prestito.
      * @param[in] libro Libro che viene preso in prestito.
-     * @param[in] prestitiAttuali Lista di prestiti attivi dell'utente.
+     * @param[in] prestitiAttuali Lista dei prestiti attivi.
+     * 
+     * @throws Exception Se il libro non ha copie disponibili o se l'utente
+     *                   ha superato il numero massimo di prestiti consentiti.
      */
     private void validaPrestito(Utente utente, Libro libro, List<Prestito> prestitiAttuali) throws Exception {
         
-        // Controllo Copie
         if (libro.getCopieDisponibili() <= 0) { 
             throw new Exception("Copie non disponibili per il libro: " + libro.getTitolo());
         }
 
-        // Controllo Max Prestiti per Utente
         long prestitiUtente = 0;
         for (Prestito p : prestitiAttuali) {
             if (p.getUtente().equals(utente)) {
@@ -167,7 +192,9 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
         }
 
         if (prestitiUtente >= MAX_PRESTITI) {
-            throw new Exception("L'utente ha raggiunto il limite massimo di " + MAX_PRESTITI + " prestiti.");
+            throw new Exception(
+                "L'utente ha raggiunto il limite massimo di " + MAX_PRESTITI + " prestiti."
+            );
         }
     }
     

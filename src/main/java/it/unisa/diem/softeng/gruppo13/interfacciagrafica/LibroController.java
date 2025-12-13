@@ -28,60 +28,71 @@ import javafx.collections.ObservableList;
  */
 public class LibroController {
 
-    @FXML private TableView<Libro> tabellaLibri;
+   @FXML private TableView<Libro> tabellaLibri;
     @FXML private TableColumn<Libro, String> colTitolo, colAutori, colIsbn;
     @FXML private TableColumn<Libro, Integer> colAnno, colCopie;
     @FXML private TextField txtCerca;
 
     @FXML private TextField tfTitolo, tfAutori, tfAnno, tfIsbn, tfCopie;
 
+    /** @brief Gestore della logica di business dei libri */
     private InterfacciaGestoreLibri gestoreLibri;
+
+    /** @brief Gestore della logica di business dei prestiti */
     private InterfacciaGestorePrestiti gestorePrestiti;
     
+    /** @brief Lista osservabile dei libri mostrati nella tabella */
     private ObservableList<Libro> datiLibri;
 
-     /**
+    /**
      * @brief Inizializza il controller dei libri.
      * 
-     * Questo metodo viene chiamato durante l'inizializzazione del controller 
-     * per configurare la tabella dei libri, impostare i listener per la selezione 
-     * di un libro dalla tabella, e aggiornare la vista con i libri.
+     * Configura la tabella, i binding delle colonne, i listener
+     * e carica i dati iniziali.
      * 
-     * @param[in] gl Il gestore dei libri.
-     * @param[in] gp Il gestore dei prestiti.
+     * @param[in] igl Gestore dei libri.
+     * @param[in] igp Gestore dei prestiti.
      */
     public void init(InterfacciaGestoreLibri igl, InterfacciaGestorePrestiti igp) {
-        
-        this.gestoreLibri=igl;
-        this.gestorePrestiti=igp;
-        
+        this.gestoreLibri = igl;
+        this.gestorePrestiti = igp;
+
         datiLibri = FXCollections.observableArrayList();
         tabellaLibri.setItems(datiLibri);
-        
+
         colTitolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
         colAnno.setCellValueFactory(new PropertyValueFactory<>("anno"));
         colIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         colCopie.setCellValueFactory(new PropertyValueFactory<>("copieDisponibili"));
-        
-        colAutori.setCellValueFactory(data -> 
-                new SimpleStringProperty(data.getValue().getAutori())
+
+        colAutori.setCellValueFactory(data ->
+            new SimpleStringProperty(data.getValue().getAutori())
         );
-        
+
         tabellaLibri.getSelectionModel().selectedItemProperty().addListener(
-        (obs, oldVal, newVal) -> riempiForm(newVal)
+            (obs, oldVal, newVal) -> riempiForm(newVal)
         );
-        
+
         aggiornaTabella();
     }
 
-    void aggiornaTabella(){
-        
+    /**
+     * @brief Aggiorna la tabella dei libri.
+     * 
+     * Recupera i libri dal gestore in base alla query di ricerca
+     * e aggiorna il contenuto della TableView.
+     */
+    void aggiornaTabella() {
         String query = txtCerca.getText();
         tabellaLibri.getItems().setAll(gestoreLibri.cercaLibro(query));
     }
-    
+
+    /**
+     * @brief Riempie il form con i dati del libro selezionato.
+     * 
+     * @param[in] l Libro selezionato nella tabella.
+     */
     private void riempiForm(Libro l) {
-        
         if (l != null) {
             tfTitolo.setText(l.getTitolo());
             tfAutori.setText(l.getAutori());
@@ -90,39 +101,48 @@ public class LibroController {
             tfCopie.setText(String.valueOf(l.getCopieDisponibili()));
             tfCopie.setEditable(false);
         } else {
-            btnAnnulla(); 
+            btnAnnulla();
         }
     }
 
-    @FXML private void btnCerca() {
-        
-        aggiornaTabella();
-    } 
-    
+    /**
+     * @brief Gestisce l'azione di ricerca dei libri.
+     */
     @FXML
-    private void btnAnnulla() { 
-        
+    private void btnCerca() {
+        aggiornaTabella();
+    }
+
+    /**
+     * @brief Ripristina il form allo stato iniziale.
+     * 
+     * Cancella i campi di input e deseleziona eventuali
+     * libri selezionati nella tabella.
+     */
+    @FXML
+    private void btnAnnulla() {
         tfTitolo.clear();
         tfAutori.clear();
         tfAnno.clear();
         tfIsbn.clear();
         tfCopie.clear();
         tfCopie.setEditable(true);
-        
         tabellaLibri.getSelectionModel().clearSelection();
-        
     }
 
+    /**
+     * @brief Aggiunge un nuovo libro al sistema.
+     * 
+     * Recupera i dati dal form, crea un nuovo oggetto Libro
+     * e delega l'inserimento al gestore dei libri.
+     */
     @FXML
     private void btnAggiungi() {
-        
         try {
-            // 1. Parsing dei dati (View Logic)
             int anno = validaIntero(tfAnno.getText(), "Anno");
             int copie = validaIntero(tfCopie.getText(), "Copie");
             List<String> autori = Arrays.asList(tfAutori.getText().split(","));
 
-            // 2. Creazione Oggetto
             Libro nuovo = new Libro(
                 tfTitolo.getText(),
                 autori,
@@ -131,89 +151,8 @@ public class LibroController {
                 copie
             );
 
-            // 3. Chiamata al Service (Business Logic)
             gestoreLibri.aggiungiLibro(nuovo);
-            
-            // 4. Aggiornamento UI
-            aggiornaTabella();
-            btnAnnulla(); // Pulisce i campi dopo l'inserimento
 
-        } catch (NumberFormatException e) {
-            GestoreMessaggi.mostraErrore(e.getMessage());
-        } catch (IllegalArgumentException e) {
-            GestoreMessaggi.mostraErrore(e.getMessage()); // Errori di validazione del Service
-        } catch (Exception e) {
-            GestoreMessaggi.mostraErrore("Errore imprevisto: " + e.getMessage());
-        }
-    }
-
-    @FXML
-    private void btnModifica() {
-        
-        Libro selected = tabellaLibri.getSelectionModel().getSelectedItem();
-        
-        if (selected == null) { 
-            GestoreMessaggi.mostraErrore("Seleziona un libro dalla tabella per modificarlo."); 
-            return; 
-        }
-        
-        try {
-            // 2. Controllo Integrità Referenziale (Responsabilità del Controller/PrestitoService)
-            // Non permettiamo di modificare un libro che è fuori in prestito
-            if (gestorePrestiti.haPrestitiAttivi(selected)) {
-                throw new Exception("Impossibile modificare questo libro perché ci sono copie in prestito.");
-            } else {
-            }
-            
-            // 3. Raccolta dati dai campi (Parsing)
-            int anno = validaIntero(tfAnno.getText(), "Anno");
-            int copie = validaIntero(tfCopie.getText(), "Copie");
-            List<String> autori = Arrays.asList(tfAutori.getText().split(","));
-            
-            // 4. Creazione dell'oggetto "Nuovo" (DTO con i dati aggiornati)
-            Libro nuovoLibro = new Libro(
-                tfTitolo.getText(),
-                autori,
-                anno,
-                tfIsbn.getText(), // Prendo il testo, nel caso l'utente abbia corretto l'ISBN
-                copie
-            );
-            
-            // 5. Chiamata al Gestore (Business Logic)
-            gestoreLibri.modificaLibro(selected, nuovoLibro);
-            
-            // 6. Aggiornamento UI
-            aggiornaTabella();
-            btnAnnulla(); // Pulisce i campi
-            GestoreMessaggi.mostraInfo("Libro modificato con successo.");
-
-        } catch (NumberFormatException e) {
-            GestoreMessaggi.mostraErrore(e.getMessage());
-        } catch (IllegalArgumentException e) {
-            // Errori di validazione del Gestore (es. ISBN duplicato, Anno futuro)
-            GestoreMessaggi.mostraErrore(e.getMessage());
-        } catch (Exception e) {
-            // Errori generici o di integrità (es. Libro in prestito)
-            GestoreMessaggi.mostraErrore(e.getMessage());
-        }
-    }
-
-    @FXML
-    private void btnRimuovi() {
-        
-        Libro selected = tabellaLibri.getSelectionModel().getSelectedItem();
-        if (selected == null) { GestoreMessaggi.mostraErrore("Seleziona un libro da eliminare."); return; }
-
-        try {
-            // 1. Controllo Integrità
-            if (gestorePrestiti.haPrestitiAttivi(selected)) {
-                throw new Exception("Impossibile eliminare: il libro è attualmente in prestito.");
-            }
-            
-            // 2. Chiamata al Service
-            gestoreLibri.rimuoviLibro(selected);
-            
-            // 3. Refresh
             aggiornaTabella();
             btnAnnulla();
 
@@ -222,14 +161,95 @@ public class LibroController {
         }
     }
 
+    /**
+     * @brief Modifica il libro selezionato.
+     * 
+     * Verifica l'integrità referenziale con i prestiti attivi
+     * prima di delegare la modifica al gestore dei libri.
+     */
+    @FXML
+    private void btnModifica() {
+        Libro selected = tabellaLibri.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            GestoreMessaggi.mostraErrore("Seleziona un libro dalla tabella per modificarlo.");
+            return;
+        }
+
+        try {
+            if (gestorePrestiti.haPrestitiAttivi(selected)) {
+                throw new Exception("Impossibile modificare questo libro perché ci sono copie in prestito.");
+            }
+
+            int anno = validaIntero(tfAnno.getText(), "Anno");
+            int copie = validaIntero(tfCopie.getText(), "Copie");
+            List<String> autori = Arrays.asList(tfAutori.getText().split(","));
+
+            Libro nuovoLibro = new Libro(
+                tfTitolo.getText(),
+                autori,
+                anno,
+                tfIsbn.getText(),
+                copie
+            );
+
+            gestoreLibri.modificaLibro(selected, nuovoLibro);
+
+            aggiornaTabella();
+            btnAnnulla();
+            GestoreMessaggi.mostraInfo("Libro modificato con successo.");
+
+        } catch (Exception e) {
+            GestoreMessaggi.mostraErrore(e.getMessage());
+        }
+    }
+
+    /**
+     * @brief Rimuove il libro selezionato.
+     * 
+     * Impedisce la rimozione se il libro è coinvolto
+     * in prestiti attivi.
+     */
+    @FXML
+    private void btnRimuovi() {
+        Libro selected = tabellaLibri.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            GestoreMessaggi.mostraErrore("Seleziona un libro da eliminare.");
+            return;
+        }
+
+        try {
+            if (gestorePrestiti.haPrestitiAttivi(selected)) {
+                throw new Exception("Impossibile eliminare: il libro è attualmente in prestito.");
+            }
+
+            gestoreLibri.rimuoviLibro(selected);
+
+            aggiornaTabella();
+            btnAnnulla();
+
+        } catch (Exception e) {
+            GestoreMessaggi.mostraErrore(e.getMessage());
+        }
+    }
+
+    /**
+     * @brief Valida e converte una stringa in intero.
+     * 
+     * @param[in] value Valore da convertire.
+     * @param[in] fieldName Nome del campo per il messaggio di errore.
+     * @return Valore intero convertito.
+     * 
+     * @throws NumberFormatException Se il valore non è un intero valido.
+     */
     private int validaIntero(String value, String fieldName) {
-        
         try {
             return Integer.parseInt(value.trim());
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("Il campo '" + fieldName + "' deve essere un numero intero valido.");
+            throw new NumberFormatException(
+                "Il campo '" + fieldName + "' deve essere un numero intero valido."
+            );
         }
-        
     }
-    
 }
