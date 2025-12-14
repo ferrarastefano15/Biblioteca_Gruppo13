@@ -11,14 +11,7 @@ import javafx.scene.control.Alert;
  */
 public class GestoreMessaggi {
     
-    /**
-     * @brief Visualizza una finestra per segnalare un errore
-     * 
-     * Questo metodo interrompe il flusso corrente per mostrare all'utente un messaggio
-     * critico o di avviso, specificando la natura del problema riscontrato.
-     * 
-     * @param[in] msg Stringa contenente il testo descrittivo dell'errore. 
-     */
+    /** @brief Visualizza una finestra per segnalare un errore. */
     public static void mostraErrore(String msg) {
 
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -29,14 +22,7 @@ public class GestoreMessaggi {
         
     }
     
-    /**
-     * @brief Visualizza una finestra per mostrare un'informazione
-     * 
-     * Questo metodo interrompe il flusso corrente per mostrare all'utente un messaggio
-     * di successo o un'informazione riguardo operazioni o dettagli.
-     * 
-     * @param[in] msg Stringa contenente il testo descrittivo dell'informazione.
-     */
+    /** @brief Visualizza una finestra per mostrare un'informazione. */
     public static void mostraInfo(String msg) {
         
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

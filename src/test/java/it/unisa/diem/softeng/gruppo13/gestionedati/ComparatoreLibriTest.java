@@ -9,10 +9,8 @@ import java.util.List;
 import java.util.ArrayList;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
-/**
- *
- * @author Daniel
- */
+
+
 public class ComparatoreLibriTest {
     
     private ComparatoreLibri comparatore;

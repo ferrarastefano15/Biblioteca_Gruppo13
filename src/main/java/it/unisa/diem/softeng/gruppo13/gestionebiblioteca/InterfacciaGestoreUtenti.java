@@ -15,9 +15,6 @@ import java.util.List;
  * degli utenti registrati nel sistema: inserimento, modifica, rimozione
  * e ricerca degli utenti.
  * 
- * Le classi che implementano questa interfaccia devono garantire
- * la coerenza e la validità dei dati degli utenti.
- * 
  * @author Daniel, Andrea, Stefano, Daniele
  */
 public interface InterfacciaGestoreUtenti {
@@ -36,9 +33,6 @@ public interface InterfacciaGestoreUtenti {
      * e se non esiste già un utente con la stessa matricola.
      * 
      * @param[in] utente Utente da aggiungere.
-     * 
-     * @throws IllegalArgumentException Se i dati non sono validi
-     * o se la matricola è già presente.
      */
     void aggiungiUtente(Utente utente);
 
@@ -60,8 +54,6 @@ public interface InterfacciaGestoreUtenti {
      * @param[in] vecchio Utente presente nel sistema da modificare.
      * @param[in] nuovo Nuovi dati dell'utente.
      * 
-     * @throws IllegalArgumentException Se i dati non sono validi
-     * o se la nuova matricola è già associata a un altro utente.
      */
     void modificaUtente(Utente vecchio, Utente nuovo);
 

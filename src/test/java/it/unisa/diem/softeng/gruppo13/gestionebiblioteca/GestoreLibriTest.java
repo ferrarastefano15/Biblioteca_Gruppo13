@@ -12,10 +12,7 @@ import java.util.List;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- *
- * @author Daniel
- */
+
 public class GestoreLibriTest {
     
     private GestoreLibri gestore;
@@ -29,7 +26,7 @@ public class GestoreLibriTest {
 
         l1 = new Libro("Harry Potter", Arrays.asList("J.K. Rowling"), 1997, "1111111111111", 5);
         l2 = new Libro("Il Signore degli Anelli", Arrays.asList("J.R.R. Tolkien"), 1954, "2222222222222", 3);
-        l3 = new Libro("Clean Code", Arrays.asList("Robert C. Martin"), 2008, "3333333333333", 10);
+        l3 = new Libro("It", Arrays.asList("S. King"), 1986, "3333333333333", 10);
     }
 
     
@@ -139,20 +136,8 @@ public class GestoreLibriTest {
         
         assertEquals(2000, libroAggiornato.getAnno());
         
-        assertSame(l1, libroAggiornato, "L'oggetto in memoria deve essere lo stesso, solo con dati diversi");
+        assertSame(l1, libroAggiornato);
     }
 
-  
-    @Test
-    void testSetLibri() {
-        
-        System.out.println("getSetLibri");
-        List<Libro> nuovaLista = Arrays.asList(l1, l2, l3);
-        
-        gestore.setLibri(nuovaLista);
-        
-        assertEquals(3, gestore.getLibri().size());
-        assertTrue(gestore.getLibri().contains(l3));
-    }
     
 }

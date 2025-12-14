@@ -44,7 +44,7 @@ public class Libro implements Serializable{
      * @param[in] anno Anno in cui il libro è stato pubblicato.
      * @param[in] copieDisponibili Numero totale di pagine del libro.
      */
-      public Libro(String titolo, List<String> autori, int anno, String isbn, int copieDisponibili) {
+     public Libro(String titolo, List<String> autori, int anno, String isbn, int copieDisponibili) {
               
         this.titolo = titolo;
         this.autori = autori;
@@ -66,83 +66,85 @@ public class Libro implements Serializable{
      * @brief Restituisce gli autori del libro.
      * @return I nomi degli autori.
      */
-        public String getAutori() {
+     public String getAutori() {
             
-            if (autori == null || autori.isEmpty()) return "";
+        if (autori == null || autori.isEmpty()) return "";
             
-            return String.join(", ", autori);
-        }
+        return String.join(", ", autori);
+        
+     }
     
 
     /**
      * @brief Restituisce l’anno di pubblicazione del libro.
      * @return L’anno di pubblicazione.
      */
-        public int getAnno() {
+     public int getAnno() {
             return anno;
-        }
+     }
    
 
     /**
      * @brief Restituisce il codice ISBN del libro.
      * @return Il codice ISBN.
      */
-        public String getIsbn() {
-            return isbn;
-        }
+     public String getIsbn() {
+        return isbn;
+     }
 
 
      /**
      * @brief Restituisce il numero di copie disponibili del libro.
      * @return Numero di copie disponibil.
      */
-        public int getCopieDisponibili() {
-            return copieDisponibili;
-        }
+     public int getCopieDisponibili() {
+        return copieDisponibili;
+     }
     
     
      /**
      * @brief Imposta il titolo del libro.
      * @param[in] titolo Il titolo del libro.
      */ 
-        public void setTitolo(String titolo){
-            this.titolo=titolo;
-        }
+     public void setTitolo(String titolo){
+        this.titolo=titolo;
+     }
     
         
      /**
      * @brief Imposta gli autori del libro.
      * @param[in] autori La lista degli autori del libro.
      */
-         public void setAutori(String autori) {
-            this.autori = new ArrayList<>();
+     public void setAutori(String autori) {
             
-            if (autori == null || autori.isEmpty()) return;
+        this.autori = new ArrayList<>();
             
-            String[] arrayAutori = autori.split(",");
+        if (autori == null || autori.isEmpty()) return;
             
-            for(String autore : arrayAutori){
-                this.autori.add(autore.trim());
-            }
+        String[] arrayAutori = autori.split(",");
+            
+        for(String autore : arrayAutori){
+            this.autori.add(autore.trim());
         }
+     }
     
      /**
      * @brief Imposta l'anno di pubblicazione del libro.
      * @param[in] anno L'anno di pubblicazione del libro.
      */
 
-         public void setAnno(int anno) {
-                this.anno=anno;
-            }
+     public void setAnno(int anno) {
+        this.anno=anno;
+     }
     
     
      /**
      * @brief Imposta il codice ISBN del libro.
      * @param[in] isbn Il codice ISBN del libro.
      */
-        public void setIsbn(String isbn) {
-                this.isbn=isbn;
-            }
+     public void setIsbn(String isbn) {
+        this.isbn=isbn;
+     }
     
    
 
@@ -150,9 +152,9 @@ public class Libro implements Serializable{
      * @brief Imposta il numero di copie disponibili del libro.
      * @param[in] copieDisponibili Il numero di copie disponibili del libro.
      */
-        public void setCopieDisponibili(int copieDisponibili) {
-               this.copieDisponibili=copieDisponibili;
-           }
+      public void setCopieDisponibili(int copieDisponibili) {
+        this.copieDisponibili=copieDisponibili;
+      }
     
      /**
      * @brief Confronta due oggetti libro per determinare se sono uguali.
@@ -160,18 +162,18 @@ public class Libro implements Serializable{
      * @param[in] o Oggetto da confrontare con il libro.
      * @return 'true' se gli utenti sono uguali, `false` altrimenti
      */   
-        @Override
-        public boolean equals(Object o){
+     @Override
+     public boolean equals(Object o){
                 
-            if(this == o) return true;
+        if(this == o) return true;
                 
-            if((o == null) || this.getClass()!=o.getClass()) return false;
+        if((o == null) || this.getClass()!=o.getClass()) return false;
                 
-            Libro l = (Libro) o;
+        Libro l = (Libro) o;
                 
-            return this.getIsbn().equalsIgnoreCase(l.getIsbn());
+        return this.getIsbn().equalsIgnoreCase(l.getIsbn());
             
-        }
+     }
     
 
      /**
@@ -182,13 +184,13 @@ public class Libro implements Serializable{
      * 
      * @invariant Il numero di copie disponibili non può essere minore di zero.
      */
-            public void decrementaCopie() { 
+      public void decrementaCopie() { 
                 
-                if(this.getCopieDisponibili() <= 0){
-                    return;
-                }
-                this.copieDisponibili--;
-            }
+        if(this.getCopieDisponibili() <= 0){
+            return;
+        }
+            this.copieDisponibili--;
+     }
     
 
      /**
@@ -198,16 +200,16 @@ public class Libro implements Serializable{
      * indicando che una copia è stata restituita.
      */
 
-            public void incrementaCopie() { this.copieDisponibili++; }
+     public void incrementaCopie() { this.copieDisponibili++; }
     
     /**
      * @brief Restituisce una rappresentazione testuale del libro.
      *
-     * @return Una stringa contenente titolo, autore, ISBN, anno di pubblicazione.
+     * @return Una stringa contenente titolo e ISBN.
      */
-            @Override
-            public String toString(){
-                return titolo + " (" + isbn + ")";
-            }
+     @Override
+     public String toString(){
+        return titolo + " (" + isbn + ")";
+     }
     
 }

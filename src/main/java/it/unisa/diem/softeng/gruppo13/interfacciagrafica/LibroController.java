@@ -23,7 +23,7 @@ import javafx.collections.ObservableList;
  */
 public class LibroController {
 
-   @FXML private TableView<Libro> tabellaLibri;
+    @FXML private TableView<Libro> tabellaLibri;
     @FXML private TableColumn<Libro, String> colTitolo, colAutori, colIsbn;
     @FXML private TableColumn<Libro, Integer> colAnno, colCopie;
     @FXML private TextField txtCerca;
@@ -45,8 +45,8 @@ public class LibroController {
      * Configura la tabella, i binding delle colonne, i listener
      * e carica i dati iniziali.
      * 
-     * @param[in] igl Gestore dei libri.
-     * @param[in] igp Gestore dei prestiti.
+     * @param[in] igl Interfaccia gestore dei libri.
+     * @param[in] igp Interfaccia gestore dei prestiti.
      */
     public void init(InterfacciaGestoreLibri igl, InterfacciaGestorePrestiti igp) {
         this.gestoreLibri = igl;
@@ -71,22 +71,13 @@ public class LibroController {
         aggiornaTabella();
     }
 
-    /**
-     * @brief Aggiorna la tabella dei libri.
-     * 
-     * Recupera i libri dal gestore in base alla query di ricerca
-     * e aggiorna il contenuto della TableView.
-     */
+    /** @brief Aggiorna la tabella dei libri. */
     void aggiornaTabella() {
         String query = txtCerca.getText();
         tabellaLibri.getItems().setAll(gestoreLibri.cercaLibro(query));
     }
 
-    /**
-     * @brief Riempie il form con i dati del libro selezionato.
-     * 
-     * @param[in] l Libro selezionato nella tabella.
-     */
+    /** @brief Riempie il form con i dati del libro selezionato. */
     private void riempiForm(Libro l) {
         if (l != null) {
             tfTitolo.setText(l.getTitolo());
@@ -100,20 +91,13 @@ public class LibroController {
         }
     }
 
-    /**
-     * @brief Gestisce l'azione di ricerca dei libri.
-     */
+    /** @brief Gestisce l'azione di ricerca dei libri. */
     @FXML
     private void btnCerca() {
         aggiornaTabella();
     }
 
-    /**
-     * @brief Ripristina il form allo stato iniziale.
-     * 
-     * Cancella i campi di input e deseleziona eventuali
-     * libri selezionati nella tabella.
-     */
+    /** @brief Ripristina il form allo stato iniziale. */
     @FXML
     private void btnAnnulla() {
         tfTitolo.clear();
@@ -125,12 +109,7 @@ public class LibroController {
         tabellaLibri.getSelectionModel().clearSelection();
     }
 
-    /**
-     * @brief Aggiunge un nuovo libro al sistema.
-     * 
-     * Recupera i dati dal form, crea un nuovo oggetto Libro
-     * e delega l'inserimento al gestore dei libri.
-     */
+    /** @brief Aggiunge un nuovo libro al sistema. */
     @FXML
     private void btnAggiungi() {
         try {
@@ -156,12 +135,7 @@ public class LibroController {
         }
     }
 
-    /**
-     * @brief Modifica il libro selezionato.
-     * 
-     * Verifica l'integrità referenziale con i prestiti attivi
-     * prima di delegare la modifica al gestore dei libri.
-     */
+    /** @brief Modifica il libro selezionato. */
     @FXML
     private void btnModifica() {
         Libro selected = tabellaLibri.getSelectionModel().getSelectedItem();
@@ -199,12 +173,7 @@ public class LibroController {
         }
     }
 
-    /**
-     * @brief Rimuove il libro selezionato.
-     * 
-     * Impedisce la rimozione se il libro è coinvolto
-     * in prestiti attivi.
-     */
+    /** @brief Rimuove il libro selezionato. */
     @FXML
     private void btnRimuovi() {
         Libro selected = tabellaLibri.getSelectionModel().getSelectedItem();
@@ -229,15 +198,7 @@ public class LibroController {
         }
     }
 
-    /**
-     * @brief Valida e converte una stringa in intero.
-     * 
-     * @param[in] value Valore da convertire.
-     * @param[in] fieldName Nome del campo per il messaggio di errore.
-     * @return Valore intero convertito.
-     * 
-     * @throws NumberFormatException Se il valore non è un intero valido.
-     */
+    /** @brief Valida e converte una stringa in intero. */
     private int validaIntero(String value, String fieldName) {
         try {
             return Integer.parseInt(value.trim());

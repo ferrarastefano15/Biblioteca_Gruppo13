@@ -34,44 +34,48 @@ public class Prestito implements Serializable{
      * @param[in] utente L'utente che prende in prestito il libro.
      * @param[in] dataRestituzione La data di restituzione prevista per il libro.
      */
-        public Prestito(Libro libro, Utente utente, LocalDate dataRestituzione) {
+    public Prestito(Libro libro, Utente utente, LocalDate dataRestituzione) {
             
-            assert utente != null : "L'utente del prestito non può essere null";
-            assert libro != null : "Il libro del prestito non può essere null";
-            assert dataRestituzione != null : "La data di scadenza è obbligatoria";
-            
-            this.libro = libro;
-            this.utente = utente;
-            this.dataRestituzione = dataRestituzione;
-        }
+        this.libro = libro;
+        this.utente = utente;
+        this.dataRestituzione = dataRestituzione;
+        
+    }
 
     
-     /**
+    /**
      * @brief Restituisce il libro preso in prestito.
      * @return Il libro preso in prestito.
      */
-         public Libro getLibro() { return libro; }
+    public Libro getLibro() { return libro; }
 
 
     /**
      * @brief Restituisce l'utente che ha preso in prestito il libro.
      * @return L'utente che ha preso in prestito il libro.
      */
-         public Utente getUtente() { return utente; }
+    public Utente getUtente() { return utente; }
     
     /**
      * @brief Restituisce la data di restituzione del libro.
      * @return La data di restituzione del libro.
      */
-         public LocalDate getDataRestituzione() { return dataRestituzione; }
+    public LocalDate getDataRestituzione() { return dataRestituzione; }
          
          
-         
-         public boolean inRitardo() {
+    /**
+     * @brief Indica se la restituzione del prestito è in ritardo
+     * 
+     * Determina se la data di restituzione prevista è già trascorsa.
+     * 
+     * @return 'true' se il prestito risulta scaduto, 'false' altrimenti
+     */     
+    public boolean inRitardo() {
             
-             LocalDate dataOdierna = LocalDate.now();
+        LocalDate dataOdierna = LocalDate.now();
         
-            return dataOdierna.isAfter(this.dataRestituzione);
-        }
+        return dataOdierna.isAfter(this.dataRestituzione);
+        
+    }
     
 }

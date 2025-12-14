@@ -14,10 +14,7 @@ import java.util.List;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- *
- * @author Daniel
- */
+
 public class GestorePrestitiTest {
     
     private GestorePrestiti gestore;
@@ -25,7 +22,7 @@ public class GestorePrestitiTest {
     private Utente u2;
     private Libro l1; // Copie disponibili
     private Libro l2; // Copie esaurite
-    private Libro l3;
+    private Libro l3; // Una copia
     
     @BeforeEach
     void setUp() {

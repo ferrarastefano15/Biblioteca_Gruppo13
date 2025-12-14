@@ -14,7 +14,7 @@
     <top>
         <HBox spacing="10" style="-fx-padding: 0 0 10 0; -fx-alignment: CENTER_LEFT;">
             <Label style="-fx-font-weight: bold;" text="Cerca:" />
-            <TextField fx:id="txtCerca" onKeyReleased="#btnCerca" prefWidth="300" promptText="Titolo o ISBN..." />
+            <TextField fx:id="txtCerca" onKeyReleased="#btnCerca" prefWidth="300" promptText="Titolo, Autore o ISBN..." />
         </HBox>
     </top>
 

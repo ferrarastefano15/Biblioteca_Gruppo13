@@ -17,11 +17,9 @@ import java.util.List;
  * @class GestorePrestiti
  * @brief Implementa i metodi di 'Prestito'.
  * 
- * La classe {@code GestorePrestiti} implementa l'interfaccia
- * {@code InterfacciaGestorePrestiti} passandogli
- * la lista dei prestiti e implementando i metodi per aggiungere, rimuovere e ordinare
- * i prestiti della biblioteca. Controlla che i prerequisiti per la creazione
- * del prestito siano soddisfatti.
+ * La classe GestorePrestiti implementa l'interfaccia InterfacciaGestorePrestiti
+ * passandogli la lista dei prestiti e implementando i metodi per aggiungere, 
+ * rimuovere e ordinare i prestiti della biblioteca.
  * @author Daniel, Andrea, Stefano, Daniele
  */
 public class GestorePrestiti implements InterfacciaGestorePrestiti{
@@ -35,44 +33,18 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
     /**
      * @brief Restituisce la lista di tutti i prestiti attivi.
      * 
-     * @return Lista di prestiti attivi nella biblioteca.
+     * @see InterfacciaGestorePrestiti.getPrestiti
      */    
     @Override
     public List<Prestito> getPrestiti() { 
         return prestiti; 
     }
-    
-    /**
-     * @brief Imposta la lista dei prestiti.
-     * 
-     * Questo metodo viene utilizzato principalmente durante il caricamento
-     * dei dati da una sorgente esterna (es. file).
-     * 
-     * @param[in] nuoviPrestiti Lista dei prestiti da impostare.
-     * 
-     * @post La lista interna dei prestiti viene sovrascritta con una nuova copia
-     *       della lista fornita.
-     */
-    public void setPrestiti(List<Prestito> nuoviPrestiti) { 
-        this.prestiti = new ArrayList<>(nuoviPrestiti); 
-    }
+
     
     /**
      * @brief Aggiunge un nuovo prestito.
      * 
-     * Questo metodo consente di registrare un nuovo prestito,
-     * associando un utente a un libro con una data di restituzione.
-     * 
-     * @param[in] utente Utente che prende in prestito il libro.
-     * @param[in] libro Libro che viene preso in prestito.
-     * @param[in] scadenza Data di restituzione del libro.
-     * 
-     * @throws IllegalArgumentException Se uno dei parametri è nullo.
-     * @throws Exception Se il libro non ha copie disponibili o se l'utente
-     *                   ha raggiunto il numero massimo di prestiti consentiti.
-     * 
-     * @post Il prestito viene aggiunto alla lista dei prestiti attivi
-     *       e il numero di copie disponibili del libro viene decrementato.
+     * @see InterfacciaGestorePrestiti.aggiungiPrestito
      */
     @Override
     public void aggiungiPrestito(Utente utente, Libro libro, LocalDate scadenza) throws Exception {
@@ -81,7 +53,7 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
             throw new IllegalArgumentException("Dati prestito incompleti.");
         }
 
-        validaPrestito(utente, libro, prestiti); 
+        validaPrestito(utente, libro, scadenza, prestiti); 
 
         libro.decrementaCopie();
 
@@ -92,14 +64,7 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
     /**
      * @brief Restituisce un libro preso in prestito.
      * 
-     * Questo metodo consente di restituire un libro preso in prestito,
-     * rimuovendo il prestito dal sistema e incrementando il numero
-     * di copie disponibili del libro.
-     * 
-     * @param[in] prestito Prestito da restituire.
-     * 
-     * @post Il prestito viene rimosso dalla lista dei prestiti
-     *       e la copia del libro viene resa nuovamente disponibile.
+     * @see InterfacciaGestorePrestiti.restituisciLibro
      */
     @Override
     public void restituisciLibro(Prestito prestito) {
@@ -112,12 +77,7 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
     /**
      * @brief Verifica se un libro è coinvolto in prestiti attivi.
      *
-     * Questo metodo serve per controllare se un libro è coinvolto
-     * in un prestito prima di consentirne l'eliminazione.
-     *
-     * @param[in] l Libro da controllare.
-     * @return {@code true} se il libro è presente in almeno un prestito attivo,
-     *         {@code false} altrimenti.
+     * @see InterfacciaGestorePrestiti.haprestitiAttivi
      */    
     @Override
     public boolean haPrestitiAttivi(Libro l) {
@@ -132,12 +92,7 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
     /**
      * @brief Verifica se un utente è coinvolto in prestiti attivi.
      *
-     * Questo metodo serve per controllare se un utente è coinvolto
-     * in un prestito prima di consentirne l'eliminazione.
-     *
-     * @param[in] u Utente da controllare.
-     * @return {@code true} se l'utente è presente in almeno un prestito attivo,
-     *         {@code false} altrimenti.
+     * @see InterfacciaGestorePrestiti.haPrestitiAttivi
      */
     @Override
     public boolean haPrestitiAttivi(Utente u) {
@@ -152,9 +107,7 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
     /**
      * @brief Restituisce la lista dei prestiti ordinata per data di scadenza.
      *
-     * La lista originale non viene modificata.
-     *
-     * @return Lista dei prestiti ordinata per data prevista di restituzione.
+     * @see InterfacciaGestorePrestiti.getOrdinati
      */    
     @Override
     public List<Prestito> getOrdinati() {
@@ -174,11 +127,16 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
      * @param[in] utente Utente che richiede il prestito.
      * @param[in] libro Libro che viene preso in prestito.
      * @param[in] prestitiAttuali Lista dei prestiti attivi.
+     * @param[in] scadenza Data prevista per la restituzione
      * 
      * @throws Exception Se il libro non ha copie disponibili o se l'utente
      *                   ha superato il numero massimo di prestiti consentiti.
      */
-    private void validaPrestito(Utente utente, Libro libro, List<Prestito> prestitiAttuali) throws Exception {
+    private void validaPrestito(Utente utente, Libro libro, LocalDate scadenza, List<Prestito> prestitiAttuali) throws Exception {
+        
+        if (scadenza.isBefore(LocalDate.now())) {
+        throw new IllegalArgumentException("La data di scadenza non può essere antecedente alla data odierna.");
+        }
         
         if (libro.getCopieDisponibili() <= 0) { 
             throw new Exception("Copie non disponibili per il libro: " + libro.getTitolo());

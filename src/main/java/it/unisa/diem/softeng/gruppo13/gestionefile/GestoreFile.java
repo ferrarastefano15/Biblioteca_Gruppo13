@@ -14,14 +14,27 @@ import java.util.logging.Logger;
  * @brief Gestione del salvataggio dei dati.
  * 
  * La classe `GestoreFile` è responsabile per l'implementazione del salvataggio 
- * e caricamento dei dati relativi a libri, utenti e prestiti in file esterno con
+ * e caricamento dei dati relativi a libri, utenti e prestiti in file esterni con
  * formato obj. 
  * @author Daniel, Andrea, Stefano, Daniele
  */
 public class GestoreFile implements InterfacciaFile {
     
     private final String cartella;
+    
+    private static final String FILE_LIBRI = "libri.obj";
+    private static final String FILE_UTENTI = "utenti.obj";
+    private static final String FILE_PRESTITI = "prestiti.obj";
 
+    
+    /**
+    * @brief Costruttore della classe GestoreFile.
+    * 
+    * Inizializza il gestore dei file con il nome della cartella specificata.
+    * Se la cartella non esiste, provvede a crearla automaticamente.
+    * 
+    * @param[in] cartella Il nome della cartella in cui salvare e caricare i file.
+    */
     public GestoreFile(String cartella) {
         this.cartella = cartella;
         File dir = new File(cartella);
@@ -31,30 +44,35 @@ public class GestoreFile implements InterfacciaFile {
     }
 
     /**
-     * @brief Salva i dati dei libri, degli utenti e dei prestiti un file .obj
+     * @brief Salva i dati dei libri, degli utenti e dei prestiti in tre file .obj
      * 
-     * @see InterfacciaFile
+     * @see InterfacciaFile.salvaFile
      */
     @Override
     public void salvaFile(List<Libro> libri, List<Utente> utenti, List<Prestito> prestiti) {
-        salvaLista("libri.obj", libri);
-        salvaLista("utenti.obj", utenti);
-        salvaLista("prestiti.obj", prestiti);
+        
+        if (libri.isEmpty() && utenti.isEmpty() && prestiti.isEmpty()) {
+            throw new IllegalArgumentException("Impossibile salvare: non sono presenti dati da salvare.");
+        }
+        
+        salvaLista(FILE_LIBRI, libri);
+        salvaLista(FILE_UTENTI, utenti);
+        salvaLista(FILE_PRESTITI, prestiti);
         
         System.out.println("Salvataggio completato nella cartella: " + cartella);
     }
 
     /**
-     * @brief Carica i dati dei libri, degli utenti e dei prestiti un file .obj
+     * @brief Carica i dati dei libri, degli utenti e dei prestiti da tre file .obj
      * 
-     * @see InterfacciaFile
+     * @see InterfacciaFile.caricaDati
      */
     @Override
     public void caricaDati(List<Libro> libri, List<Utente> utenti, List<Prestito> prestiti) {
 
-        List<Libro> tmpLibri = (List<Libro>) caricaLista("libri.obj");
-        List<Utente> tmpUtenti = (List<Utente>) caricaLista("utenti.obj");
-        List<Prestito> tmpPrestiti = (List<Prestito>) caricaLista("prestiti.obj");
+        List<Libro> tmpLibri = (List<Libro>) caricaLista(FILE_LIBRI);
+        List<Utente> tmpUtenti = (List<Utente>) caricaLista(FILE_UTENTI);
+        List<Prestito> tmpPrestiti = (List<Prestito>) caricaLista(FILE_PRESTITI);
 
         if (tmpLibri != null) {
             libri.clear();
@@ -77,7 +95,7 @@ public class GestoreFile implements InterfacciaFile {
     /**
      * @brief Ricollega i riferimenti dei prestiti agli oggetti originali.
      * 
-     *  Questo metodo ricrea la lista dei prestiti assicurandosi che
+     * Questo metodo ricrea la lista dei prestiti assicurandosi che
      * puntino agli oggetti Libro e Utente presenti effettivamente in memoria
      * nelle liste principali, evitando duplicati.
      * 
@@ -126,7 +144,7 @@ public class GestoreFile implements InterfacciaFile {
      * Questo metodo di supporto scrive l'intera lista passata come parametro
      * nel file indicato all'interno della cartella di salvataggio.
      * 
-     * @param[in] nomeFile Il nome del file in cui salvare (es. "libri.obj").
+     * @param[in] nomeFile Il nome del file in cui salvare.
      * @param[in] lista La lista di oggetti da salvare.
      */
     private void salvaLista(String nomeFile, List<?> lista) {

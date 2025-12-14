@@ -10,10 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
-/**
- *
- * @author Stefano
- */
+
+
 public class PrestitoTest {
     
     private Libro libro;

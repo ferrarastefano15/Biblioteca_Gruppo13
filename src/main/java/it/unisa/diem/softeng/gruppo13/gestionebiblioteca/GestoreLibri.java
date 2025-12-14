@@ -13,7 +13,7 @@ import it.unisa.diem.softeng.gruppo13.gestionedati.ComparatoreLibri;
  * @class GestoreLibri
  * @brief Implementa i metodi di 'Libro'.
  * 
- * La classe {@code GestoreLibri} implementa l'interfaccia {@code InterfacciaGestoreLibri}, passandogli
+ * La classe GestoreLibri implementa l'interfaccia InterfacciaGestoreLibri, passandogli
  * la lista dei libri e implementando i metodi per aggiungere, rimuovere e cercare
  * i libri della biblioteca.
  * @author Daniel, Andrea, Stefano, Daniele
@@ -26,39 +26,18 @@ public class GestoreLibri implements InterfacciaGestoreLibri{
     /**
      * @brief Restituisce la lista di tutti i libri della biblioteca.
      *
-     * @return Lista di libri presenti nella biblioteca.
+     * @see InterfacciaGestoreLibri.getLibri
      */  
     @Override
     public List<Libro> getLibri() { 
         return libri; 
     }
     
-    /**
-     * @brief Sostituisce l'elenco corrente dei libri con una nuova lista.
-     *
-     * Questo metodo viene utilizzato principalmente durante la fase di inizializzazione
-     * o caricamento dati per popolare il gestore con i libri letti da un file esterno.
-     *
-     * @param[in] nuoviLibri La lista di libri da impostare nel gestore.
-     *
-     * @post La lista interna dei libri viene sovrascritta con una nuova copia
-     *       della lista fornita.
-     */
-    public void setLibri(List<Libro> nuoviLibri) { 
-        this.libri = new ArrayList<>(nuoviLibri); 
-    }
 
     /**
      * @brief Aggiunge un nuovo libro alla biblioteca.
      * 
-     * Questo metodo permette di aggiungere un nuovo libro alla biblioteca.
-     * I dati vengono validati prima di procedere con l'aggiunta.
-     *
-     * @param[in] libro Libro da aggiungere.
-     * 
-     * @throws IllegalArgumentException Se il libro non è valido o se l'ISBN è già presente.
-     * 
-     * @post Il libro viene aggiunto alla lista dei libri se supera i controlli di validazione.
+     * @see InterfacciaGestoreLibri.aggiungiLibro
      */
     @Override
     public void aggiungiLibro(Libro libro) {
@@ -79,17 +58,7 @@ public class GestoreLibri implements InterfacciaGestoreLibri{
     /**
      * @brief Modifica le informazioni di un libro della biblioteca.
      * 
-     * Questo metodo individua il libro originale nel sistema e ne sostituisce 
-     * le informazioni con i nuovi dati forniti.
-     * 
-     * @param[in] libro1 Libro della biblioteca da modificare.
-     * @param[in] libro2 Libro contenente i nuovi dati.
-     * 
-     * @throws IllegalArgumentException Se uno dei due libri è nullo,
-     *                                  se i dati non sono validi
-     *                                  o se il nuovo ISBN è già associato a un altro libro.
-     * 
-     * @post I dati del libro originale vengono aggiornati con quelli del libro modificato.
+     * @see InterfacciaGestoreLibri.modificaLibro
      */
     @Override
     public void modificaLibro(Libro libro1, Libro libro2) {
@@ -119,12 +88,7 @@ public class GestoreLibri implements InterfacciaGestoreLibri{
     /**
      * @brief Rimuove un libro dalla biblioteca.
      * 
-     * Questo metodo consente di rimuovere un libro dalla biblioteca,
-     * eliminandolo dalla lista dei libri disponibili.
-     * 
-     * @param[in] libro Libro da rimuovere.
-     * 
-     * @post Il libro non è più presente nella lista dei libri.
+     * @see InterfacciaGestoreLibri.rimuoviLibro
      */    
     @Override
     public void rimuoviLibro(Libro libro) {
@@ -134,13 +98,7 @@ public class GestoreLibri implements InterfacciaGestoreLibri{
     /**
      * @brief Cerca i libri in base a una query di ricerca.
      * 
-     * Questo metodo cerca i libri che corrispondono alla query fornita
-     * confrontando titolo, autori e ISBN.
-     * 
-     * @param[in] query Stringa di ricerca (titolo, autore o ISBN).
-     * 
-     * @return Lista di libri che corrispondono alla query, ordinata tramite
-     *         {@code ComparatoreLibri}.
+     * @see InterfacciaGestoreLibri.cercaLibro
      */  
     @Override
     public List<Libro> cercaLibro(String query) {

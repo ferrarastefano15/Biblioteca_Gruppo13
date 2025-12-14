@@ -12,10 +12,7 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-/**
- *
- * @author Stefano
- */
+
 public class ComparatorePrestitiTest {
     
     private ComparatorePrestiti comparatore;
@@ -57,7 +54,7 @@ public class ComparatorePrestitiTest {
         assertTrue(risultato > 0);
     }
     
-    //Data restituzione uguale, matricole diverse
+    //Data restituzione uguale
     @Test
     public void testCompare2() {
         System.out.println("compare");
@@ -85,7 +82,7 @@ public class ComparatorePrestitiTest {
         assertTrue(risultato < 0);
     }
     
-    // Data restituzione diversa, matricole diverse, isbn uguale
+    // Data restituzione e matricole uguali
     @Test
     public void testCompare3() {
         System.out.println("compare");

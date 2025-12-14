@@ -43,12 +43,11 @@ public class PrestitoController {
     /**
      * @brief Inizializza il controller dei prestiti.
      * 
-     * Configura la tabella dei prestiti, popola i ComboBox e imposta
-     * la data di default per i prestiti.
+     * Configura la tabella dei prestiti, popola i ComboBox.
      * 
-     * @param[in] igp Gestore dei prestiti.
-     * @param[in] igl Gestore dei libri.
-     * @param[in] igu Gestore degli utenti.
+     * @param[in] igp Interfaccia gestore dei prestiti.
+     * @param[in] igl Interfaccia gestore dei libri.
+     * @param[in] igu Interfaccia gestore degli utenti.
      */
     public void init(InterfacciaGestorePrestiti igp, InterfacciaGestoreLibri igl, InterfacciaGestoreUtenti igu) {
         this.gestorePrestiti = igp;
@@ -57,31 +56,25 @@ public class PrestitoController {
 
         configuraTabella();
 
-        // Aggiorna i ComboBox quando vengono aperti
         cbUtente.setOnShowing(e -> riempiForm());
         cbLibro.setOnShowing(e -> riempiForm());
 
-        // Imposta data di default 15 giorni nel futuro
-        dpData.setValue(LocalDate.now().plusDays(15));
+        dpData.setValue(LocalDate.now());
 
         aggiornaTabella();
     }
 
-    /**
-     * @brief Configura le colonne della tabella e lo stile delle righe.
-     */
+    /** @brief Configura le colonne della tabella e lo stile delle righe. */
     private void configuraTabella() {
-        // Colonna utente
+
         colPrestitoUtente.setCellValueFactory(d -> 
             new SimpleStringProperty(d.getValue().getUtente().toString())
         );
 
-        // Colonna libro
         colPrestitoLibro.setCellValueFactory(d -> 
             new SimpleStringProperty(d.getValue().getLibro().toString())
         );
 
-        // Colonna data di restituzione
         colPrestitoData.setCellValueFactory(d -> new SimpleObjectProperty<>(d.getValue().getDataRestituzione()));
         colPrestitoData.setCellFactory(tc -> new TableCell<Prestito, LocalDate>() {
             @Override
@@ -109,36 +102,25 @@ public class PrestitoController {
         });
     }
 
-    /**
-     * @brief Aggiorna la tabella con tutti i prestiti ordinati per data.
-     */
+    /** @brief Aggiorna la tabella con tutti i prestiti ordinati per data. */
     private void aggiornaTabella() {
         tabellaPrestiti.getItems().setAll(gestorePrestiti.getOrdinati());
     }
 
-    /**
-     * @brief Popola i ComboBox di utenti e libri con i dati correnti.
-     */
+    /** @brief Popola i ComboBox di utenti e libri con i dati correnti. */
     private void riempiForm() {
         cbUtente.getItems().setAll(gestoreUtenti.cercaUtente(""));
         cbLibro.getItems().setAll(gestoreLibri.cercaLibro(""));
     }
 
-    /**
-     * @brief Ripristina i valori di default del form per inserire un nuovo prestito.
-     */
+    /** @brief Ripristina i valori di default del form per inserire un nuovo prestito. */
     private void svuotaForm() {
         cbUtente.setValue(null);
         cbLibro.setValue(null);
-        dpData.setValue(LocalDate.now().plusDays(15));
+        dpData.setValue(LocalDate.now());
     }
 
-    /**
-     * @brief Registra un nuovo prestito.
-     * 
-     * Valida i dati selezionati e chiama il gestore dei prestiti per aggiungere il prestito.
-     * Aggiorna la tabella e i ComboBox, mostrando eventuali messaggi.
-     */
+    /** @brief Registra un nuovo prestito. */
     @FXML
     private void btnAggiungi() {
         try {
@@ -162,11 +144,7 @@ public class PrestitoController {
         }
     }
 
-    /**
-     * @brief Restituisce un libro e rimuove il prestito dal sistema.
-     * 
-     * Aggiorna la tabella, i ComboBox e mostra un messaggio informativo.
-     */
+    /** @brief Restituisce un libro e rimuove il prestito dal sistema. */
     @FXML
     private void btnRimuovi() {
         Prestito p = tabellaPrestiti.getSelectionModel().getSelectedItem();

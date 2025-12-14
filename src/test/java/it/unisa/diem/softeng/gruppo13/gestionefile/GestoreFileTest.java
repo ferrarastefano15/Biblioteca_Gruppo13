@@ -19,10 +19,7 @@ import java.util.List;
 import java.io.File;
 import java.time.LocalDate;
 
-/**
- *
- * @author Daniel
- */
+
 public class GestoreFileTest {
 
 

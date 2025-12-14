@@ -45,78 +45,78 @@ public class Utente implements Serializable{
         this.cognome = cognome;
         this.matricola = matricola;
         this.email = email;
-    }
+     }
     
     /**
      * @brief Restituisce il nome dell'utente.
      * @return Il nome dell'utente.
      */
-        public String getNome() {
-            return nome;
-        }
+     public String getNome() {
+        return nome;
+     }
 
 
     /**
      * @brief Restituisce il cognome dell'utente.
      * @return Il cognome dell'utente.
      */
-        public String getCognome() {
-            return cognome;
-        }
+     public String getCognome() {
+        return cognome;
+     }
 
     
      /**
      * @brief Restituisce la matricola dell'utente.
      * @return La matricola dell'utente.
      */
-        public String getMatricola() {
-                return matricola;
-            }
+     public String getMatricola() {
+        return matricola;
+     }
 
     
     /**
      * @brief Restituisce l'email dell'utente.
      * @return L'email dell'utente.
      */
-        public String getEmail() {
-                return email;
-            }
+     public String getEmail() {
+        return email;
+     }
 
     
     /**
      * @brief Imposta il nome dell'utente.
      * @param[in] nome Nuovo nome dell'utente.
      */
-        public void setNome(String nome) {
-                this.nome = nome;
-            }
+     public void setNome(String nome) {
+        this.nome = nome;
+     }
 
     
     /**
      * @brief Imposta il cognome dell'utente.
      * @param[in] cognome Nuovo cognome dell'utente.
      */
-        public void setCognome(String cognome) {
-                this.cognome = cognome;
-            }
+     public void setCognome(String cognome) {
+        this.cognome = cognome;
+     }
 
     
     /**
      * @brief Imposta la matricola dell'utente.
      * @param[in] matricola Nuova matricola dell'utente.
      */
-        public void setMatricola(String matricola) {
-                this.matricola = matricola;
-            }
+     public void setMatricola(String matricola) {
+        this.matricola = matricola;
+     }
 
     
     /**
      * @brief Imposta l'email dell'utente.
      * @param[in] email Nuova email dell'utente.
      */
-        public void setEmail(String email) {
-                this.email = email;
-            }
+     public void setEmail(String email) {
+        this.email = email;
+     }
 
     
     /**
@@ -125,27 +125,28 @@ public class Utente implements Serializable{
      * @param[in] o Oggetto da confrontare con l'utente.
      * @return 'true' se gli utenti sono uguali, `false` altrimenti
      */
-        @Override
-            public boolean equals(Object o){
+     @Override
+     public boolean equals(Object o){
             
-            if(this == o) return true;
+        if(this == o) return true;
                 
-            if((o == null) || this.getClass()!=o.getClass()) return false;
+        if((o == null) || this.getClass()!=o.getClass()) return false;
                 
-            Utente u = (Utente) o;
+        Utente u = (Utente) o;
                 
-            return this.getMatricola().equalsIgnoreCase(u.getMatricola());
-            }
+        return this.getMatricola().equalsIgnoreCase(u.getMatricola());
+        
+     }
     
     
     /**
      * @brief Restituisce una rappresentazione testuale dell'utente.
      * 
-     * @return Una stringa contenente nome, cognome, matricola.
+     * @return Una stringa contenente cognome, nome e matricola.
      */
-        @Override
-            public String toString(){
-                return cognome + " " + nome + " ("+matricola+")";
-            }
+     @Override
+     public String toString(){
+        return cognome + " " + nome + " ("+matricola+")";
+     }
     
 }

@@ -15,9 +15,6 @@ import java.util.List;
  * dei libri all'interno del sistema: inserimento, modifica, rimozione
  * e ricerca dei libri presenti in catalogo.
  * 
- * Le classi che implementano questa interfaccia devono fornire
- * l'implementazione concreta della logica di gestione.
- * 
  * @author Daniel, Andrea, Stefano, Daniele
  */
 public interface InterfacciaGestoreLibri {
@@ -36,9 +33,6 @@ public interface InterfacciaGestoreLibri {
      * e l'ISBN non è già presente nel sistema.
      * 
      * @param[in] libro Libro da aggiungere.
-     * 
-     * @throws IllegalArgumentException Se i dati del libro non sono validi
-     * o se l'ISBN è già presente.
      */
     void aggiungiLibro(Libro libro);
     
@@ -50,9 +44,6 @@ public interface InterfacciaGestoreLibri {
      * 
      * @param[in] libro1 Libro presente nel sistema da modificare.
      * @param[in] libro2 Nuovi dati del libro.
-     * 
-     * @throws IllegalArgumentException Se i dati non sono validi
-     * o se il nuovo ISBN è già associato a un altro libro.
      */
     void modificaLibro(Libro libro1, Libro libro2);
     
@@ -71,7 +62,7 @@ public interface InterfacciaGestoreLibri {
      * La ricerca viene effettuata su titolo, autore e ISBN.
      * 
      * @param[in] query Stringa di ricerca.
-     * @return Lista di libri che soddisfano i criteri di ricerca.
+     * @return Lista ordinata di libri che soddisfano i criteri di ricerca.
      */
     List<Libro> cercaLibro(String query);
 }

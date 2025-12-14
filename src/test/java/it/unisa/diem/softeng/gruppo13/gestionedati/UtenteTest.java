@@ -9,10 +9,6 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-/**
- *
- * @author Daniel
- */
 public class UtenteTest {
     
     private Utente utente;

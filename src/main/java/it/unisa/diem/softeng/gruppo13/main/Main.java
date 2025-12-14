@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import javafx.scene.Parent;
 
-/**
+    /**
      *@class Main
      *@brief Classe di avvio per l'applicazione JavaFX.
      * 
@@ -37,16 +37,13 @@ import javafx.scene.Parent;
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Carica la vista FXML
+
         Parent root = FXMLLoader.load(getClass().getResource(FXML_PATH));
 
-        // Imposta titolo finestra principale
         primaryStage.setTitle(TITLE);
 
-        // Imposta la scena con la vista caricata
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(root,1000,600));
 
-        // Mostra la finestra
         primaryStage.show();
     }
 

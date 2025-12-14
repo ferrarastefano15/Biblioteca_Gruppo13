@@ -16,10 +16,6 @@ import java.util.List;
 * Scrive i dati di libri, utenti e prestiti in tre file separati all'interno
 * della directory di salvataggio. Questo approccio previene la perdita totale 
 * dei dati in caso di corruzione di un singolo file.
-* 
-* @param[in] libri Lista dei libri da salvare.
-* @param[in] utenti Lista degli utenti da salvare.
-* @param[in] prestiti Lista dei prestiti da salvare.
 *
 * @author Daniel, Andrea, Stefano, Daniele
 */
@@ -36,6 +32,9 @@ public interface InterfacciaFile {
      * @param[in] libri Lista dei libri da salvare.
      * @param[in] utenti Lista degli utenti da salvare.
      * @param[in] prestiti Lista dei prestiti da salvare.
+     * 
+     * @pre Esiste almeno un dato da salvare
+     * @post Nei file creati c'è almeno un dato
      */
       public void salvaFile(List<Libro> libri, List<Utente> utenti, List<Prestito> prestiti);
       

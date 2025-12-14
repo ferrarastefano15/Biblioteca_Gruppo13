@@ -63,11 +63,7 @@ public class GestoreUtenti implements InterfacciaGestoreUtenti{
     /**
      * @brief  Modifica le informazioni di un utente della biblioteca.
      * 
-     * Questo metodo individua l'utente originale nel sistema e ne sostituisce 
-     * le informazioni con i nuovi dati forniti. 
-     * 
-     * @param[in] utente1 Utente della bilbioteca da modificare.
-     * @param[in] utente2 Utente modificato.
+     * @see InterfacciaGestoreUtenti.modificaUtente
      */
     @Override
     public void modificaUtente(Utente utente1, Utente utente2){
@@ -97,10 +93,7 @@ public class GestoreUtenti implements InterfacciaGestoreUtenti{
     /**
      * @brief Rimuove un utente dalla biblioteca.
      * 
-     * Questo metodo consente di rimuovere un utente dalla biblioteca, 
-     * eliminandolo dalla lista degli utenti registrati.
-     * 
-     * @param[in] utente Utente da rimuovere dalla biblioteca.
+     * @see InterfacciaGestoreUtenti.rimuoviUtente
      */ 
     @Override
     public void rimuoviUtente(Utente utente) {
@@ -112,11 +105,7 @@ public class GestoreUtenti implements InterfacciaGestoreUtenti{
     /**
      * @brief Cerca gli utenti in base a una query di ricerca.
      * 
-     * Questo metodo cerca gli utenti che corrispondono alla query fornita e 
-     * restituisce una lista di utenti che soddisfano i criteri di ricerca.
-     * 
-     * @param[in] query Stringa di ricerca che rappresenta cognome o matricola di un utente.
-     * @return Lista di utenti che corrispondono alla query.
+     * @see InterfacciaGestoreUtenti.cercaUtente
      */   
     @Override
     public List<Utente> cercaUtente(String query) {
@@ -152,6 +141,8 @@ public class GestoreUtenti implements InterfacciaGestoreUtenti{
      * dell'elaborazione.
      * 
      * @param[in] utente Utente da sottoporre a validazione.
+     * @throws IllegalArgumentException Se uno o più campi del libro non rispettano
+     *                                  i vincoli richiesti.
      */
     private void validaUtente(Utente utente) {
         
@@ -159,9 +150,15 @@ public class GestoreUtenti implements InterfacciaGestoreUtenti{
         
         if (utente.getNome() == null || utente.getNome().trim().isEmpty()) 
             throw new IllegalArgumentException("Nome obbligatorio.");
+        
+        if (!utente.getNome().trim().matches("^[a-zA-Z\\s'-]+$"))
+        throw new IllegalArgumentException("Il nome non può contenere numeri.");
 
         if (utente.getCognome() == null || utente.getCognome().trim().isEmpty()) 
             throw new IllegalArgumentException("Cognome obbligatorio.");
+        
+        if (!utente.getCognome().trim().matches("^[a-zA-Z\\s'-]+$"))
+        throw new IllegalArgumentException("Il cognome non può contenere numeri.");
 
         if (utente.getMatricola() == null || utente.getMatricola().trim().isEmpty()) 
             throw new IllegalArgumentException("Matricola obbligatoria.");  
@@ -169,5 +166,10 @@ public class GestoreUtenti implements InterfacciaGestoreUtenti{
         if (utente.getEmail() == null || utente.getEmail().trim().isEmpty()) 
             throw new IllegalArgumentException("Email obbligatoria.");  
         
+        String email = utente.getEmail().trim();
+        if (!email.contains("@") || !email.contains(".")) {
+            throw new IllegalArgumentException("Email non valida");
+        }
+                
     }
 }

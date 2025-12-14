@@ -42,10 +42,11 @@ public class UtenteController {
      * Configura la tabella degli utenti, imposta listener per la selezione
      * di un utente e aggiorna la vista iniziale.
      * 
-     * @param[in] igu Gestore degli utenti.
-     * @param[in] igp Gestore dei prestiti.
+     * @param[in] igu Interfaccia gestore degli utenti.
+     * @param[in] igp Interfaccia gestore dei prestiti.
      */
     public void init(InterfacciaGestoreUtenti igu, InterfacciaGestorePrestiti igp) {
+        
         this.gestoreUtenti = igu;
         this.gestorePrestiti = igp;
 
@@ -65,19 +66,13 @@ public class UtenteController {
         aggiornaTabella();
     }
 
-    /**
-     * @brief Aggiorna la tabella filtrando gli utenti secondo la query di ricerca.
-     */
+    /** @brief Aggiorna la tabella filtrando gli utenti secondo la query di ricerca. */
     private void aggiornaTabella() {
         String query = txtCerca.getText();
         datiUtenti.setAll(gestoreUtenti.cercaUtente(query));
     }
 
-    /**
-     * @brief Riempi i campi del form con i dati dell'utente selezionato.
-     * 
-     * @param[in] u Utente selezionato nella tabella.
-     */
+    /** @brief Riempi i campi del form con i dati dell'utente selezionato. */
     private void riempiForm(Utente u) {
         if (u != null) {
             tfNome.setText(u.getNome());
@@ -89,17 +84,13 @@ public class UtenteController {
         }
     }
 
-    /**
-     * @brief Aggiorna la tabella in base alla query di ricerca inserita.
-     */
+    /** @brief Aggiorna la tabella in base alla query di ricerca inserita. */
     @FXML 
     private void btnCerca() { 
         aggiornaTabella(); 
     }
 
-    /**
-     * @brief Ripristina i valori di default dei campi del form.
-     */
+    /** @brief Ripristina i valori di default dei campi del form. */
     @FXML
     private void btnAnnulla() { 
         tfNome.clear(); 
@@ -109,11 +100,7 @@ public class UtenteController {
         tabellaUtenti.getSelectionModel().clearSelection();
     }
 
-    /**
-     * @brief Aggiunge un nuovo utente.
-     * 
-     * Valida i dati inseriti, chiama il gestore degli utenti e aggiorna la tabella.
-     */
+    /** @brief Aggiunge un nuovo utente. */
     @FXML
     private void btnAggiungi() {
         try {
@@ -133,12 +120,7 @@ public class UtenteController {
         }
     }
 
-    /**
-     * @brief Modifica i dati dell'utente selezionato.
-     * 
-     * Controlla se l'utente ha prestiti attivi prima di permettere la modifica,
-     * valida i nuovi dati e aggiorna la tabella.
-     */
+    /** @brief Modifica i dati dell'utente selezionato. */
     @FXML
     private void btnModifica() {
         Utente selected = tabellaUtenti.getSelectionModel().getSelectedItem();
@@ -171,12 +153,7 @@ public class UtenteController {
         }
     }
 
-    /**
-     * @brief Rimuove l'utente selezionato.
-     * 
-     * Controlla se l'utente ha prestiti attivi prima di permettere la rimozione,
-     * chiama il gestore degli utenti e aggiorna la tabella.
-     */
+    /** @brief Rimuove l'utente selezionato. */
     @FXML
     private void btnRimuovi() {
         Utente selected = tabellaUtenti.getSelectionModel().getSelectedItem();

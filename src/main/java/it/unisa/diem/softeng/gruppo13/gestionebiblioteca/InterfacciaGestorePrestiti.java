@@ -16,11 +16,7 @@ import java.util.List;
  * 
  * Questa interfaccia definisce le operazioni fondamentali per la gestione
  * dei prestiti: creazione di nuovi prestiti, restituzione dei libri,
- * verifica di prestiti attivi e consultazione dell'elenco dei prestiti.
- * 
- * Le classi che implementano questa interfaccia devono garantire
- * il rispetto delle regole di prestito (numero massimo di prestiti,
- * disponibilità delle copie, ecc.).
+ * verifica di prestiti attivi.
  * 
  * @author Daniel, Andrea, Stefano, Daniele
  */

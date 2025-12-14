@@ -48,6 +48,8 @@ public class MainController implements Initializable {
 
     /** @brief Gestore per il caricamento e salvataggio dei dati su file */
     private InterfacciaFile gestoreFile;
+    
+    private static final String NOME_CARTELLA = "Archivio_Biblioteca";
 
     /**
      * @brief Inizializza il controller principale.
@@ -62,7 +64,7 @@ public class MainController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        gestoreFile = new GestoreFile("Archivio"); 
+        gestoreFile = new GestoreFile(NOME_CARTELLA); 
         gestoreLibri = new GestoreLibri(); 
         gestoreUtenti = new GestoreUtenti();
         gestorePrestiti = new GestorePrestiti();
@@ -88,12 +90,7 @@ public class MainController implements Initializable {
         setupTabListener();
     }
 
-    /**
-     * @brief Imposta il listener sulla tab dei libri.
-     * 
-     * Quando l'utente seleziona la tab dei libri, aggiorna la tabella
-     * per riflettere eventuali modifiche ai dati.
-     */
+    /** @brief Imposta il listener sulla tab dei libri. */
     private void setupTabListener() {
         if (tabLibri != null) {
             tabLibri.selectedProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -104,28 +101,28 @@ public class MainController implements Initializable {
         }
     }
 
-    /**
-     * @brief Gestisce l'azione di salvataggio dei dati.
-     * 
-     * Salva su file tutti i libri, utenti e prestiti correnti.
-     * Mostra un messaggio informativo all'utente.
-     */
+    /** @brief Gestisce l'azione di salvataggio dei dati. */
     @FXML
     private void btnSalva() {
+        
+        try {
         gestoreFile.salvaFile(
             gestoreLibri.getLibri(),
             gestoreUtenti.getUtenti(), 
             gestorePrestiti.getPrestiti()
         );
-      
+        
         GestoreMessaggi.mostraInfo("Salvataggio completato");
+        
+        } catch (IllegalArgumentException e) {
+            GestoreMessaggi.mostraErrore(e.getMessage());
+        } catch (Exception e) {
+            GestoreMessaggi.mostraErrore("Errore generico durante il salvataggio: " + e.getMessage());
+        }
+        
     }
 
-    /**
-     * @brief Gestisce l'azione di uscita dall'applicazione.
-     * 
-     * Chiude l'applicazione in modo ordinato.
-     */
+    /** @brief Gestisce l'azione di uscita dall'applicazione. */
     @FXML
     private void btnEsci() {
         Platform.exit();
