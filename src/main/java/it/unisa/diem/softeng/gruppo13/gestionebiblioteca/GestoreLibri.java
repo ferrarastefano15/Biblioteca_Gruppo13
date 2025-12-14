@@ -9,6 +9,7 @@ import it.unisa.diem.softeng.gruppo13.gestionedati.Libro;
 import java.util.ArrayList;
 import java.util.List;
 import it.unisa.diem.softeng.gruppo13.gestionedati.ComparatoreLibri;
+
 /**
  * @class GestoreLibri
  * @brief Implementa i metodi di 'Libro'.
@@ -20,9 +21,12 @@ import it.unisa.diem.softeng.gruppo13.gestionedati.ComparatoreLibri;
  */
 public class GestoreLibri implements InterfacciaGestoreLibri{
     
-   /** @brief Lista dei libri presenti nella biblioteca */
+    /** @brief Lista dei libri presenti nella biblioteca */
     private List<Libro> libri = new ArrayList<>();
-
+    
+    /** @brief Validatore dei libri della biblioteca */
+    private ValidatoreLibri validatore = new ValidatoreLibri();
+    
     /**
      * @brief Restituisce la lista di tutti i libri della biblioteca.
      *
@@ -44,7 +48,7 @@ public class GestoreLibri implements InterfacciaGestoreLibri{
         
         if (libro == null) return;
         
-        validaLibro(libro);
+        validatore.validaLibro(libro);
         
         for (Libro l : libri) {
             if (l.getIsbn().equalsIgnoreCase(libro.getIsbn())) {
@@ -67,7 +71,7 @@ public class GestoreLibri implements InterfacciaGestoreLibri{
             throw new IllegalArgumentException("Dati non validi.");
         }
     
-        validaLibro(libro2);
+        validatore.validaLibro(libro2);
     
         if (!libro1.getIsbn().equalsIgnoreCase(libro2.getIsbn())) {
             for (Libro l : libri) {
@@ -83,6 +87,7 @@ public class GestoreLibri implements InterfacciaGestoreLibri{
         libro1.setAutori(libro2.getAutori());
         libro1.setAnno(libro2.getAnno());
         libro1.setIsbn(libro2.getIsbn());
+        libro1.setCopieDisponibili(libro2.getCopieDisponibili());
     }
     
     /**
@@ -126,43 +131,5 @@ public class GestoreLibri implements InterfacciaGestoreLibri{
         return risultati;
     }
     
-    /**
-     * @brief Verifica la validità e la coerenza dei dati di un libro.
-     * 
-     * Questo metodo esegue un controllo sul libro fornito per assicurarsi
-     * che tutti i campi siano presenti e conformi ai requisiti del sistema
-     * prima dell'elaborazione.
-     * 
-     * @param[in] libro Libro da sottoporre a validazione.
-     * 
-     * @throws IllegalArgumentException Se uno o più campi del libro non rispettano
-     *                                  i vincoli richiesti.
-     */
-    private void validaLibro(Libro libro) {
-        
-        if (libro.getTitolo() == null || libro.getTitolo().trim().isEmpty()) {
-            throw new IllegalArgumentException("Il titolo è obbligatorio.");
-        }
-        
-        if (libro.getAutori() == null || libro.getAutori().isEmpty()) {
-            throw new IllegalArgumentException("Il libro deve avere almeno un autore.");
-        }
-
-        if (libro.getIsbn() == null || libro.getIsbn().isEmpty()) {
-            throw new IllegalArgumentException("L'ISBN è obbligatorio.");
-        }
-        
-        if (!libro.getIsbn().matches("\\d{13}")) {
-            throw new IllegalArgumentException("L'ISBN deve essere composto da 13 cifre numeriche.");
-        }
-
-        if (libro.getAnno() > java.time.Year.now().getValue()) {
-            throw new IllegalArgumentException("Anno futuro non valido.");
-        }
-        
-        if (libro.getCopieDisponibili() < 1) {
-            throw new IllegalArgumentException("Devi inserire almeno 1 copia.");
-        }
-    }
     
 }

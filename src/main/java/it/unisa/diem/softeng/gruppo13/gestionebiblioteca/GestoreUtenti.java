@@ -23,7 +23,10 @@ public class GestoreUtenti implements InterfacciaGestoreUtenti{
 
     /** @brief Lista degli utenti registrati nella biblioteca */    
     private List<Utente> utenti = new ArrayList<>();
-
+    
+    /** @brief Validatore degli utenti della biblioteca */
+    private ValidatoreUtenti validatore = new ValidatoreUtenti();
+    
     /**
      * @brief Restituisce la lista di tutti gli utenti della biblioteca.
      * 
@@ -49,7 +52,7 @@ public class GestoreUtenti implements InterfacciaGestoreUtenti{
         
         if(utente==null) return ;
         
-        validaUtente(utente);
+        validatore.validaUtente(utente);
         
         for (Utente u : utenti) {
             if (u.getMatricola().equalsIgnoreCase(utente.getMatricola())) {
@@ -72,7 +75,7 @@ public class GestoreUtenti implements InterfacciaGestoreUtenti{
         throw new IllegalArgumentException("Dati non validi.");
         }
     
-        validaUtente(utente2);
+        validatore.validaUtente(utente2);
     
         if (!utente1.getMatricola().equalsIgnoreCase(utente2.getMatricola())) {
             for (Utente u: utenti) {
@@ -133,43 +136,4 @@ public class GestoreUtenti implements InterfacciaGestoreUtenti{
         
     }
     
-    /**
-     * @brief Verifica la validità e la coerenza dei dati di un utente.
-     * 
-     * Questo metodo esegue un controllo sull'utente fornito per assicurarsi
-     * che tutti i campi siano presenti e conformi ai requisiti del sistema prima 
-     * dell'elaborazione.
-     * 
-     * @param[in] utente Utente da sottoporre a validazione.
-     * @throws IllegalArgumentException Se uno o più campi del libro non rispettano
-     *                                  i vincoli richiesti.
-     */
-    private void validaUtente(Utente utente) {
-        
-        if (utente == null) throw new IllegalArgumentException("Utente nullo.");
-        
-        if (utente.getNome() == null || utente.getNome().trim().isEmpty()) 
-            throw new IllegalArgumentException("Nome obbligatorio.");
-        
-        if (!utente.getNome().trim().matches("^[a-zA-Z\\s'-]+$"))
-        throw new IllegalArgumentException("Il nome non può contenere numeri.");
-
-        if (utente.getCognome() == null || utente.getCognome().trim().isEmpty()) 
-            throw new IllegalArgumentException("Cognome obbligatorio.");
-        
-        if (!utente.getCognome().trim().matches("^[a-zA-Z\\s'-]+$"))
-        throw new IllegalArgumentException("Il cognome non può contenere numeri.");
-
-        if (utente.getMatricola() == null || utente.getMatricola().trim().isEmpty()) 
-            throw new IllegalArgumentException("Matricola obbligatoria.");  
-        
-        if (utente.getEmail() == null || utente.getEmail().trim().isEmpty()) 
-            throw new IllegalArgumentException("Email obbligatoria.");  
-        
-        String email = utente.getEmail().trim();
-        if (!email.contains("@") || !email.contains(".")) {
-            throw new IllegalArgumentException("Email non valida");
-        }
-                
-    }
 }

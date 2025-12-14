@@ -85,7 +85,6 @@ public class LibroController {
             tfAnno.setText(String.valueOf(l.getAnno()));
             tfIsbn.setText(l.getIsbn());
             tfCopie.setText(String.valueOf(l.getCopieDisponibili()));
-            tfCopie.setEditable(false);
         } else {
             btnAnnulla();
         }
@@ -105,7 +104,6 @@ public class LibroController {
         tfAnno.clear();
         tfIsbn.clear();
         tfCopie.clear();
-        tfCopie.setEditable(true);
         tabellaLibri.getSelectionModel().clearSelection();
     }
 

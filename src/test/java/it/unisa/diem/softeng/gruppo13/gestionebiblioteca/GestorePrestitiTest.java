@@ -122,19 +122,19 @@ public class GestorePrestitiTest {
         
         LocalDate oggi = LocalDate.now();
         LocalDate domani = oggi.plusDays(1);
-        LocalDate ieri = oggi.minusDays(1);
+        LocalDate dopodomani = oggi.plusDays(2);
 
         gestore.aggiungiPrestito(u1, l1, domani); 
-        gestore.aggiungiPrestito(u2, l1, ieri);  
+        gestore.aggiungiPrestito(u2, l1, dopodomani);  
         gestore.aggiungiPrestito(u1, l1, oggi);  
 
         List<Prestito> ordinati = gestore.getOrdinati();
 
         assertEquals(3, ordinati.size());
         
-        assertEquals(ieri, ordinati.get(0).getDataRestituzione());
-        assertEquals(oggi, ordinati.get(1).getDataRestituzione());
-        assertEquals(domani, ordinati.get(2).getDataRestituzione());
+        assertEquals(oggi, ordinati.get(0).getDataRestituzione());
+        assertEquals(domani, ordinati.get(1).getDataRestituzione());
+        assertEquals(dopodomani, ordinati.get(2).getDataRestituzione());
     }
     
 }

@@ -23,12 +23,12 @@ import java.util.List;
  * @author Daniel, Andrea, Stefano, Daniele
  */
 public class GestorePrestiti implements InterfacciaGestorePrestiti{
-    
-    /** @brief Numero massimo di prestiti attivi consentiti per ciascun utente */
-    private static final int MAX_PRESTITI = 3;    
-
+      
     /** @brief Lista dei prestiti attivi nella biblioteca */    
     private List<Prestito> prestiti = new ArrayList<>();
+    
+    /** @brief Validatore dei prestiti della biblioteca*/
+    private ValidatorePrestiti validatore = new ValidatorePrestiti();
 
     /**
      * @brief Restituisce la lista di tutti i prestiti attivi.
@@ -53,7 +53,7 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
             throw new IllegalArgumentException("Dati prestito incompleti.");
         }
 
-        validaPrestito(utente, libro, scadenza, prestiti); 
+        validatore.validaPrestito(utente, libro, scadenza, prestiti); 
 
         libro.decrementaCopie();
 
@@ -116,45 +116,5 @@ public class GestorePrestiti implements InterfacciaGestorePrestiti{
         listaOrdinabile.sort(new ComparatorePrestiti());
         return listaOrdinabile;
     }
-    
-    /**
-     * @brief Verifica la validità di un prestito.
-     * 
-     * Questo metodo controlla il rispetto dei vincoli di dominio:
-     * disponibilità delle copie del libro e numero massimo di prestiti
-     * consentiti per l'utente.
-     * 
-     * @param[in] utente Utente che richiede il prestito.
-     * @param[in] libro Libro che viene preso in prestito.
-     * @param[in] prestitiAttuali Lista dei prestiti attivi.
-     * @param[in] scadenza Data prevista per la restituzione
-     * 
-     * @throws Exception Se il libro non ha copie disponibili o se l'utente
-     *                   ha superato il numero massimo di prestiti consentiti.
-     */
-    private void validaPrestito(Utente utente, Libro libro, LocalDate scadenza, List<Prestito> prestitiAttuali) throws Exception {
-        
-        if (scadenza.isBefore(LocalDate.now())) {
-        throw new IllegalArgumentException("La data di scadenza non può essere antecedente alla data odierna.");
-        }
-        
-        if (libro.getCopieDisponibili() <= 0) { 
-            throw new Exception("Copie non disponibili per il libro: " + libro.getTitolo());
-        }
-
-        long prestitiUtente = 0;
-        for (Prestito p : prestitiAttuali) {
-            if (p.getUtente().equals(utente)) {
-                prestitiUtente++;
-            }
-        }
-
-        if (prestitiUtente >= MAX_PRESTITI) {
-            throw new Exception(
-                "L'utente ha raggiunto il limite massimo di " + MAX_PRESTITI + " prestiti."
-            );
-        }
-    }
-    
     
 }
